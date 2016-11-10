@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 20161110155228) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
-    t.integer  "expiration_day"
+    t.integer  "expiration"
     t.integer  "type"
-    t.integer  "closing_day"
-    t.decimal  "interest",       precision: 8, scale: 4
-    t.decimal  "fine",           precision: 8, scale: 2
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "closing"
+    t.decimal  "interest",   precision: 8, scale: 4
+    t.decimal  "fine",       precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "credits", force: :cascade do |t|
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20161110155228) do
     t.integer  "recurring_credit_id"
     t.integer  "account_id"
     t.integer  "tag_id"
-    t.integer  "expiration_day"
+    t.integer  "expiration"
     t.decimal  "interest"
     t.decimal  "fine"
     t.datetime "created_at",                                  null: false
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20161110155228) do
     t.string   "name"
     t.integer  "months"
     t.integer  "day"
-    t.decimal  "value",          precision: 8, scale: 2
+    t.decimal  "value",      precision: 8, scale: 2
     t.integer  "account_id"
-    t.integer  "expiration_day"
-    t.decimal  "interest",       precision: 8, scale: 2
-    t.decimal  "fine",           precision: 8, scale: 2
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "expiration"
+    t.decimal  "interest",   precision: 8, scale: 2
+    t.decimal  "fine",       precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["account_id"], name: "index_recurring_credits_on_account_id", using: :btree
   end
 
