@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Debit:</strong>
+  <%= @transfer.debit %>
+</p>
+
+<p>
+  <strong>Credit:</strong>
+  <%= @transfer.credit %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @transfer.description %>
+</p>
+
+<%= link_to 'Edit', edit_transfer_path(@transfer) %> |
+<%= link_to 'Back', transfers_path %>

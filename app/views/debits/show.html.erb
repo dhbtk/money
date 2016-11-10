@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @debit.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @debit.date %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @debit.value %>
+</p>
+
+<p>
+  <strong>Recurring debit:</strong>
+  <%= @debit.recurring_debit %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @debit.account %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @debit.tag %>
+</p>
+
+<p>
+  <strong>Credit:</strong>
+  <%= @debit.credit %>
+</p>
+
+<%= link_to 'Edit', edit_debit_path(@debit) %> |
+<%= link_to 'Back', debits_path %>

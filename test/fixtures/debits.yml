@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2016-11-10 13:51:20
+  value: 9.99
+  recurring_debit: one
+  account: one
+  tag: one
+  credit: one
+
+two:
+  name: MyString
+  date: 2016-11-10 13:51:20
+  value: 9.99
+  recurring_debit: two
+  account: two
+  tag: two
+  credit: two

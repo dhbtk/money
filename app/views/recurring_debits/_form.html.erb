@@ -1,0 +1,42 @@
+<%= form_for(recurring_debit) do |f| %>
+  <% if recurring_debit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recurring_debit.errors.count, "error") %> prohibited this recurring_debit from being saved:</h2>
+
+      <ul>
+      <% recurring_debit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :months %>
+    <%= f.number_field :months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :day %>
+    <%= f.number_field :day %>
+  </div>
+
+  <div class="field">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_id %>
+    <%= f.text_field :account_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

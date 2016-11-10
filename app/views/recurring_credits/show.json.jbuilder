@@ -1,0 +1,1 @@
+json.partial! "recurring_credits/recurring_credit", recurring_credit: @recurring_credit

@@ -1,0 +1,57 @@
+<%= form_for(recurring_credit) do |f| %>
+  <% if recurring_credit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h2>
+
+      <ul>
+      <% recurring_credit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :months %>
+    <%= f.number_field :months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :day %>
+    <%= f.number_field :day %>
+  </div>
+
+  <div class="field">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_id %>
+    <%= f.text_field :account_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiration %>
+    <%= f.number_field :expiration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :interest %>
+    <%= f.text_field :interest %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fine %>
+    <%= f.text_field :fine %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
