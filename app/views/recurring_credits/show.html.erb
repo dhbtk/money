@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @recurring_credit.name %>
+</p>
+
+<p>
+  <strong>Months:</strong>
+  <%= @recurring_credit.months %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @recurring_credit.day %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @recurring_credit.value %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @recurring_credit.account %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @recurring_credit.expiration %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @recurring_credit.interest %>
+</p>
+
+<p>
+  <strong>Fine:</strong>
+  <%= @recurring_credit.fine %>
+</p>
+
+<%= link_to 'Edit', edit_recurring_credit_path(@recurring_credit) %> |
+<%= link_to 'Back', recurring_credits_path %>

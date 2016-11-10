@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Debits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Value</th>
+      <th>Recurring debit</th>
+      <th>Account</th>
+      <th>Tag</th>
+      <th>Credit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @debits.each do |debit| %>
+      <tr>
+        <td><%= debit.name %></td>
+        <td><%= debit.date %></td>
+        <td><%= debit.value %></td>
+        <td><%= debit.recurring_debit %></td>
+        <td><%= debit.account %></td>
+        <td><%= debit.tag %></td>
+        <td><%= debit.credit %></td>
+        <td><%= link_to 'Show', debit %></td>
+        <td><%= link_to 'Edit', edit_debit_path(debit) %></td>
+        <td><%= link_to 'Destroy', debit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Debit', new_debit_path %>

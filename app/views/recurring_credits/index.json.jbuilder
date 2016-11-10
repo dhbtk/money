@@ -1,0 +1,1 @@
+json.array! @recurring_credits, partial: 'recurring_credits/recurring_credit', as: :recurring_credit

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Credits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Value</th>
+      <th>Recurring credit</th>
+      <th>Account</th>
+      <th>Expiration day</th>
+      <th>Interest</th>
+      <th>Fine</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @credits.each do |credit| %>
+      <tr>
+        <td><%= credit.name %></td>
+        <td><%= credit.date %></td>
+        <td><%= credit.value %></td>
+        <td><%= credit.recurring_credit %></td>
+        <td><%= credit.account %></td>
+        <td><%= credit.expiration_day %></td>
+        <td><%= credit.interest %></td>
+        <td><%= credit.fine %></td>
+        <td><%= link_to 'Show', credit %></td>
+        <td><%= link_to 'Edit', edit_credit_path(credit) %></td>
+        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Credit', new_credit_path %>
