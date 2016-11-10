@@ -17,7 +17,7 @@ class CreditsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create credit" do
     assert_difference('Credit.count') do
-      post credits_url, params: { credit: { account_id: @credit.account_id, date: @credit.date, expiration_day: @credit.expiration_day, fine: @credit.fine, interest: @credit.interest, name: @credit.name, recurring_credit_id: @credit.recurring_credit_id, value: @credit.value } }
+      post credits_url, params: { credit: { account_id: @credit.account_id, date: @credit.date, expiration: @credit.expiration, fine: @credit.fine, interest: @credit.interest, name: @credit.name, recurring_credit_id: @credit.recurring_credit_id, value: @credit.value } }
     end
 
     assert_redirected_to credit_url(Credit.last)
@@ -34,7 +34,7 @@ class CreditsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update credit" do
-    patch credit_url(@credit), params: { credit: { account_id: @credit.account_id, date: @credit.date, expiration_day: @credit.expiration_day, fine: @credit.fine, interest: @credit.interest, name: @credit.name, recurring_credit_id: @credit.recurring_credit_id, value: @credit.value } }
+    patch credit_url(@credit), params: { credit: { account_id: @credit.account_id, date: @credit.date, expiration: @credit.expiration, fine: @credit.fine, interest: @credit.interest, name: @credit.name, recurring_credit_id: @credit.recurring_credit_id, value: @credit.value } }
     assert_redirected_to credit_url(@credit)
   end
 

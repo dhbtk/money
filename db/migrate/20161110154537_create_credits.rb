@@ -7,7 +7,7 @@ class CreateCredits < ActiveRecord::Migration[5.0]
       t.references :recurring_credit, foreign_key: true
       t.references :account, foreign_key: true
       t.references :tag, foreign_key: true
-      t.integer :expiration_day
+      t.integer :expiration
       t.decimal :interest
       t.decimal :fine
 

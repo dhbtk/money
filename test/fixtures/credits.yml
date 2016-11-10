@@ -6,7 +6,7 @@ one:
   value: 9.99
   recurring_credit: one
   account: one
-  expiration_day: 1
+  expiration: 1
   interest: 9.99
   fine: 9.99
 
@@ -16,6 +16,6 @@ two:
   value: 9.99
   recurring_credit: two
   account: two
-  expiration_day: 1
+  expiration: 1
   interest: 9.99
   fine: 9.99
