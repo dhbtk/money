@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Rails money: production">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="money">
+      <object-id>597285</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12378</object-id>
+    </database>
+    <database id="3" name="eduardo">
+      <object-id>23649</object-id>
+    </database>
+    <database id="4" name="achabus_development">
+      <object-id>57388</object-id>
+    </database>
+    <database id="5" name="routing">
+      <object-id>62123</object-id>
+    </database>
+    <database id="6" name="stockontrol">
+      <object-id>331695</object-id>
+    </database>
+    <database id="7" name="terminator-test">
+      <object-id>460650</object-id>
+    </database>
+    <database id="8" name="edanni-io">
+      <object-id>517088</object-id>
+    </database>
+    <database id="9" name="terminator">
+      <object-id>522622</object-id>
+    </database>
+    <database id="10" name="srvadm">
+      <object-id>523227</object-id>
+    </database>
+    <database id="11" name="srvadm_test">
+      <object-id>561340</object-id>
+    </database>
+    <database id="12" name="money_test">
+      <object-id>597446</object-id>
+    </database>
+    <schema id="13" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>171168</introspection-state-number>
+      <introspection-timestamp>2016-11-11.12:15:44.855</introspection-timestamp>
+    </schema>
+    <schema id="14" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="15" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="16" parent="1" name="pg_temp_1">
+      <object-id>11816</object-id>
+    </schema>
+    <schema id="17" parent="1" name="pg_toast_temp_1">
+      <object-id>11817</object-id>
+    </schema>
+    <schema id="18" parent="1" name="information_schema">
+      <object-id>12086</object-id>
+    </schema>
+    <sequence id="19" parent="13" name="accounts_id_seq">
+      <object-id>597303</object-id>
+      <state-number>171162</state-number>
+    </sequence>
+    <sequence id="20" parent="13" name="credits_id_seq">
+      <object-id>597342</object-id>
+      <state-number>171165</state-number>
+    </sequence>
+    <sequence id="21" parent="13" name="debits_id_seq">
+      <object-id>597388</object-id>
+      <state-number>171167</state-number>
+    </sequence>
+    <sequence id="22" parent="13" name="recurring_credits_id_seq">
+      <object-id>597314</object-id>
+      <state-number>171163</state-number>
+    </sequence>
+    <sequence id="23" parent="13" name="recurring_debits_id_seq">
+      <object-id>597371</object-id>
+      <state-number>171166</state-number>
+    </sequence>
+    <sequence id="24" parent="13" name="tags_id_seq">
+      <object-id>597331</object-id>
+      <state-number>171164</state-number>
+    </sequence>
+    <sequence id="25" parent="13" name="transfers_id_seq">
+      <object-id>597423</object-id>
+      <state-number>171168</state-number>
+    </sequence>
+    <table id="26" parent="13" name="accounts">
+      <object-id>597305</object-id>
+      <state-number>171167</state-number>
+    </table>
+    <table id="27" parent="13" name="ar_internal_metadata">
+      <object-id>597295</object-id>
+      <state-number>171161</state-number>
+    </table>
+    <table id="28" parent="13" name="credits">
+      <object-id>597344</object-id>
+      <state-number>171168</state-number>
+    </table>
+    <table id="29" parent="13" name="debits">
+      <object-id>597390</object-id>
+      <state-number>171168</state-number>
+    </table>
+    <table id="30" parent="13" name="recurring_credits">
+      <object-id>597316</object-id>
+      <state-number>171165</state-number>
+    </table>
+    <table id="31" parent="13" name="recurring_debits">
+      <object-id>597373</object-id>
+      <state-number>171167</state-number>
+    </table>
+    <table id="32" parent="13" name="schema_migrations">
+      <object-id>597287</object-id>
+      <state-number>171160</state-number>
+    </table>
+    <table id="33" parent="13" name="tags">
+      <object-id>597333</object-id>
+      <state-number>171167</state-number>
+    </table>
+    <table id="34" parent="13" name="transfers">
+      <object-id>597425</object-id>
+      <state-number>171168</state-number>
+    </table>
+    <column id="35" parent="26" name="id">
+      <state-number>171162</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;accounts_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="36" parent="26" name="name">
+      <state-number>171162</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="37" parent="26" name="expiration">
+      <state-number>171162</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="38" parent="26" name="type">
+      <state-number>171162</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="39" parent="26" name="closing">
+      <state-number>171162</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="40" parent="26" name="interest">
+      <state-number>171162</state-number>
+      <data-type>numeric(8,4)|0</data-type>
+    </column>
+    <column id="41" parent="26" name="fine">
+      <state-number>171162</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="42" parent="26" name="created_at">
+      <state-number>171162</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="43" parent="26" name="updated_at">
+      <state-number>171162</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="44" parent="26" name="accounts_pkey">
+      <object-id>597312</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="45" parent="26" name="accounts_pkey">
+      <object-id>597313</object-id>
+      <columns>id</columns>
+      <underlying-index>accounts_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="46" parent="27" name="key">
+      <state-number>171161</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="47" parent="27" name="value">
+      <state-number>171161</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="48" parent="27" name="created_at">
+      <state-number>171161</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="49" parent="27" name="updated_at">
+      <state-number>171161</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="50" parent="27" name="ar_internal_metadata_pkey">
+      <object-id>597301</object-id>
+      <columns>key</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="51" parent="27" name="ar_internal_metadata_pkey">
+      <object-id>597302</object-id>
+      <columns>key</columns>
+      <underlying-index>ar_internal_metadata_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="52" parent="28" name="id">
+      <state-number>171165</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;credits_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="53" parent="28" name="name">
+      <state-number>171165</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="54" parent="28" name="date">
+      <state-number>171165</state-number>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="55" parent="28" name="value">
+      <state-number>171165</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="56" parent="28" name="recurring_credit_id">
+      <state-number>171165</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="57" parent="28" name="account_id">
+      <state-number>171165</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="58" parent="28" name="tag_id">
+      <state-number>171165</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="59" parent="28" name="expiration">
+      <state-number>171165</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="60" parent="28" name="interest">
+      <state-number>171165</state-number>
+      <data-type>numeric|0</data-type>
+    </column>
+    <column id="61" parent="28" name="fine">
+      <state-number>171165</state-number>
+      <data-type>numeric|0</data-type>
+    </column>
+    <column id="62" parent="28" name="created_at">
+      <state-number>171165</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="63" parent="28" name="updated_at">
+      <state-number>171165</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="64" parent="28" name="credits_pkey">
+      <object-id>597351</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="65" parent="28" name="index_credits_on_recurring_credit_id">
+      <object-id>597368</object-id>
+      <columns>recurring_credit_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="66" parent="28" name="index_credits_on_account_id">
+      <object-id>597369</object-id>
+      <columns>account_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="67" parent="28" name="index_credits_on_tag_id">
+      <object-id>597370</object-id>
+      <columns>tag_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="68" parent="28" name="credits_pkey">
+      <object-id>597352</object-id>
+      <columns>id</columns>
+      <underlying-index>credits_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="69" parent="28" name="fk_rails_e3a9c18da2">
+      <object-id>597353</object-id>
+      <columns>recurring_credit_id</columns>
+      <ref-key>~.recurring_credits.recurring_credits_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="70" parent="28" name="fk_rails_7fa551ef01">
+      <object-id>597358</object-id>
+      <columns>account_id</columns>
+      <ref-key>~.accounts.accounts_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="71" parent="28" name="fk_rails_7539d66254">
+      <object-id>597363</object-id>
+      <columns>tag_id</columns>
+      <ref-key>~.tags.tags_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="72" parent="29" name="id">
+      <state-number>171167</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;debits_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="73" parent="29" name="name">
+      <state-number>171167</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="74" parent="29" name="date">
+      <state-number>171167</state-number>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="75" parent="29" name="value">
+      <state-number>171167</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="76" parent="29" name="recurring_debit_id">
+      <state-number>171167</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="77" parent="29" name="account_id">
+      <state-number>171167</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="78" parent="29" name="tag_id">
+      <state-number>171167</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="79" parent="29" name="credit_id">
+      <state-number>171167</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="80" parent="29" name="created_at">
+      <state-number>171167</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="81" parent="29" name="updated_at">
+      <state-number>171167</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="82" parent="29" name="debits_pkey">
+      <object-id>597397</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="83" parent="29" name="index_debits_on_recurring_debit_id">
+      <object-id>597419</object-id>
+      <columns>recurring_debit_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="84" parent="29" name="index_debits_on_account_id">
+      <object-id>597420</object-id>
+      <columns>account_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="85" parent="29" name="index_debits_on_tag_id">
+      <object-id>597421</object-id>
+      <columns>tag_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="86" parent="29" name="index_debits_on_credit_id">
+      <object-id>597422</object-id>
+      <columns>credit_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="87" parent="29" name="debits_pkey">
+      <object-id>597398</object-id>
+      <columns>id</columns>
+      <underlying-index>debits_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="88" parent="29" name="fk_rails_f9dce65283">
+      <object-id>597399</object-id>
+      <columns>recurring_debit_id</columns>
+      <ref-key>~.recurring_debits.recurring_debits_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="89" parent="29" name="fk_rails_305f16e18d">
+      <object-id>597404</object-id>
+      <columns>account_id</columns>
+      <ref-key>~.accounts.accounts_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="90" parent="29" name="fk_rails_45ecfe4c3f">
+      <object-id>597409</object-id>
+      <columns>tag_id</columns>
+      <ref-key>~.tags.tags_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="91" parent="29" name="fk_rails_c5374c4471">
+      <object-id>597414</object-id>
+      <columns>credit_id</columns>
+      <ref-key>~.credits.credits_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="92" parent="30" name="id">
+      <state-number>171163</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;recurring_credits_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="93" parent="30" name="name">
+      <state-number>171163</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="94" parent="30" name="months">
+      <state-number>171163</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="95" parent="30" name="day">
+      <state-number>171163</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="96" parent="30" name="value">
+      <state-number>171163</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="97" parent="30" name="account_id">
+      <state-number>171163</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="98" parent="30" name="expiration">
+      <state-number>171163</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="99" parent="30" name="interest">
+      <state-number>171163</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="100" parent="30" name="fine">
+      <state-number>171163</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="101" parent="30" name="created_at">
+      <state-number>171163</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="102" parent="30" name="updated_at">
+      <state-number>171163</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="103" parent="30" name="recurring_credits_pkey">
+      <object-id>597323</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="104" parent="30" name="index_recurring_credits_on_account_id">
+      <object-id>597330</object-id>
+      <columns>account_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="105" parent="30" name="recurring_credits_pkey">
+      <object-id>597324</object-id>
+      <columns>id</columns>
+      <underlying-index>recurring_credits_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="106" parent="30" name="fk_rails_935c29f0d5">
+      <object-id>597325</object-id>
+      <columns>account_id</columns>
+      <ref-key>~.accounts.accounts_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="107" parent="31" name="id">
+      <state-number>171166</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;recurring_debits_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="108" parent="31" name="name">
+      <state-number>171166</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="109" parent="31" name="months">
+      <state-number>171166</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="110" parent="31" name="day">
+      <state-number>171166</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="111" parent="31" name="value">
+      <state-number>171166</state-number>
+      <data-type>numeric(8,2)|0</data-type>
+    </column>
+    <column id="112" parent="31" name="account_id">
+      <state-number>171166</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="113" parent="31" name="created_at">
+      <state-number>171166</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="114" parent="31" name="updated_at">
+      <state-number>171166</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="115" parent="31" name="recurring_debits_pkey">
+      <object-id>597380</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="116" parent="31" name="index_recurring_debits_on_account_id">
+      <object-id>597387</object-id>
+      <columns>account_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="117" parent="31" name="recurring_debits_pkey">
+      <object-id>597381</object-id>
+      <columns>id</columns>
+      <underlying-index>recurring_debits_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="118" parent="31" name="fk_rails_8d0f6bff3c">
+      <object-id>597382</object-id>
+      <columns>account_id</columns>
+      <ref-key>~.accounts.accounts_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="119" parent="32" name="version">
+      <state-number>171160</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar|0</data-type>
+    </column>
+    <index id="120" parent="32" name="schema_migrations_pkey">
+      <object-id>597293</object-id>
+      <columns>version</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="121" parent="32" name="schema_migrations_pkey">
+      <object-id>597294</object-id>
+      <columns>version</columns>
+      <underlying-index>schema_migrations_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="122" parent="33" name="id">
+      <state-number>171164</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;tags_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="123" parent="33" name="name">
+      <state-number>171164</state-number>
+      <data-type>varchar|0</data-type>
+    </column>
+    <column id="124" parent="33" name="created_at">
+      <state-number>171164</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="125" parent="33" name="updated_at">
+      <state-number>171164</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="126" parent="33" name="tags_pkey">
+      <object-id>597340</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="127" parent="33" name="tags_pkey">
+      <object-id>597341</object-id>
+      <columns>id</columns>
+      <underlying-index>tags_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="128" parent="34" name="id">
+      <state-number>171168</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;transfers_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="129" parent="34" name="debit_id">
+      <state-number>171168</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="130" parent="34" name="credit_id">
+      <state-number>171168</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="131" parent="34" name="description">
+      <state-number>171168</state-number>
+      <data-type>text|0</data-type>
+    </column>
+    <column id="132" parent="34" name="created_at">
+      <state-number>171168</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="133" parent="34" name="updated_at">
+      <state-number>171168</state-number>
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <index id="134" parent="34" name="transfers_pkey">
+      <object-id>597432</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <index id="135" parent="34" name="index_transfers_on_debit_id">
+      <object-id>597444</object-id>
+      <columns>debit_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="136" parent="34" name="index_transfers_on_credit_id">
+      <object-id>597445</object-id>
+      <columns>credit_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="137" parent="34" name="transfers_pkey">
+      <object-id>597433</object-id>
+      <columns>id</columns>
+      <underlying-index>transfers_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="138" parent="34" name="fk_rails_efa24814d2">
+      <object-id>597434</object-id>
+      <columns>debit_id</columns>
+      <ref-key>~.debits.debits_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="139" parent="34" name="fk_rails_a87704a078">
+      <object-id>597439</object-id>
+      <columns>credit_id</columns>
+      <ref-key>~.credits.credits_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>
