@@ -3,4 +3,6 @@ class Credit < ApplicationRecord
   belongs_to :account
   belongs_to :tag, optional: true
   has_many :debits
+
+  validates :date, :value, presence: true
 end
