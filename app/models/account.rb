@@ -20,12 +20,12 @@ class Account < ApplicationRecord
   # Lists the statements in the given date range.
   def statements(from = 15.days.ago, to = 15.days.from_now)
     statements = debits.where('"date" <= ? AND "date" >= ?', to, from) + credits.where('"date" <= ? AND "date" >= ?', to, from)
-    statements.sort{ |a, b| a.date <=> b.date }.group_by{ |x| [x.date.year, x.date.month, x.date.day] }
+    statements.sort{ |a, b| a.date <=> b.date }.group_by{ |x| x.date.to_date }
   end
 
-  def self.statements_grid(query = all, from = 15.days.ago, to = 15.days.from_now)
-    statements = query.map{|acc| [acc, acc.statements(from, to)]}.to_h
-    statements.values.map{ |x| x.keys }.flatten(1).uniq.sort{ |x,y| DateTime.new(*x) <=> DateTime.new(*y) }
+  def self.statements_grid(scope = all, from = 15.days.ago, to = 15.days.from_now)
+    statements = scope.map{|acc| [acc, acc.statements(from, to)]}.to_h
+    statements.values.map{ |x| x.keys }.flatten.uniq.sort
         .map{ |date| [date, statements.to_a.map{ |st| [st[0], st[1][date]] }] }.to_h
   end
 end
