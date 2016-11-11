@@ -23,8 +23,8 @@ class Account < ApplicationRecord
     statements.sort{ |a, b| a.date <=> b.date }.group_by{ |x| [x.date.year, x.date.month, x.date.day] }
   end
 
-  def self.statements_grid(from = 15.days.ago, to = 15.days.from_now)
-    statements = all.map{|acc| [acc, acc.statements(from, to)]}.to_h
+  def self.statements_grid(query = all, from = 15.days.ago, to = 15.days.from_now)
+    statements = query.map{|acc| [acc, acc.statements(from, to)]}.to_h
     statements.values.map{ |x| x.keys }.flatten(1).uniq.sort{ |x,y| DateTime.new(*x) <=> DateTime.new(*y) }
         .map{ |date| [date, statements.to_a.map{ |st| [st[0], st[1][date]] }] }.to_h
   end
