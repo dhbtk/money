@@ -1,0 +1,38 @@
+<h1>Statements#index</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Data</th>
+    <% @accounts.each do |account| %>
+        <th><%= account.name %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @statements.each do |date, statements| %>
+      <tr>
+        <td><%= date %></td>
+        <% statements.each do |account, list| %>
+            <td>
+              <ul>
+                <% list&.each do |st| %>
+                    <li>
+                      <%= st.is_a?(Credit) ? 'Crédito' : 'Débito' %><br>
+                      Valor: <%= number_to_currency(st.value, unit: "R$ ", separator: ",", delimiter: ".") %>
+                    </li>
+                <% end %>
+              </ul>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td>Saldo:</td>
+    <% @accounts.each do |account| %>
+        <th><%= number_to_currency(account.balance, unit: "R$ ", separator: ",", delimiter: ".") %></th>
+    <% end %>
+  </tr>
+  </tfoot>
+</table>

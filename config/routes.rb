@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'statements', to: 'statements#index'
+
   resources :transfers
   resources :debits
   resources :recurring_debits
