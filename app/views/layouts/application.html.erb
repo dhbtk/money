@@ -9,6 +9,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="header-container">
+      <header id="header">
+        <label for="toggle-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </label>
+        <input type="checkbox" id="toggle-menu">
+        <nav id="menu">
+          <%= link_to 'Home', statements_path %>
+          <%= link_to 'Contas', accounts_path %>
+        </nav>
+        <h1>Money</h1>
+      </header>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
   </body>
 </html>
