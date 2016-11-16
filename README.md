@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+http://www.palettable.io/9CB8B8-60A6CC-EDEDCE-B1C4C4-49627A

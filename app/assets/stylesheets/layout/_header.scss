@@ -1,8 +1,8 @@
 // Container
 
 div#header-container {
-  background-color: #49627A;
-  color: rgba(255, 255, 255, 0.87);
+  background-color: $primary-background-color;
+  color: $light-text-color;
   display: flex;
   @media(min-width: 1024px) {
     justify-content: center;
@@ -32,7 +32,7 @@ header#header {
 span.bar {
   width: 24px;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: $light-text-color;
   margin: 2px 0;
 }
 
@@ -65,7 +65,7 @@ nav#menu {
   height: calc(100% - 48px);
   transition: left 0.12s ease-in-out;
   background-color: #fff;
-  box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.54);
+  box-shadow: 2px 1px 3px $box-shadow-color;
   display: flex;
   flex-direction: column;
 }
@@ -79,7 +79,7 @@ nav#menu > a {
   width: calc(100% - 8px);
   text-transform: uppercase;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.87);
+  color: $dark-text-color;
   text-decoration: none;
   padding: 10px;
   border-radius: 3px;
@@ -89,5 +89,5 @@ nav#menu > a {
 }
 
 nav#menu > a:hover {
-  background-color: rgba(0, 0, 0, .12);
+  background-color: $menu-link-background-color;
 }

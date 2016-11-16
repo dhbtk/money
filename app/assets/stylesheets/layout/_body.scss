@@ -6,8 +6,8 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  font-family: Roboto, Helvetica, sans-serif;
+  font-family: $body-font-family;
   font-size: 14px;
-  background-color: #f5f5f5;
-  color: rgba(0, 0, 0, 0.87);
+  background-color: $body-background-color;
+  color: $dark-text-color;
 }
