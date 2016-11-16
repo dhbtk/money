@@ -1,0 +1,21 @@
+div#content {
+  @media(min-width: 1280px) {
+    max-width: 1170px;
+    margin: 15px auto;
+  }
+  @media(max-width: 1279px) {
+    max-width: 960px;
+    margin: 15px auto;
+  }
+  @media(max-width: 1023px) {
+    margin: 0;
+    box-shadow: none;
+  }
+  flex: 1;
+  overflow: auto;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 3px -1px 3px -2px rgba(0, 0, 0, 0.54);
+  width: 100%;
+}

@@ -1,0 +1,32 @@
+@media(max-width: 1023px) {
+  a#fab {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #EDEDCE;
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.54);
+  }
+}
+
+a#fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@media(min-width: 1024px) {
+  a#fab {
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    top: 0;
+    right: 0;
+    color: rgba(255, 255, 255, 0.87);
+  }
+}

@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Money</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Money</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-  <body>
-    <div id="header-container">
-      <header id="header">
-        <label for="toggle-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </label>
-        <input type="checkbox" id="toggle-menu">
-        <nav id="menu">
-          <%= link_to 'Home', statements_path %>
-          <%= link_to 'Contas', accounts_path %>
-        </nav>
-        <h1>Money</h1>
-      </header>
-    </div>
-    <div id="content">
-      <%= yield %>
-    </div>
-  </body>
+<body>
+<div id="header-container">
+  <label for="toggle-menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </label>
+  <header id="header">
+    <input type="checkbox" id="toggle-menu">
+    <nav id="menu">
+      <%= link_to 'Home', statements_path %>
+      <%= link_to 'Contas', accounts_path %>
+    </nav>
+    <h1>
+      <% if content_for? :title %><%= yield :title %>
+      <% else %>Money
+      <% end %></h1>
+  </header>
+</div>
+<div id="content">
+  <%= yield %>
+</div>
+<% if content_for? :fab %>
+    <%= yield :fab %>
+<% end %>
+</body>
 </html>
