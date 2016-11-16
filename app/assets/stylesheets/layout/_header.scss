@@ -6,6 +6,8 @@ div#header-container {
   display: flex;
   @media(min-width: 1024px) {
     justify-content: center;
+    z-index: 5;
+    box-shadow: 1px 0 3px 1px $box-shadow-color;
   }
   align-items: center;
 }
@@ -27,6 +29,10 @@ header#header {
   padding: 4px 0;
   align-items: center;
   width: 100%;
+
+  h1 {
+    font-size: 125%;
+  }
 }
 
 span.bar {
@@ -42,7 +48,7 @@ input#toggle-menu {
   display: none;
 }
 
-label[for="toggle-menu"] {
+#header-container > label[for="toggle-menu"] {
   display: flex;
   flex-direction: column;
   width: 40px;
@@ -53,7 +59,7 @@ label[for="toggle-menu"] {
   @media(min-width: 1024px) {
     position: absolute;
     top: 4px;
-    left: 0;
+    left: 4px;
   }
 }
 
@@ -72,6 +78,24 @@ nav#menu {
 
 #toggle-menu:checked + nav#menu {
   left: 0;
+}
+
+label#overlay {
+  position: absolute;
+  top: 48px;
+  left: calc(100% + 200px);
+  z-index: 2;
+  height: calc(100% - 48px);
+  width: calc(100% - 250px);
+  background: transparent;
+  transition: background 0.12s ease-in-out;
+  pointer-events: none;
+}
+
+#toggle-menu:checked ~ label#overlay {
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: all;
+  left: 250px;
 }
 
 nav#menu > a {

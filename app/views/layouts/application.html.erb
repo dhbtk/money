@@ -23,17 +23,19 @@
       <%= link_to 'Home', statements_path %>
       <%= link_to 'Contas', accounts_path %>
     </nav>
+    <label for="toggle-menu" id="overlay"></label>
     <h1>
       <% if content_for? :title %><%= yield :title %>
       <% else %>Money
-      <% end %></h1>
+      <% end %>
+    </h1>
   </header>
+  <% if content_for? :fab %>
+      <%= yield :fab %>
+  <% end %>
 </div>
 <div id="content">
   <%= yield %>
 </div>
-<% if content_for? :fab %>
-    <%= yield :fab %>
-<% end %>
 </body>
 </html>

@@ -3,12 +3,6 @@
     position: fixed;
     bottom: 16px;
     right: 16px;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: $secondary-background-color;
-    color: $dark-text-color;
-    box-shadow: 0 1px 2px 0 $box-shadow-color;
   }
 }
 
@@ -18,15 +12,18 @@ a#fab {
   justify-content: center;
   text-decoration: none;
   font-weight: bold;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: $secondary-background-color;
+  color: $dark-text-color;
+  box-shadow: 0 1px 2px 0 $box-shadow-color;
 }
 
 @media(min-width: 1024px) {
   a#fab {
     position: absolute;
-    height: 48px;
-    width: 48px;
-    top: 0;
-    right: 0;
-    color: $light-text-color;
+    top: 4px;
+    right: 4px;
   }
 }
