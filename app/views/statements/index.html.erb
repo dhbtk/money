@@ -1,4 +1,4 @@
-<h1>Statements#index</h1>
+<% content_for :title do %>Statements#index<% end %>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -18,7 +18,7 @@
                 <% list&.each do |st| %>
                     <li>
                       <%= st.is_a?(Credit) ? 'Crédito' : 'Débito' %><br>
-                      Valor: <%= number_to_currency(st.value, unit: "R$ ", separator: ",", delimiter: ".") %>
+                      Valor: <%= number_to_currency(st.value) %>
                     </li>
                 <% end %>
               </ul>
@@ -31,8 +31,9 @@
   <tr>
     <td>Saldo:</td>
     <% @accounts.each do |account| %>
-        <th><%= number_to_currency(account.balance, unit: "R$ ", separator: ",", delimiter: ".") %></th>
+        <th><%= number_to_currency(account.balance) %></th>
     <% end %>
   </tr>
   </tfoot>
 </table>
+<% content_for :fab do %><%= link_to '+', new_statement_path, id: 'fab' %><% end %>
