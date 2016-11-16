@@ -1,0 +1,51 @@
+h2.date {
+  font-size: 200%;
+  margin: 10px 0;
+}
+
+div.statements {
+  padding-left: 15px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  background-color: #ccc;
+}
+
+.statement {
+  display: flex;
+  padding: 10px;
+}
+
+.statement > div.content {
+  margin-left: 10px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.statement h3 {
+  margin-bottom: 5px;
+  font-size: 125%;
+}
+
+.statement {
+  &.credit {
+    h3 > span, span.transfer {
+      color: #B00;
+    }
+  }
+
+  &.debit {
+    h3 > span, span.transfer {
+      color: #090;
+    }
+  }
+}
+
+.amount {
+  font-size: 90%;
+  margin-bottom: 5px;
+}

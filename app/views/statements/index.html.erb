@@ -1,4 +1,36 @@
-<% content_for :title do %>Statements#index<% end %>
+<% content_for :title do %>Statements#index
+<% end %>
+<% @statements.each do |date, statements| %>
+    <h2 class="date"><%= l date, format: :short %></h2>
+    <div class="statements">
+      <% statements.each do |statement| %>
+          <div class="statement <%= statement.class.to_s.downcase %>">
+            <div class="icon"></div>
+            <div class="content">
+              <h3>
+                <span>
+                  <% if statement.is_a? Credit %>Gasto<% else %>Recebimento<% end %>
+                </span>
+                na conta
+                <strong><%= statement.account.name %></strong>
+              </h3>
+              <div class="amount">
+                Valor: <%= number_to_currency statement.value %>
+              </div>
+              <% if statement.transfer.present? %>
+                  <div>
+                <span class="transfer">
+                  <% if statement.is_a? Credit %>Transferência<% else %>Transferido<% end %>
+                </span>
+                    para
+                    <strong><%= statement.transfer.debit.account.name %></strong>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% end %>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -9,23 +41,6 @@
   </tr>
   </thead>
   <tbody>
-  <% @statements.each do |date, statements| %>
-      <tr>
-        <td><%= date %></td>
-        <% statements.each do |account, list| %>
-            <td>
-              <ul>
-                <% list&.each do |st| %>
-                    <li>
-                      <%= st.is_a?(Credit) ? 'Crédito' : 'Débito' %><br>
-                      Valor: <%= number_to_currency(st.value) %>
-                    </li>
-                <% end %>
-              </ul>
-            </td>
-        <% end %>
-      </tr>
-  <% end %>
   </tbody>
   <tfoot>
   <tr>
@@ -36,4 +51,5 @@
   </tr>
   </tfoot>
 </table>
-<% content_for :fab do %><%= link_to '+', new_statement_path, id: 'fab' %><% end %>
+<% content_for :fab do %><%= link_to '+', new_statement_path, id: 'fab' %>
+<% end %>

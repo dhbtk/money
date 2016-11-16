@@ -1,7 +1,7 @@
 class StatementsController < ApplicationController
   def index
     @accounts = Account.all
-    @statements = Account.statements_grid(@accounts)
+    @statements = Statement.all
   end
 
   def new
