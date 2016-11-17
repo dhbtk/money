@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   self.inheritance_column = 'record_type'
+  belongs_to :user
   has_many :credits, -> { order(:date) }
   has_many :recurring_credits, -> { order(:name) }
   has_many :debits, -> { order(:date) }
@@ -8,6 +9,7 @@ class Account < ApplicationRecord
   has_many :outgoing_transfers, through: :credits, class_name: 'Transfer', source: :transfer
 
   validates :name, presence: true, uniqueness: true
+  validates :user, presence: true
 
   enum type: { generic: 0, bank_account: 1, credit_card: 2 }
 

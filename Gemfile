@@ -34,3 +34,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # frontend
 gem 'kaminari'
+
+gem 'cancancan'
+gem 'devise'

@@ -1,0 +1,38 @@
+input[type="radio"].tab, div.tab {
+  display: none;
+}
+
+input[type="radio"]#t1:checked ~ div.t1, input[type="radio"]#t2:checked ~ div.t2, input[type="radio"]#t3:checked ~ div.t3,
+input[type="radio"]#t4:checked ~ div.t4, input[type="radio"]#t5:checked ~ div.t5, input[type="radio"]#t6:checked ~ div.t6,
+input[type="radio"]#t7:checked ~ div.t7, input[type="radio"]#t8:checked ~ div.t8, input[type="radio"]#t9:checked ~ div.t9 {
+  display: inherit;
+}
+
+.tab-headers {
+  display: flex;
+  flex-direction: row;
+  label {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    padding: 0 5px;
+    font-weight: bold;
+    color: $primary-background-color;
+  }
+}
+
+input[type="radio"]#t1:checked ~ .tab-headers > label[for="t1"],
+input[type="radio"]#t2:checked ~ .tab-headers > label[for="t2"],
+input[type="radio"]#t3:checked ~ .tab-headers > label[for="t3"],
+input[type="radio"]#t4:checked ~ .tab-headers > label[for="t4"],
+input[type="radio"]#t5:checked ~ .tab-headers > label[for="t5"],
+input[type="radio"]#t6:checked ~ .tab-headers > label[for="t6"],
+input[type="radio"]#t7:checked ~ .tab-headers > label[for="t7"],
+input[type="radio"]#t8:checked ~ .tab-headers > label[for="t8"],
+input[type="radio"]#t9:checked ~ .tab-headers > label[for="t9"] {
+  border-bottom: 2px solid $primary-background-color;
+}
