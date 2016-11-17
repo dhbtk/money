@@ -34,13 +34,13 @@
     	<%= link_to material_icon.exit_to_app, destroy_user_session_path, method: :delete %>
     <% end %>
   </header>
-  <% if content_for? :fab %>
-      <%= yield :fab %>
-  <% end %>
 </div>
 <div id="content">
   <%= yield %>
 </div>
+<% if content_for? :fab %>
+    <%= yield :fab %>
+<% end %>
 <%= yield :body %>
 </body>
 </html>
