@@ -1,16 +1,25 @@
 <% content_for :title do %>Statements#new<% end %>
-<input type="radio" name="tabs" value="1" class="tab" id="t1"><input type="radio" name="tabs" value="2" class="tab" id="t2">
+<input type="radio" checked name="tabs" value="1" class="tab" id="t1"><input type="radio" name="tabs" value="2" class="tab" id="t2">
 <input type="radio" name="tabs" value="3" class="tab" id="t3"><input type="radio" name="tabs" value="4" class="tab" id="t4">
 <input type="radio" name="tabs" value="5" class="tab" id="t5">
+<input type="radio" name="tabs" value="5" class="tab" id="t6">
 <div class="tab-headers">
   <label for="t1">Recebimento</label>
   <label for="t2">Gasto</label>
-  <label for="t3">Conta em Banco</label>
-  <label for="t4">Cartão de Crédito</label>
-  <label for="t5">Mensalidade</label>
+  <label for="t3">Transferência</label>
+  <label for="t4">Conta em Banco</label>
+  <label for="t5">Cartão de Crédito</label>
+  <label for="t6">Mensalidade</label>
 </div>
-<div class="tab t1">um</div>
-<div class="tab t2">dois</div>
-<div class="tab t3">tres</div>
+<div class="tab t1">
+  <%= render 'debits/form', debit: @debit %>
+</div>
+<div class="tab t2">
+  <%= render 'credits/form', credit: @credit %>
+</div>
+<div class="tab t3">
+  <%= render 'transfers/form', transfer: @transfer %>
+</div>
 <div class="tab t4">quatro</div>
 <div class="tab t5">cinco</div>
+<div class="tab t6"></div>

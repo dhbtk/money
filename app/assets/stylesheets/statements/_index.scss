@@ -49,3 +49,34 @@ strong {
   font-size: 90%;
   margin-bottom: 5px;
 }
+
+// Modal
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    align-items: center;
+    text-decoration: none;
+    background: transparent;
+    transition: background 0.12s ease-in-out;
+
+    &:hover {
+      background: $menu-link-background-color;
+    }
+
+    img {
+      display: block;
+      width: 32px;
+      height: 32px;
+    }
+    span {
+      margin-left: 8px;
+    }
+  }
+}

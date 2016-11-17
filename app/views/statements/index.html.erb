@@ -50,5 +50,37 @@
   </tr>
   </tfoot>
 </table>
-<% content_for :fab do %><%= link_to '+', new_statement_path, id: 'fab' %>
+<% content_for :fab do %><a href="javascript:openModal()" id="fab"><%= material_icon.add %></a>
+<% end %>
+<% content_for :body do %>
+    <div class="modal-backdrop" id="new-statement">
+      <div class="modal">
+        <div class="header">
+          <h2>Adicionar</h2>
+          <a href="javascript:closeModal()"><%= material_icon.close %></a>
+        </div>
+        <div class="link-list">
+          <%= link_to new_debit_path do %>
+          <img src="/svg/dollar-bill-and-coins.svg">
+              <span>Recebimento</span>
+          <% end %>
+          <%= link_to new_credit_path do %>
+              <img src="/svg/dollar-bill-and-coins.svg">
+              <span>Gasto</span>
+          <% end %>
+          <%= link_to new_transfer_path do %>
+              <img src="/svg/dollar-bill-and-coins.svg">
+              <span>Transferência</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openModal() {
+        document.getElementById('new-statement').classList.add('open');
+      }
+      function closeModal() {
+        document.getElementById('new-statement').classList.remove('open');
+      }
+    </script>
 <% end %>

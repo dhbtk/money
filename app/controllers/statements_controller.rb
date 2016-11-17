@@ -5,5 +5,8 @@ class StatementsController < ApplicationController
   end
 
   def new
+    @credit = Credit.new
+    @debit = Debit.new
+    @transfer = Transfer.new
   end
 end

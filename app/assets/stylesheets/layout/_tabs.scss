@@ -11,6 +11,8 @@ input[type="radio"]#t7:checked ~ div.t7, input[type="radio"]#t8:checked ~ div.t8
 .tab-headers {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
   label {
     height: 48px;
     display: flex;
