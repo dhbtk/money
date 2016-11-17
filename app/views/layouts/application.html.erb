@@ -29,6 +29,10 @@
       <% else %>Money
       <% end %>
     </h1>
+    <% if current_user %>
+    	<span><%= current_user.email %></span>
+    	<%= link_to material_icon.exit_to_app, destroy_user_session_path, method: :delete %>
+    <% end %>
   </header>
   <% if content_for? :fab %>
       <%= yield :fab %>

@@ -1,0 +1,64 @@
+div#login-container {
+  @media(min-width: 800px) {
+    max-width: 300px;
+    padding: 25px 15px;
+  }
+  @media(max-width: 799px) {
+    margin: 0;
+    box-shadow: none;
+    justify-content: center;
+    padding: 25px calc(50% - 150px);
+    flex: 1;
+  }
+
+  background-color: $container-background-color;
+  padding: 5px;
+  border: 1px solid $container-border-color;
+  box-shadow: 0.5px 1.5px 3px 1px $box-shadow-color;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  h2 {
+    font-size: 125%;
+    margin-bottom: 12px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  .alert, #error_explanation {
+    background-color: rgba(255, 255, 0, 0.33);
+    padding: 8px;
+    margin: 8px 0;
+    font-size: 85%;
+    color: rgba(255, 80, 0, 0.87);
+  }
+
+  .notice {
+    background-color: rgba(0, 127, 0, 0.33);
+    padding: 8px;
+    margin: 8px 0;
+    font-size: 85%;
+    color: rgba(0, 80, 0, 0.87);
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 50px;
+    @media(max-width: 799px) {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
+      padding: 0 calc(50% - 150px);
+    }
+  }
+}

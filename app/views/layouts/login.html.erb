@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Money</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/money.png">
+</head>
+
+<body id="login">
+	<div id="login-container">
+		<img src="/logo.png" alt="Money" title="Money">
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+    <% end %>
+		<%= yield %>
+	</div>
+</body>
+</html>
