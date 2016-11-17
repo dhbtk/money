@@ -34,6 +34,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # frontend
 gem 'material_icons'
+gem 'devise-i18n'
 
 
 gem 'kaminari'
