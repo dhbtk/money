@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117115614) do
+ActiveRecord::Schema.define(version: 20161117182815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20161117115614) do
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
     t.integer  "expiration"
-    t.integer  "type"
+    t.string   "type"
     t.integer  "closing"
     t.decimal  "interest",   precision: 8, scale: 4
     t.decimal  "fine",       precision: 8, scale: 2

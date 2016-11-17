@@ -1,5 +1,4 @@
 class Account < ApplicationRecord
-  self.inheritance_column = 'record_type'
   belongs_to :user
   has_many :credits, -> { order(:date) }
   has_many :recurring_credits, -> { order(:name) }
@@ -10,8 +9,6 @@ class Account < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :user, presence: true
-
-  enum type: { generic: 0, bank_account: 1, credit_card: 2 }
 
   # Simple account balance, not taking into account expired credits
   # nor this account's possible expiration/closing date.
