@@ -52,7 +52,7 @@
 <% content_for :fab do %><a href="javascript:openModal()" id="fab"><%= material_icon.add %></a>
 <% end %>
 <% content_for :body do %>
-    <div class="modal-backdrop" id="new-statement">
+    <div class="modal-backdrop" id="new-statement" onclick="closeModal(event, this)">
       <div class="modal">
         <div class="header">
           <h2>Adicionar</h2>
@@ -78,8 +78,10 @@
       function openModal() {
         document.getElementById('new-statement').classList.add('open');
       }
-      function closeModal() {
-        document.getElementById('new-statement').classList.remove('open');
+      function closeModal(event, element) {
+        if(event === undefined || event.target == element) {
+          document.getElementById('new-statement').classList.remove('open');
+        }
       }
     </script>
 <% end %>
