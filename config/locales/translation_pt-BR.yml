@@ -7,30 +7,30 @@ pt-BR:
       recurring_credit: Crédito recorrente  #g
       recurring_debit: Débito recorrente  #g
       tag: Tag  #g
-      transfer: Transferir  #g
+      transfer: Transferência
 
     attributes:
       account:
-        closing: Encerramento  #g
+        closing: Fechamento
         credits: Créditos  #g
         debits: Débitos  #g
-        expiration: Expiração  #g
-        fine: Bem  #g
+        expiration: Vencimento
+        fine: Multa
         incoming_transfers: Transferências recebidas  #g
-        interest: Interesse  #g
+        interest: Juros
         name: Nome  #g
         outgoing_transfers: Transferências de saída  #g
         recurring_credits: Créditos recorrentes  #g
         recurring_debits: Débitos recorrentes  #g
-        type: Digitar  #g
+        type: Tipo
 
       credit:
         account: :activerecord.models.account  #g
-        date: Encontro  #g
+        date: Data
         debits: Débitos  #g
         expiration: Expiração  #g
-        fine: Bem  #g
-        interest: Interesse  #g
+        fine: Multa
+        interest: Juros
         name: Nome  #g
         recurring_credit: :activerecord.models.recurring_credit  #g
         tag: :activerecord.models.tag  #g
@@ -40,7 +40,7 @@ pt-BR:
       debit:
         account: :activerecord.models.account  #g
         credit: :activerecord.models.credit  #g
-        date: Encontro  #g
+        date: Data
         name: Nome  #g
         recurring_debit: :activerecord.models.recurring_debit  #g
         tag: :activerecord.models.tag  #g
@@ -51,9 +51,9 @@ pt-BR:
         account: :activerecord.models.account  #g
         credits: Créditos  #g
         day: Dia  #g
-        expiration: Expiração  #g
-        fine: Bem  #g
-        interest: Interesse  #g
+        expiration: Vencimento
+        fine: Multa
+        interest: Juros
         months: Meses  #g
         name: Nome  #g
         value: Valor  #g
