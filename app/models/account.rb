@@ -22,6 +22,6 @@ class Account < ApplicationRecord
   # Lists the statements in the given date range.
   def statements(from = 15.days.ago, to = 15.days.from_now)
     statements = debits.where('"date" <= ? AND "date" >= ?', to, from) + credits.where('"date" <= ? AND "date" >= ?', to, from)
-    statements.sort{ |a, b| a.date <=> b.date }.group_by{ |x| x.date.to_date }
+    statements.sort{ |b, a| r = a.date <=> b.date; r == 0 ? a.id <=> b.id : r }.group_by{ |x| x.date.to_date }
   end
 end
