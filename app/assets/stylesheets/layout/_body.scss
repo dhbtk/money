@@ -10,4 +10,13 @@ body {
   font-size: 14px;
   background-color: $body-background-color;
   color: $dark-text-color;
+  &#login {
+  	  background-color: $primary-background-color;
+  	  align-items: center;
+  	  justify-content: center;
+  }
+}
+
+a, a:visited {
+  color: $primary-background-color;
 }
