@@ -10,43 +10,30 @@
       </ul>
     </div>
   <% end %>
+    <div style="display: flex">
+      <div class="field" style="flex: 1">
+        <%= f.label :value %>
+        <%= f.number_field :value %>
+      </div>
+      <div class="actions" style="padding-top: 15px; padding-left: 8px">
+        <%= f.submit %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <div class="field">
+      <%= f.label :date %>
+      <div class="date">
+        <%= f.date_select :date %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.datetime_select :date %>
-  </div>
+    <div class="field">
+      <%= f.label :account_id %>
+      <%= f.collection_select :account_id, current_user.accounts.where(type: [nil, 'Account']), :id, :name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :value %>
-    <%= f.text_field :value %>
-  </div>
-
-  <div class="field">
-    <%= f.label :recurring_debit_id %>
-    <%= f.text_field :recurring_debit_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :account_id %>
-    <%= f.text_field :account_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tag_id %>
-    <%= f.text_field :tag_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :credit_id %>
-    <%= f.text_field :credit_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
 <% end %>
