@@ -1,4 +1,4 @@
-<%= form_for(account) do |f| %>
+<%= form_for(account.becomes(Account)) do |f| %>
     <% if account.errors.any? %>
         <div id="error_explanation">
           <h2>Erros foram encontrados ao salvar a conta.</h2>
@@ -21,24 +21,37 @@
       </div>
     </div>
 
-
-    <div class="field">
-      <%= f.label :expiration %>
-      <%= f.number_field :expiration %>
+    <div class="field radio">
+      <span><%= t('activerecord.attributes.account.type') %></span>
+      <div>
+        <%= f.radio_button :type, nil %>
+        <label for="account_type">Conta em Banco</label>
+        <%= f.radio_button :type, 'BillingAccount' %>
+        <label for="account_type_billingaccount">Conta para Pagamento</label>
+        <%= f.radio_button :type, 'CreditCard' %>
+        <label for="account_type_creditcard">Cartão de Crédito</label>
+      </div>
     </div>
+    <div id="credit-card-fields" style="display: none">
+      <div class="field">
+        <%= f.label :expiration %>
+        <%= f.number_field :expiration %>
+      </div>
 
-    <div class="field">
-      <%= f.label :type %>
-      <%= f.number_field :type %>
-    </div>
-
-    <div class="field">
-      <%= f.label :interest %>
-      <%= f.text_field :interest %>
-    </div>
-
-    <div class="field">
-      <%= f.label :fine %>
-      <%= f.text_field :fine %>
+      <div class="field">
+        <%= f.label :interest %>
+        <%= f.text_field :interest %>
+      </div>
     </div>
 <% end %>
+<script>
+  function toggleCreditCardFields() {
+    if ($('#account_type_creditcard:checked').length > 0) {
+      $('#credit-card-fields').show();
+    } else {
+      $('#credit-card-fields').hide();
+    }
+  }
+  $('input[name="account[type]"]').on('change', toggleCreditCardFields);
+  toggleCreditCardFields();
+</script>
