@@ -18,7 +18,7 @@ div#content {
   background-color: $container-background-color;
   padding: 5px;
   border: 1px solid $container-border-color;
-  box-shadow: 0.5px 1.5px 3px 1px $box-shadow-color;
+  @include card(1);
   width: 100%;
 }
 
