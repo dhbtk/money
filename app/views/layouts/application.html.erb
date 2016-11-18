@@ -16,7 +16,7 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-<body>
+<body class="<%= params[:controller] %>-<%= params[:action] %>">
 <div id="header-container">
   <label for="toggle-menu">
     <span class="bar"></span>
@@ -43,8 +43,10 @@
     <% end %>
   </header>
 </div>
-<div id="content">
-  <%= yield %>
+<div id="scrollable">
+  <div id="content">
+    <%= yield %>
+  </div>
 </div>
 <%= yield :fab %>
 <%= yield :body %>

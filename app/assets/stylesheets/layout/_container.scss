@@ -13,11 +13,17 @@ div#content {
     margin: 0;
     box-shadow: none;
   }
+  margin-bottom: 0;
   flex: 1;
-  overflow: auto;
   background-color: $container-background-color;
   padding: 5px;
   border: 1px solid $container-border-color;
   box-shadow: 0.5px 1.5px 3px 1px $box-shadow-color;
   width: 100%;
+}
+
+div#scrollable {
+  overflow: auto;
+  flex: 1;
+  display: flex;
 }
