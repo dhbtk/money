@@ -10,7 +10,9 @@
     * "Nenhuma conta encontrada"
 * Atributo virtual "saldo"
     * Soma dos recebimentos menos a soma dos gastos não pagos
+
 ### Manter recebimentos
+
 ### Manter gastos
 * Atributo virtual "pago"
     * Só fará sentido se a conta for de pagamentos
@@ -25,13 +27,18 @@
         * Valor desse gasto ficará atrelado ao valor do gasto
           na data de pagamento. Não poderá ser recorrente
     * Para transformar em recorrente: número de meses 
+
 ### Manter gastos recorrentes
+
 ### Manter recebimentos recorrentes
+
 ### Manter transferências
 * Adicionar transferência
     * Conta de fonte, conta de destino, valor, data, descrição,
     anexo
+
 ### Manter categorias
+
 ### Manter usuários
 * Cadastrar usuário
     * Formulário básico ✔
@@ -43,6 +50,7 @@
     * Formulário básico ✔
 * Edição de perfil
     * Formulário básico
+
 ### Manter transações
 * Visualizar transações
     * Lista em ordem cronológica reversa ✔

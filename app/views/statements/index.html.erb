@@ -11,7 +11,19 @@
                 </span>
                 na conta
                 <strong><%= statement.account.name %></strong>
+                <span class="hover-show">
+                  <% if statement.is_a? Credit %>
+                  <%= link_to 'Editar', edit_credit_path(statement) %>
+                      <%= link_to 'Excluir', credit_path(statement), method: :delete, data: {confirm: 'Excluir gasto?'} %>
+                  <% else %>
+                  <%= link_to 'Editar', edit_debit_path(statement) %>
+                      <%= link_to 'Excluir', debit_path(statement), method: :delete, data: {confirm: 'Excluir recebimento?'} %>
+                  <% end %>
+                </span>
               </h3>
+              <% if statement.name.present? %>
+                  <div class="name"><%= statement.name %></div>
+              <% end %>
               <div class="amount">
                 Valor: <%= number_to_currency statement.value %>
               </div>
@@ -60,7 +72,7 @@
         </div>
         <div class="link-list">
           <%= link_to new_debit_path do %>
-          <img src="/svg/dollar-bill-and-coins.svg">
+              <img src="/svg/dollar-bill-and-coins.svg">
               <span>Recebimento</span>
           <% end %>
           <%= link_to new_credit_path do %>
@@ -79,7 +91,7 @@
         document.getElementById('new-statement').classList.add('open');
       }
       function closeModal(event, element) {
-        if(event === undefined || event.target == element) {
+        if (event === undefined || event.target == element) {
           document.getElementById('new-statement').classList.remove('open');
         }
       }
