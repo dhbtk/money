@@ -48,3 +48,22 @@
     width: 100%;
   }
 }
+
+.alert, #error_explanation {
+  background-color: rgba(255, 255, 0, 0.33);
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 85%;
+  color: rgba(255, 80, 0, 0.87);
+  h2 {
+    margin-bottom: 4px;
+  }
+}
+
+.notice {
+  background-color: rgba(0, 127, 0, 0.33);
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 85%;
+  color: rgba(0, 80, 0, 0.87);
+}
