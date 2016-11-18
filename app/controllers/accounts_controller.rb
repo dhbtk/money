@@ -34,8 +34,8 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render :show, status: :created, location: @account }
+        format.html { redirect_to account_path(@account), notice: 'Account was successfully created.' }
+        format.json { render :show, status: :created, location: account_path(@account) }
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -48,8 +48,8 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @account }
+        format.html { redirect_to account_path(@account), notice: 'Account was successfully updated.' }
+        format.json { render :show, status: :ok, location: account_path(@account) }
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -75,6 +75,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :expiration, :type, :interest, :fine)
+      params.require(:account).permit(:name, :type, :closing, :expiration, :interest, :fine)
     end
 end

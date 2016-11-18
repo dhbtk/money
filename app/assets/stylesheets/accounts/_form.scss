@@ -1,0 +1,18 @@
+div#credit-card-fields {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+  max-width: 450px;
+}
+
+div#credit-card-fields > .field {
+  flex: 1;
+}
+
+div#credit-card-fields > .field:not(:last-child) {
+  padding-right: 4px;
+}
+
+div#credit-card-fields > .field:not(:first-child) {
+  padding-left: 4px;
+}
