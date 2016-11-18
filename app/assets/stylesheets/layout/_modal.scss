@@ -21,6 +21,7 @@ div.modal-backdrop.open {
   width: 100%;
   background: $container-background-color;
   border: 1px solid $container-border-color;
+  @include card(3);
 }
 
 .modal .header {

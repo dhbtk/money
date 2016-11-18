@@ -6,10 +6,10 @@ div#header-container {
   display: flex;
   @media(min-width: 1024px) {
     justify-content: center;
-    z-index: 5;
-    box-shadow: 1px 0 3px 1px $box-shadow-color;
   }
   align-items: center;
+  z-index: 5;
+  @include card(1);
 }
 
 // Header
@@ -81,7 +81,7 @@ nav#menu {
   height: calc(100% - 48px);
   transition: left 0.12s ease-in-out;
   background-color: #fff;
-  box-shadow: 2px 1px 3px $box-shadow-color;
+  @include card(3);
   display: flex;
   flex-direction: column;
 }
