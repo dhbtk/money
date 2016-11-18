@@ -1,42 +1,44 @@
 <%= form_for(account) do |f| %>
-  <% if account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+    <% if account.errors.any? %>
+        <div id="error_explanation">
+          <h2>Erros foram encontrados ao salvar a conta.</h2>
 
-      <ul>
-      <% account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% account.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="display: flex">
+      <div class="field" style="flex: 1">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="actions" style="padding-top: 15px; padding-left: 8px">
+        <%= f.submit %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :expiration %>
-    <%= f.number_field :expiration %>
-  </div>
+    <div class="field">
+      <%= f.label :expiration %>
+      <%= f.number_field :expiration %>
+    </div>
 
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.number_field :type %>
-  </div>
+    <div class="field">
+      <%= f.label :type %>
+      <%= f.number_field :type %>
+    </div>
 
-  <div class="field">
-    <%= f.label :interest %>
-    <%= f.text_field :interest %>
-  </div>
+    <div class="field">
+      <%= f.label :interest %>
+      <%= f.text_field :interest %>
+    </div>
 
-  <div class="field">
-    <%= f.label :fine %>
-    <%= f.text_field :fine %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :fine %>
+      <%= f.text_field :fine %>
+    </div>
 <% end %>

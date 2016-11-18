@@ -1,5 +1,3 @@
-<h1>New Account</h1>
-
+<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, accounts_path %><% end %>
+<% content_for :title do %>Nova Conta<% end %>
 <%= render 'form', account: @account %>
-
-<%= link_to 'Back', accounts_path %>
