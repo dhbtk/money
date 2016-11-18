@@ -1,35 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Accounts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Expiration</th>
-      <th>Type</th>
-      <th>Interest</th>
-      <th>Fine</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.name %></td>
-        <td><%= account.expiration %></td>
-        <td><%= account.type %></td>
-        <td><%= account.interest %></td>
-        <td><%= account.fine %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Account', new_account_path %>
+<% content_for :title do %>Contas
+<% end %>
+<% {'Contas em Banco' => @accounts, 'Contas para Pagamento' => @billing_accounts, 'Cartões de Crédito' => @credit_cards}.each do |label, accounts| %>
+    <h2><%= label %></h2>
+    <div class="account-list-wrapper">
+      <div class="account-list">
+        <% accounts.each do |account| %>
+            <%= link_to account_path(account) do %>
+                <div class="icon"></div>
+                <span><%= account.name %></span>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+<% content_for :fab do %><%= link_to material_icon.add, new_account_path, title: 'Nova', id: 'fab' %><% end %>

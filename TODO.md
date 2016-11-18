@@ -1,11 +1,19 @@
 * Manter contas
+    * Adicionar conta
+        * Conta em banco, conta para pagamento: Nome, ícone
+        * Cartão de crédito: Nome, ícone, data de fechamento,
+        data de vencimento, taxa de juros
+    * Visualizar contas
+        * Contas em banco, contas para pagamento, cartões de crédito ✔
+        * Ícones das contas
 * Manter recebimentos
 * Manter gastos
 * Manter gastos recorrentes
 * Manter recebimentos recorrentes
 * Manter transferências
     * Adicionar transferência
-        * Conta de fonte, conta de destino, valor, data, descrição, anexo
+        * Conta de fonte, conta de destino, valor, data, descrição,
+        anexo
 * Manter categorias
 * Manter usuários
     * Cadastrar usuário
@@ -32,6 +40,7 @@
         * Ícones
     * Editar transação (popup)
         * Descrição, Data, Valor, Conta
-        * Caso o gasto ou recebimento faça parte de uma transferência, editar a transação e propagar as alterações
+        * Caso o gasto ou recebimento faça parte de uma transferência,
+        editar a transação e propagar as alterações
     * Exibir anexo da transferência
         

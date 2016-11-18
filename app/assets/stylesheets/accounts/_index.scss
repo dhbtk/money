@@ -1,0 +1,33 @@
+.account-list-wrapper {
+  margin: 12px 0;
+  padding: 8px;
+  @include card(1);
+}
+
+.account-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  & > a {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    min-width: 128px;
+    min-height: 128px;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    & > .icon {
+      width: 84px;
+      height: 84px;
+    }
+  }
+}
