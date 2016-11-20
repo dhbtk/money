@@ -18,29 +18,39 @@
 
 <body class="<%= params[:controller] %>-<%= params[:action] %>">
 <div id="header-container">
-  <label for="toggle-menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </label>
+  <%= yield :toolbar_left %>
+  <% unless content_for? :toolbar_left %>
+      <label for="toggle-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </label>
+  <% end %>
   <header id="header">
     <input type="checkbox" id="toggle-menu">
     <nav id="menu">
-      <%= link_to 'Home', statements_path %>
-      <%= link_to 'Contas', accounts_path %>
+      <div class="background">
+        <%= link_to edit_user_registration_path do %>
+            <span>Usuário</span>
+            <strong><%= current_user.email %></strong>
+        <% end %>
+      </div>
+      <div class="links">
+        <%= link_to 'Home', statements_path %>
+        <%= link_to 'Contas', accounts_path %>
+      </div>
+      <div class="separator"></div>
+      <div class="links">
+        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+      </div>
     </nav>
     <label for="toggle-menu" id="overlay"></label>
-    <%= yield :toolbar_left %>
     <h1>
       <% if content_for? :title %><%= yield :title %>
       <% else %>Money
       <% end %>
     </h1>
     <%= yield :toolbar_right %>
-    <% if current_user %>
-    	<span><%= current_user.email %></span>
-    	<%= link_to material_icon.exit_to_app, destroy_user_session_path, method: :delete %>
-    <% end %>
   </header>
 </div>
 <div id="scrollable">

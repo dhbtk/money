@@ -1,5 +1,5 @@
 $primary-background-color: rgb(73, 98, 122);
-$secondary-background-color: rgb(237, 237, 206);
+$secondary-background-color: rgb(249, 220, 92);
 $body-background-color: rgb(245, 245, 245);
 $container-background-color: rgb(255, 255, 255);
 $menu-link-background-color: rgba(0, 0, 0, 0.12);
@@ -11,5 +11,5 @@ $box-shadow-color: rgba(0, 0, 0, 0.54);
 
 $container-border-color: rgb(204, 204, 204);
 
-
-$body-font-family: Roboto, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+$body-font-family: 'Open Sans', Helvetica, sans-serif;

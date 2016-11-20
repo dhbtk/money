@@ -10,6 +10,16 @@ div#header-container {
   align-items: center;
   z-index: 5;
   @include card(1);
+
+  & > a, & > header#header > a {
+    color: inherit;
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
 }
 
 // Header
@@ -34,15 +44,6 @@ header#header {
     font-size: 125%;
     flex: 1;
   }
-  a {
-	  color: inherit;
-	  display: flex;
-	  width: 48px;
-	  height: 48px;
-	  align-items: center;
-	  justify-content: center;
-	  text-decoration: none;
-  }
 }
 
 span.bar {
@@ -61,15 +62,18 @@ input#toggle-menu {
 #header-container > label[for="toggle-menu"] {
   display: flex;
   flex-direction: column;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+#header-container > label, #header-container > a {
   @media(min-width: 1024px) {
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -108,20 +112,57 @@ label#overlay {
   left: 250px;
 }
 
-nav#menu > a {
-  margin: 4px;
-  width: calc(100% - 8px);
-  text-transform: uppercase;
-  font-weight: bold;
-  color: $dark-text-color;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  background: transparent;
-  transition: background 0.12s ease-in-out;
+nav#menu > .background {
+  background-color: $secondary-background-color;
+  min-height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  & > a {
+    color: $dark-text-color;
+    text-decoration: none;
+    font-size: 85%;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    & > span {
+      padding-bottom: 12px;
+    }
+  }
 }
 
-nav#menu > a:hover {
-  background-color: $menu-link-background-color;
+.separator {
+  margin: 24.5px 0;
+  height: 1px;
+  background-color: lighten($dark-text-color, 50%);
+}
+
+nav#menu > .links {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+
+  & ~ .links {
+    flex: 0 0 auto;
+    overflow: inherit;
+  }
+
+  & > a {
+    width: 100%;
+    font-weight: bold;
+    color: $dark-text-color;
+    text-decoration: none;
+    padding-left: 24px;
+    height: 48px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.12s ease-in-out;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &:hover {
+      background-color: $menu-link-background-color;
+    }
+  }
 }

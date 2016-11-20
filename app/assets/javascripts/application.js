@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+    $('input[value=""], input:not([value])').addClass('empty');
+    $('input').on('keyup', function() {
+        if($(this).val() == "") {
+            $(this).addClass('empty');
+        } else {
+            $(this).removeClass('empty');
+        }
+    });
+});

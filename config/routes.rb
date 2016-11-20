@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   resources :transfers
   resources :debits
   resources :recurring_debits
-  resources :credits
+  resources :credits do
+    member do
+      post 'to_transfer'
+    end
+  end
   resources :tags
   resources :recurring_credits
   resources :accounts

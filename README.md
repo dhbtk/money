@@ -24,3 +24,5 @@ Things you may want to cover:
 * ...
 
 http://www.palettable.io/9CB8B8-60A6CC-EDEDCE-B1C4C4-49627A
+
+https://coolors.co/49627a-e84855-f9dc5c-3185fc-efbcd5

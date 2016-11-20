@@ -12,8 +12,8 @@
   <% end %>
     <div style="display: flex">
       <div class="field" style="flex: 1">
-        <%= f.label :value %>
-        <%= f.number_field :value %>
+        <%= f.number_field :value, min: 0.01, step: 0.01 %>
+<%= f.label :value %>
       </div>
       <div class="actions" style="padding-top: 15px; padding-left: 8px">
         <%= f.submit %>
@@ -28,12 +28,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :account_id %>
       <%= f.collection_select :account_id, current_user.accounts.where(type: [nil, 'Account']), :id, :name %>
+<%= f.label :account_id %>
     </div>
 
     <div class="field">
-      <%= f.label :name %>
       <%= f.text_field :name %>
+<%= f.label :name %>
     </div>
 <% end %>

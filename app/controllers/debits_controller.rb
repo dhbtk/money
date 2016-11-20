@@ -28,7 +28,7 @@ class DebitsController < ApplicationController
 
     respond_to do |format|
       if @debit.save
-        format.html { redirect_to @debit, notice: 'Debit was successfully created.' }
+        format.html { redirect_to statements_path, notice: 'Debit was successfully created.' }
         format.json { render :show, status: :created, location: @debit }
       else
         format.html { render :new }
