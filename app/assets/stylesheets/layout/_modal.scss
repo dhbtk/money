@@ -16,8 +16,12 @@ div.modal-backdrop.open {
 }
 
 .modal {
-  max-width: 20%;
-  max-height: 40%;
+  @media(min-width: 1024px) {
+    max-width: 20%;
+  }
+  @media(max-width: 1023px) {
+    width: calc(100% - 20px);
+  }
   width: 100%;
   background: $container-background-color;
   border: 1px solid $container-border-color;

@@ -3,7 +3,7 @@ class Statement
   	  debits = Debit.joins(:account).where(accounts: { user_id: user })
   	  credits = Credit.joins(:account).where(accounts: { user_id: user })
       statements = debits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer) + credits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer)
-    statements.sort{ |b, a| r = a.date <=> b.date; r == 0 ? a.id <=> b.id : r }.group_by{ |x| x.date.to_date }
+    statements.sort{ |b, a| r = a.date <=> b.date; r == 0 ? a.created_at <=> b.created_at : r }.group_by{ |x| x.date.to_date }
   end
 
   def self.grid(scope, from = 15.days.ago, to = 15.days.from_now)

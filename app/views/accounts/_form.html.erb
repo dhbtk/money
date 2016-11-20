@@ -13,8 +13,8 @@
 
     <div style="display: flex">
       <div class="field" style="flex: 1">
-        <%= f.label :name %>
         <%= f.text_field :name %>
+<%= f.label :name %>
       </div>
       <div class="actions" style="padding-top: 15px; padding-left: 8px">
         <%= f.submit %>
@@ -24,7 +24,7 @@
     <div class="field radio">
       <span><%= t('activerecord.attributes.account.type') %></span>
       <div>
-        <%= f.radio_button :type, nil %>
+        <%= f.radio_button :type, '' %>
         <label for="account_type">Conta em Banco</label>
         <%= f.radio_button :type, 'BillingAccount' %>
         <label for="account_type_billingaccount">Conta para Pagamento</label>
@@ -34,13 +34,18 @@
     </div>
     <div id="credit-card-fields" style="display: none">
       <div class="field">
-        <%= f.label :expiration %>
-        <%= f.number_field :expiration %>
+        <%= f.number_field :closing %>
+<%= f.label :closing %>
       </div>
 
       <div class="field">
-        <%= f.label :interest %>
-        <%= f.text_field :interest %>
+        <%= f.number_field :expiration %>
+<%= f.label :expiration %>
+      </div>
+
+      <div class="field">
+        <%= f.number_field :interest %>
+<%= f.label :interest %>
       </div>
     </div>
 <% end %>

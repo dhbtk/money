@@ -1,13 +1,13 @@
 div#login-container {
   @media(min-width: 800px) {
-    max-width: 300px;
-    padding: 25px 15px;
+    max-width: 400px;
+    padding: 25px 25px;
   }
   @media(max-width: 799px) {
     margin: 0;
     box-shadow: none;
     justify-content: center;
-    padding: 25px calc(50% - 150px);
+    padding: 25px 15px;
     flex: 1;
   }
 
@@ -19,6 +19,7 @@ div#login-container {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: auto;
 
   h2 {
     margin-bottom: 12px;
@@ -36,12 +37,9 @@ div#login-container {
     justify-content: space-between;
     width: 100%;
     margin-top: 50px;
-    @media(max-width: 799px) {
-      position: absolute;
-      bottom: 25px;
-      left: 0;
-      width: 100%;
-      padding: 0 calc(50% - 150px);
-    }
   }
+}
+
+body#login {
+  overflow: auto;
 }

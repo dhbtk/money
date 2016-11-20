@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = current_user.accounts.where(type: [nil, 'Account'])
+    @accounts = current_user.accounts.where(type: nil)
     @credit_cards = current_user.accounts.where(type: 'CreditCard')
     @billing_accounts = current_user.accounts.where(type: 'BillingAccount')
 
@@ -75,6 +75,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :type, :closing, :expiration, :interest, :fine)
+      params.require(:account).permit(:name, :type, :closing, :expiration, :interest)
     end
 end
