@@ -1,5 +1,5 @@
 class Statement
-  def self.by_user(user, from = 15.days.ago, to = 15.days.from_now)
+  def self.by_user(user, from, to)
   	  debits = Debit.joins(:account).where(accounts: { user_id: user })
   	  credits = Credit.joins(:account).where(accounts: { user_id: user })
       statements = debits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer) + credits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer)

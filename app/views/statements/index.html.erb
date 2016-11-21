@@ -1,3 +1,12 @@
+<%= form_tag(statements_path, method: :get) do %>
+    <div class="field dates">
+      <span>Mostrando desde</span>
+      <%= date_field_tag :from, @from %>
+      <!--<span>até</span>-->
+      <!--<%= date_field_tag :to, @to %>-->
+      <%= submit_tag 'Filtrar' %>
+    </div>
+<% end %>
 <% @statements.each do |date, statements| %>
     <h2 class="date"><%= l date, format: :short %></h2>
     <div class="statements">
@@ -41,26 +50,28 @@
       <% end %>
     </div>
 <% end %>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Data</th>
-    <% @accounts.each do |account| %>
-        <th><%= account.name %></th>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-  <tfoot>
-  <tr>
-    <td>Saldo:</td>
-    <% @accounts.each do |account| %>
-        <th><%= number_to_currency(account.balance) %></th>
-    <% end %>
-  </tr>
-  </tfoot>
-</table>
+<div class="accounts">
+  <h2>Contas</h2>
+  <% @accounts.each do |account| %>
+      <div class="account">
+        <div class="icon"></div>
+        <div class="content">
+          <h3><%= account.name %></h3>
+          <ul>
+            <% if account.type.nil? %>
+                <li>Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span></li>
+            <% elsif account.is_a? CreditCard %>
+                <li>Total a pagar: <span><%= number_to_currency account.total_due %></span></li>
+                <li>Limite disponível:
+                  <span class="<%= 'negative' if account.available_limit < 0 %>"><%= number_to_currency account.available_limit %></span></li>
+            <% elsif account.is_a? BillingAccount %>
+                <li>Total a pagar: <span><%= number_to_currency account.total_due %></span></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  <% end %>
+</div>
 <% content_for :fab do %><a href="javascript:openModal()" id="fab"><%= material_icon.add %></a>
 <% end %>
 <% content_for :body do %>

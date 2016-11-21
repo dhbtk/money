@@ -8,6 +8,9 @@ pt-BR:
       recurring_debit: Débito recorrente  #g
       tag: Tag  #g
       transfer: Transferência
+      billing_account: Conta de faturamento  #g
+      credit_card: Cartão de crédito  #g
+      user: Usuário  #g
 
     attributes:
       account:
@@ -23,6 +26,8 @@ pt-BR:
         recurring_credits: Créditos recorrentes  #g
         recurring_debits: Débitos recorrentes  #g
         type: Tipo
+        limit: Limite  #g
+        user: :activerecord.models.user  #g
 
       credit:
         account: :activerecord.models.account  #g
@@ -75,3 +80,45 @@ pt-BR:
         credit: :activerecord.models.credit  #g
         debit: :activerecord.models.debit  #g
         description: Descrição  #g
+
+      billing_account:
+        closing: Encerramento  #g
+        credits: Créditos  #g
+        debits: Débitos  #g
+        expiration: Expiração  #g
+        fine: Bem  #g
+        incoming_transfers: Transferências recebidas  #g
+        interest: Interesse  #g
+        limit: Limite  #g
+        name: Nome  #g
+        outgoing_transfers: Transferências de saída  #g
+        recurring_credits: Créditos recorrentes  #g
+        recurring_debits: Débitos recorrentes  #g
+        user: :activerecord.models.user  #g
+
+      credit_card:
+        closing: Encerramento  #g
+        credits: Créditos  #g
+        debits: Débitos  #g
+        expiration: Expiração  #g
+        fine: Bem  #g
+        incoming_transfers: Transferências recebidas  #g
+        interest: Interesse  #g
+        limit: Limite  #g
+        name: Nome  #g
+        outgoing_transfers: Transferências de saída  #g
+        recurring_credits: Créditos recorrentes  #g
+        recurring_debits: Débitos recorrentes  #g
+        user: :activerecord.models.user  #g
+
+      user:
+        accounts: Contas  #g
+        current_sign_in_at: Início de sessão actual em  #g
+        current_sign_in_ip: Sinal actual ip  #g
+        email: Email  #g
+        encrypted_password: Senha criptografada  #g
+        last_sign_in_at: Último login em  #g
+        last_sign_in_ip: Último login ip  #g
+        remember_created_at: Lembre-se criado em  #g
+        reset_password_sent_at: Redefinir senha enviada em  #g
+        reset_password_token: Resetar token de senha  #g

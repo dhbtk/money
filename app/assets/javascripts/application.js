@@ -35,6 +35,13 @@ var pageLoad = function() {
         }
     });
     $('[data-money]').maskMoney();
+
+    $('form').on('submit', function() {
+        $(this).find('[data-money]').each(function() {
+            this.value = $(this).maskMoney('unmasked')[0];
+            $(this).maskMoney('destroy');
+        });
+    });
 };
 
 $(document).on('ready', pageLoad);

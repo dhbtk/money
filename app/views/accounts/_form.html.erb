@@ -14,7 +14,7 @@
     <div style="display: flex">
       <div class="field" style="flex: 1">
         <%= f.text_field :name %>
-<%= f.label :name %>
+        <%= f.label :name %>
       </div>
       <div class="actions" style="padding-top: 15px; padding-left: 8px">
         <%= f.submit %>
@@ -35,17 +35,22 @@
     <div id="credit-card-fields" style="display: none">
       <div class="field">
         <%= f.number_field :closing %>
-<%= f.label :closing %>
+        <%= f.label :closing %>
       </div>
 
       <div class="field">
         <%= f.number_field :expiration %>
-<%= f.label :expiration %>
+        <%= f.label :expiration %>
       </div>
 
       <div class="field">
         <%= f.number_field :interest %>
-<%= f.label :interest %>
+        <%= f.label :interest %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :limit, data: {money: true} %>
+        <%= f.label :limit %>
       </div>
     </div>
 <% end %>
