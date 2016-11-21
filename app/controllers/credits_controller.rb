@@ -1,5 +1,5 @@
 class CreditsController < ApplicationController
-  before_action :set_credit, only: [:show, :edit, :update, :destroy]
+  before_action :set_credit, only: [:show, :edit, :update, :destroy, :to_transfer]
 
   # GET /credits
   # GET /credits.json
@@ -61,14 +61,33 @@ class CreditsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_credit
-      @credit = Credit.find(params[:id])
+  def to_transfer
+    raise 'Não é permitido transferir para a mesma conta!' if to_transfer_params[:account_id] == @credit.account_id
+    account = current_user.accounts.find(to_transfer_params[:account_id])
+    transfer = Transfer.from_credit_and_account(@credit, account)
+    respond_to do |format|
+      if transfer.save
+        format.html { redirect_to edit_transfer_path(transfer), notice: 'Transferência criada com sucesso.' }
+        format.json { redirect_to transfer, status: :created, location: transfer }
+      else
+        format.html { render :edit }
+        format.json { render json: @credit.errors, status: :unprocessable_entity }
+      end
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def credit_params
-      params.require(:credit).permit(:name, :date, :value, :account_id)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_credit
+    @credit = Credit.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def credit_params
+    params.require(:credit).permit(:name, :date, :value, :account_id)
+  end
+
+  def to_transfer_params
+    params.permit(:id, :account_id)
+  end
 end
