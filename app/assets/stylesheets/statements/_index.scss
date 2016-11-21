@@ -1,6 +1,35 @@
+// Date picker
+.statements-index .field.dates {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  align-items: center;
+  flex-flow: row wrap;
+  & > input[type="date"] {
+    height: 33px;
+    margin: 0;
+    width: auto;
+  }
+  & > span {
+    padding: 8px;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  & > [type="submit"] {
+    @media(min-width: 1023px) {
+      margin-left: 8px;
+    }
+    width: auto;
+  }
+}
+
 h2.date {
-  font-size: 200%;
-  margin: 10px 0;
+  font-size: 90%;
+  margin: 4px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: lighten($dark-text-color, 25%);
 }
 
 div.statements {
@@ -13,22 +42,33 @@ div.statements {
   background-color: #ccc;
 }
 
-.statement {
+.statement, .account {
   display: flex;
   padding: 10px;
+
+  & > div.content {
+    margin-left: 10px;
+  }
+
+  h3 {
+    margin-bottom: 5px;
+    font-size: 100%;
+  }
 }
 
-.statement > div.content {
-  margin-left: 10px;
-}
+.account {
+  padding-left: 25px;
 
-strong {
-  font-weight: bold;
-}
-
-.statement h3 {
-  margin-bottom: 5px;
-  font-size: 125%;
+  ul > li {
+    margin-bottom: 5px;
+    font-size: 85%;
+    & > span {
+      color: #090;
+      &.negative {
+        color: #B00;
+      }
+    }
+  }
 }
 
 .statement {
@@ -45,8 +85,8 @@ strong {
   }
 }
 
-.amount {
-  font-size: 90%;
+.name, .amount {
+  font-size: 85%;
   margin-bottom: 5px;
 }
 
