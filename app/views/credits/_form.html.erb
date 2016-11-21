@@ -10,14 +10,9 @@
           </ul>
         </div>
     <% end %>
-    <div style="display: flex">
-      <div class="field" style="flex: 1">
-        <%= f.text_field :value, data: {money: 'true'} %>
-        <%= f.label :value %>
-      </div>
-      <div class="actions" style="padding-top: 15px; padding-left: 8px">
-        <%= f.submit %>
-      </div>
+    <div class="field">
+      <%= f.text_field :value, data: {money: 'true'} %>
+      <%= f.label :value %>
     </div>
 
     <div class="field">
@@ -34,17 +29,23 @@
       <%= f.text_field :name %>
       <%= f.label :name %>
     </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
 <% end %>
 
 <% unless credit.new_record? %>
-    <h2>Ações</h2>
+    <h2 style="margin: 8px 0">Transformar em Transferência</h2>
     <%= form_tag to_transfer_credit_path(credit), method: :post do %>
-        <div class="field">
-          <%= label_tag :account_id, 'Conta de Destino' %>
-        </div>
-        <div class="actions">
-          <%= submit_tag 'Transformar em Transferência' %>
+        <div style="display: flex">
+          <div class="field" style="flex: 1">
+            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? AND id <> ?', 'BillingAccount', credit.account.id), :id, :name)  %>
+            <%= label_tag :account_id, 'Conta de Destino' %>
+          </div>
+          <div class="actions" style="padding-top: 18px; padding-left: 8px">
+            <%= submit_tag 'Transformar' %>
+          </div>
         </div>
     <% end %>
 <% end %>

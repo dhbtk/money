@@ -18,7 +18,7 @@
 
 
 // For the floating labels
-$(document).ready(function() {
+var pageLoad = function() {
     $('input[value=""], input:not([value])').addClass('empty');
     $('input').on('keyup', function() {
         if($(this).val() == "") {
@@ -35,4 +35,7 @@ $(document).ready(function() {
         }
     });
     $('[data-money]').maskMoney();
-});
+};
+
+$(document).on('ready', pageLoad);
+$(document).on('turbolinks:load', pageLoad);
