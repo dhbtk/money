@@ -1,6 +1,3 @@
-<h1>Editing Debit</h1>
-
+<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, :back, title: 'Voltar' %><% end %>
+<% content_for :title do %>Editando Recebimento<% end %>
 <%= render 'form', debit: @debit %>
-
-<%= link_to 'Show', @debit %> |
-<%= link_to 'Back', debits_path %>

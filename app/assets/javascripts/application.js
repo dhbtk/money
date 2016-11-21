@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require maskmoney
 //= require_tree .
 
+
+// For the floating labels
 $(document).ready(function() {
     $('input[value=""], input:not([value])').addClass('empty');
     $('input').on('keyup', function() {
@@ -23,4 +26,12 @@ $(document).ready(function() {
             $(this).removeClass('empty');
         }
     });
+
+    // Money inputs
+    $('[data-money]').each(function() {
+        if(this.value) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
+    });
+    $('[data-money]').maskMoney();
 });

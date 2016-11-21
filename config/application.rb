@@ -20,5 +20,17 @@ module Money
   class Application < Rails::Application
     config.i18n.default_locale = :"pt-BR"
     config.i18n.available_locales = %w(en pt-BR)
+
+    # Removes field_with_errors
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+
+      el = Nokogiri::HTML::DocumentFragment.parse(html_tag).css('input')
+      if el.empty?
+        "#{html_tag}".html_safe
+      else
+        el.add_class('error')
+        el.to_s.html_safe
+      end
+    end
   end
 end

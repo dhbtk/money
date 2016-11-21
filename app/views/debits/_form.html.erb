@@ -1,19 +1,19 @@
 <%= form_for(debit) do |f| %>
-  <% if debit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
+    <% if debit.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
 
-      <ul>
-      <% debit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% debit.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <div style="display: flex">
       <div class="field" style="flex: 1">
-        <%= f.number_field :value, min: 0.01, step: 0.01 %>
-<%= f.label :value %>
+        <%= f.text_field :value, data: {money: 'true'} %>
+        <%= f.label :value %>
       </div>
       <div class="actions" style="padding-top: 15px; padding-left: 8px">
         <%= f.submit %>
@@ -29,11 +29,11 @@
 
     <div class="field">
       <%= f.collection_select :account_id, current_user.accounts.where(type: [nil, 'Account']), :id, :name %>
-<%= f.label :account_id %>
+      <%= f.label :account_id %>
     </div>
 
     <div class="field">
       <%= f.text_field :name %>
-<%= f.label :name %>
+      <%= f.label :name %>
     </div>
 <% end %>

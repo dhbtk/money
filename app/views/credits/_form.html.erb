@@ -1,7 +1,7 @@
 <%= form_for(credit) do |f| %>
     <% if credit.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
+          <h2>Erro ao salvar o gasto:</h2>
 
           <ul>
             <% credit.errors.full_messages.each do |message| %>
@@ -12,7 +12,7 @@
     <% end %>
     <div style="display: flex">
       <div class="field" style="flex: 1">
-        <%= f.number_field :value, min: 0.01, step: 0.01 %>
+        <%= f.text_field :value, data: {money: 'true'} %>
         <%= f.label :value %>
       </div>
       <div class="actions" style="padding-top: 15px; padding-left: 8px">
@@ -21,10 +21,8 @@
     </div>
 
     <div class="field">
+      <%= f.date_field :date %>
       <%= f.label :date %>
-      <div class="date">
-        <%= f.date_select :date %>
-      </div>
     </div>
 
     <div class="field">
