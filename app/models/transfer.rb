@@ -11,8 +11,24 @@ class Transfer < ApplicationRecord
     @source_account ||= credit&.account
   end
 
+  def source_account_id
+    source_account&.id
+  end
+
+  def source_account_id=(val)
+    @source_account = Account.find(val)
+  end
+
   def destination_account
     @destination_account ||= debit&.account
+  end
+
+  def destination_account_id
+    destination_account&.id
+  end
+
+  def destination_account_id=(val)
+    @destination_account = Account.find(val)
   end
 
   def value
@@ -20,7 +36,7 @@ class Transfer < ApplicationRecord
   end
 
   def date
-    @value ||= credit&.date
+    @date ||= credit&.date
   end
 
   before_validation do

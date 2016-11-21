@@ -1,7 +1,7 @@
 <%= form_for(transfer) do |f| %>
     <% if transfer.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(transfer.errors.count, "error") %> prohibited this transfer from being saved:</h2>
+          <h2>Não foi possível salvar a transferência:</h2>
 
           <ul>
             <% transfer.errors.full_messages.each do |message| %>
@@ -12,13 +12,23 @@
     <% end %>
 
     <div class="field">
-      <%= f.text_field :debit_id %>
-      <%= f.label :debit_id %>
+      <%= f.text_field :value, data: {money: true} %>
+      <%= f.label :value %>
     </div>
 
     <div class="field">
-      <%= f.text_field :credit_id %>
-      <%= f.label :credit_id %>
+      <%= f.collection_select :source_account_id, current_user.accounts.where(type: nil), :id, :name %>
+      <%= f.label :source_account_id %>
+    </div>
+
+    <div class="field">
+      <%= f.collection_select :destination_account_id, current_user.accounts.where(type: [nil, 'CreditCard']), :id, :name %>
+      <%= f.label :destination_account_id %>
+    </div>
+
+    <div class="field">
+      <%= f.date_field :date %>
+      <%= f.label :date %>
     </div>
 
     <div class="field">

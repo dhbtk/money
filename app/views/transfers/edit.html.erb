@@ -1,6 +1,4 @@
-<h1>Editing Transfer</h1>
+<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, :back, title: 'Voltar' %><% end %>
+<% content_for :title do %>Editando Transferência<% end %>
 
 <%= render 'form', transfer: @transfer %>
-
-<%= link_to 'Show', @transfer %> |
-<%= link_to 'Back', transfers_path %>

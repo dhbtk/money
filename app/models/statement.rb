@@ -2,7 +2,7 @@ class Statement
   def self.by_user(user, from, to)
   	  debits = Debit.joins(:account).where(accounts: { user_id: user })
   	  credits = Credit.joins(:account).where(accounts: { user_id: user })
-      statements = debits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer) + credits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer)
+      statements = debits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer).includes(:account) + credits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer).includes(:account)
     statements.sort{ |b, a| r = a.date <=> b.date; r == 0 ? a.created_at <=> b.created_at : r }.group_by{ |x| x.date.to_date }
   end
 
