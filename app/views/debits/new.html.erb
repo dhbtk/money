@@ -1,5 +1,5 @@
-<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, statements_path, title: 'Voltar' %><% end %>
-<% content_for :title do %>Novo Débito<% end %>
+<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, :back, title: 'Voltar' %><% end %>
+<% content_for :title do %>Novo Recebimento<% end %>
 
 <%= render 'form', debit: @debit %>
 

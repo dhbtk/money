@@ -2,8 +2,8 @@ pt-BR:
   activerecord:
     models:
       account: Conta  #g
-      credit: Crédito  #g
-      debit: Débito  #g
+      credit: Gasto  #g
+      debit: Recebimento  #g
       recurring_credit: Crédito recorrente  #g
       recurring_debit: Débito recorrente  #g
       tag: Tag  #g
