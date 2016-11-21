@@ -33,6 +33,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # frontend
+gem 'turbolinks', '~> 5.0.0'
 gem 'material_icons'
 gem 'devise-i18n'
 gem 'maskmoney-rails'
