@@ -1,7 +1,7 @@
 <%= form_for(debit) do |f| %>
     <% if debit.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(debit.errors.count, "error") %> prohibited this debit from being saved:</h2>
+          <h2>Não foi possível salvar o recebimento:</h2>
 
           <ul>
             <% debit.errors.full_messages.each do |message| %>
@@ -10,21 +10,14 @@
           </ul>
         </div>
     <% end %>
-    <div style="display: flex">
-      <div class="field" style="flex: 1">
-        <%= f.text_field :value, data: {money: 'true'} %>
-        <%= f.label :value %>
-      </div>
-      <div class="actions" style="padding-top: 15px; padding-left: 8px">
-        <%= f.submit %>
-      </div>
+    <div class="field">
+      <%= f.text_field :value, data: {money: 'true'} %>
+      <%= f.label :value %>
     </div>
 
     <div class="field">
+      <%= f.date_field :date %>
       <%= f.label :date %>
-      <div class="date">
-        <%= f.date_select :date %>
-      </div>
     </div>
 
     <div class="field">
@@ -35,5 +28,9 @@
     <div class="field">
       <%= f.text_field :name %>
       <%= f.label :name %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
 <% end %>
