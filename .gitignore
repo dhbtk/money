@@ -21,3 +21,6 @@ Gemfile.lock
 .idea/dataSources.local.xml
 .idea/dataSources
 .idea/dataSources.xml
+.env
+*~
+public/assets
