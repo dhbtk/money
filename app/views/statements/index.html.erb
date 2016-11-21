@@ -21,11 +21,14 @@
                 na conta
                 <strong><%= statement.account.name %></strong>
                 <span class="hover-show">
-                  <% if statement.is_a? Credit %>
-                  <%= link_to 'Editar', edit_credit_path(statement) %>
+                  <% if statement.transfer.present? %>
+                      <%= link_to 'Editar', edit_transfer_path(statement.transfer) %>
+                      <%= link_to 'Excluir', transfer_path(statement.transfer), method: :delete, data: {confirm: 'Excluir transferência? Isso também irá excluir o gasto e o recebimento relacionados.'} %>
+                  <% elsif statement.is_a? Credit %>
+                    <%= link_to 'Editar', edit_credit_path(statement) %>
                       <%= link_to 'Excluir', credit_path(statement), method: :delete, data: {confirm: 'Excluir gasto?'} %>
                   <% else %>
-                  <%= link_to 'Editar', edit_debit_path(statement) %>
+                      <%= link_to 'Editar', edit_debit_path(statement) %>
                       <%= link_to 'Excluir', debit_path(statement), method: :delete, data: {confirm: 'Excluir recebimento?'} %>
                   <% end %>
                 </span>
