@@ -1,10 +1,10 @@
 .field {
   display: flex;
   flex-direction: column;
-  height: 70px;
+  min-height: 70px;
   margin-bottom: 8px;
 
-  input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="url"], input[type="date"], select {
+  input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="url"], input[type="date"], select, textarea {
     box-sizing: border-box;
     padding: 8px;
     width: 100%;
