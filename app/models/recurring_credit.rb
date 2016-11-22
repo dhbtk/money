@@ -1,7 +1,7 @@
 class RecurringCredit < ApplicationRecord
   belongs_to :account
 
-  has_many :credits
+  has_many :credits, -> { order(:date) }
 
   validates :name, :value, :start_date, :months, presence: true
 
@@ -18,13 +18,26 @@ class RecurringCredit < ApplicationRecord
 
   after_create do
     1.upto(months - 1) do |month|
-      credit = Credit.new
-      credit.name = self.name
-      credit.value = self.value
-      credit.account = self.account
-      credit.date = self.start_date + month.months
-      credit.recurring_credit = self
+      credit = Credit.from_recurring_credit(self, month)
       credit.save
     end
+  end
+
+  after_update do
+    puts "after_update"
+    if months_was > months
+      credits.order(:date)[months..-1].each(&:destroy)
+    elsif months > months_was
+      months_was.upto(months - 1) do |month|
+        credit = Credit.from_recurring_credit(self, month)
+        credit.save
+      end
+    end
+    if start_date_was != start_date
+      0.upto(months - 1) do |month|
+        Credit.where(recurring_credit_id: id).to_a[month].update(date: start_date + month.months)
+      end
+    end
+    Credit.where(recurring_credit_id: id).update(name: name, value: value, account: account)
   end
 end
