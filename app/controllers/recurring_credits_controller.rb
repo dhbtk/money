@@ -69,6 +69,6 @@ class RecurringCreditsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurring_credit_params
-      params.require(:recurring_credit).permit(:name, :months, :day, :value, :account_id, :expiration, :interest, :fine)
+      params.require(:recurring_credit).permit(:name, :months, :start_date, :value, :account_id)
     end
 end
