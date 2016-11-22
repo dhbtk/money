@@ -9,6 +9,16 @@ class Credit < ApplicationRecord
   validates :date, :value, :account, presence: true
   validates :name, presence: true, if: 'months > 1'
   validates :date, uniqueness: { scope: :recurring_credit_id }, if: :recurring_credit
+  
+  def self.from_recurring_credit(recurring_credit, month)
+    credit = Credit.new
+    credit.name = recurring_credit.name
+    credit.value = recurring_credit.value
+    credit.account = recurring_credit.account
+    credit.date = recurring_credit.start_date + month.months
+    credit.recurring_credit = recurring_credit
+    credit
+  end
 
   def months
     @months || 1
