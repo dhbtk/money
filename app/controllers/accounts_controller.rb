@@ -4,13 +4,9 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = current_user.accounts.where(type: nil)
-    @credit_cards = current_user.accounts.where(type: 'CreditCard')
-    @billing_accounts = current_user.accounts.where(type: 'BillingAccount')
-
-    # @accounts = (0..9).to_a.map{|i| Account.new(user: current_user, name: "Conta #{i}", id: i)}
-    # @credit_cards = (0..9).to_a.map{|i| CreditCard.new(user: current_user, name: "Conta #{i}", id: i)}
-    # @billing_accounts = (0..9).to_a.map{|i| BillingAccount.new(user: current_user, name: "Conta #{i}", id: i)}
+    @accounts = current_user.accounts.where(type: nil).order(:name)
+    @credit_cards = current_user.accounts.where(type: 'CreditCard').order(:name)
+    @billing_accounts = current_user.accounts.where(type: 'BillingAccount').order(:name)
   end
 
   # GET /accounts/1

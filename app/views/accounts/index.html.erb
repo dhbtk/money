@@ -1,16 +1,28 @@
 <% content_for :title do %>Contas
 <% end %>
-<% {'Contas em Banco' => @accounts, 'Contas para Pagamento' => @billing_accounts, 'Cartões de Crédito' => @credit_cards}.each do |label, accounts| %>
-    <h2><%= label %></h2>
-    <div class="account-list-wrapper">
-      <div class="account-list">
-        <% accounts.each do |account| %>
-            <%= link_to account_path(account) do %>
-                <div class="icon"></div>
-                <span><%= account.name %></span>
-            <% end %>
-        <% end %>
-      </div>
-    </div>
+<div class="accounts">
+  <% {'Contas em Banco' => @accounts, 'Contas para Pagamento' => @billing_accounts, 'Cartões de Crédito' => @credit_cards}.each do |label, accounts| %>
+      <h2><%= label %></h2>
+      <% accounts.each do |account| %>
+          <div class="account">
+            <div class="icon"></div>
+            <div class="content">
+              <h3><%= link_to account.name, account_path(account) %></h3>
+              <ul>
+                <% if account.type.nil? %>
+                    <li>Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span></li>
+                <% elsif account.is_a? CreditCard %>
+                    <li>Total a pagar: <span><%= number_to_currency account.total_due %></span></li>
+                    <li>Limite disponível:
+                      <span class="<%= 'negative' if account.available_limit < 0 %>"><%= number_to_currency account.available_limit %></span></li>
+                <% elsif account.is_a? BillingAccount %>
+                    <li>Total a pagar: <span><%= number_to_currency account.total_due %></span></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+</div>
+<% content_for :fab do %><%= link_to material_icon.add, new_account_path, title: 'Nova', id: 'fab' %>
 <% end %>
-<% content_for :fab do %><%= link_to material_icon.add, new_account_path, title: 'Nova', id: 'fab' %><% end %>
