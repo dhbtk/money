@@ -40,7 +40,7 @@
     <%= form_tag to_transfer_credit_path(credit), method: :post do %>
         <div style="display: flex">
           <div class="field" style="flex: 1">
-            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? AND id <> ?', 'BillingAccount', credit.account.id), :id, :name)  %>
+            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? OR type IS NULL AND id <> ?', 'BillingAccount', credit.account.id), :id, :name)  %>
             <%= label_tag :account_id, 'Conta de Destino' %>
           </div>
           <div class="actions" style="padding-top: 18px; padding-left: 8px">
