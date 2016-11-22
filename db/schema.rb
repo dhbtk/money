@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121152518) do
+ActiveRecord::Schema.define(version: 20161122135547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20161121152518) do
   create_table "recurring_credits", force: :cascade do |t|
     t.string   "name"
     t.integer  "months"
-    t.integer  "day"
     t.decimal  "value",      precision: 8, scale: 2
     t.integer  "account_id"
     t.integer  "expiration"
@@ -73,6 +72,7 @@ ActiveRecord::Schema.define(version: 20161121152518) do
     t.decimal  "fine",       precision: 8, scale: 2
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.datetime "start_date"
     t.index ["account_id"], name: "index_recurring_credits_on_account_id", using: :btree
   end
 

@@ -29,13 +29,19 @@
       <%= f.text_field :name %>
       <%= f.label :name %>
     </div>
+
+    <div class="field">
+      <%= f.number_field :months %>
+      <%= f.label :months %>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>
 
 <% end %>
 
-<% unless credit.new_record? %>
+<% if !credit.new_record? && credit.months == 1 %>
     <h2 style="margin: 8px 0">Transformar em Transferência</h2>
     <%= form_tag to_transfer_credit_path(credit), method: :post do %>
         <div style="display: flex">
