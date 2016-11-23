@@ -1,4 +1,7 @@
 class Credit < ApplicationRecord
+  self.sync_selectors = [
+      {joins: :account, where: {accounts: {user_id: :x}}}
+  ]
   belongs_to :recurring_credit, optional: true
   belongs_to :account
   belongs_to :tag, optional: true
@@ -8,8 +11,8 @@ class Credit < ApplicationRecord
 
   validates :date, :value, :account, presence: true
   validates :name, presence: true, if: 'months > 1'
-  validates :date, uniqueness: { scope: :recurring_credit_id }, if: :recurring_credit
-  
+  validates :date, uniqueness: {scope: :recurring_credit_id}, if: :recurring_credit
+
   def self.from_recurring_credit(recurring_credit, month)
     credit = Credit.new
     credit.name = recurring_credit.name

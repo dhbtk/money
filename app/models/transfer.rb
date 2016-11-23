@@ -1,4 +1,7 @@
 class Transfer < ApplicationRecord
+  self.sync_selectors = [
+      {joins: {credit: :account}, where: {credit: {accounts: {user_id: :x}}}}
+  ]
   belongs_to :debit
   belongs_to :credit
 
