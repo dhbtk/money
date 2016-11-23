@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  self.sync_selectors = [
+      {joins: nil, where: {id: :x}}
+  ]
   validates :email, presence: true, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
