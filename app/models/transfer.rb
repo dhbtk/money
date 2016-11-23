@@ -2,8 +2,8 @@ class Transfer < ApplicationRecord
   self.sync_selectors = [
       {joins: {credit: :account}, where: {credit: {accounts: {user_id: :x}}}}
   ]
-  belongs_to :debit
-  belongs_to :credit
+  belongs_to :debit, autosave: true
+  belongs_to :credit, autosave: true
 
   attr_writer :source_account, :destination_account, :value, :date, :description
 
