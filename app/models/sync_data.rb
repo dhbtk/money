@@ -4,7 +4,7 @@ class SyncData
   class << self
 
     def from_sync_data(scope_id, client_data)
-      revision = DateTime.strptime('0', '%s')
+      revision = DateTime.strptime("#{client_data.revision}", '%s')
       # remapped_ids = insert_new_entities(client_data.entities['INSERT'])
       # remap_ids(client_data.entities['UPDATE'], remapped_ids)
       # remap_ids(client_data.entities['REMOVE'], remapped_ids)
