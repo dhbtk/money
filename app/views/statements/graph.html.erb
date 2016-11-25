@@ -1,0 +1,52 @@
+<% content_for :title do %>Home<% end %>
+<div id="statement-graph"></div>
+<script>
+var loadChart = function() {
+    Highcharts.chart('statement-graph', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            spacingBottom: 0,
+            spacingTop: 0,
+            spacingLeft: 0,
+            spacingRight: 0,
+            style: {
+                fontFamily: 'inherit'
+            }
+        },
+        title: {text: ''},
+        series: [{
+            name: 'Movimentações',
+            innerSize: '50%',
+            data: [{
+                name: 'Gastos',
+                y: <%= @credits.sum(:value) %>,
+                color: '#EE3333'
+            }, {
+                name: 'Recebimentos',
+                y: <%= @debits.sum(:value) %>,
+                color: '#339933'
+            }],
+            dataLabels: {
+                distance: -40
+            }
+        }],
+        legend: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            pie: {
+                endAngle: 90,
+                startAngle: -90
+            }
+        }
+    });
+};
+$(loadChart);
+$(document).on('turbolinks:load', loadChart);
+</script>

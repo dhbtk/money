@@ -31,6 +31,10 @@ class Credit < ApplicationRecord
     @months = val.to_i
   end
 
+  after_initialize do
+    self.date ||= DateTime.now.to_date
+  end
+
   before_create do
     # Then we create a recurring credit
     if self.months > 1
