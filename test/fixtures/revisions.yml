@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  model: one
+  revision_type: 1
+  data: 
+
+two:
+  model: two
+  revision_type: 1
+  data: 
