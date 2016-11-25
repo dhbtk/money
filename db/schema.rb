@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122135547) do
+ActiveRecord::Schema.define(version: 20161125105552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 20161122135547) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["account_id"], name: "index_recurring_debits_on_account_id", using: :btree
+  end
+
+  create_table "revisions", force: :cascade do |t|
+    t.string   "model_type"
+    t.integer  "model_id"
+    t.integer  "revision_type"
+    t.json     "data"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["model_type", "model_id"], name: "index_revisions_on_model_type_and_model_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
