@@ -42,6 +42,10 @@ class Transfer < ApplicationRecord
     @date ||= credit&.date
   end
 
+  after_initialize do
+    self.date ||= DateTime.now.to_date
+  end
+
   before_validation do
     self.credit ||= Credit.new
     self.debit ||= Debit.new

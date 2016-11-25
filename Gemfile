@@ -34,6 +34,7 @@ gem 'turbolinks', '~> 5.0.0'
 gem 'material_icons'
 gem 'devise-i18n'
 gem 'maskmoney-rails'
+gem 'highcharts-rails'
 
 gem 'kaminari'
 gem 'cancancan'

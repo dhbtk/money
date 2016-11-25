@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   	  registrations: 'users/registrations',
   	  passwords: 'users/passwords'
   }
-  root to: 'statements#index'
+  root to: 'statements#graph'
 
   resources :transfers
   resources :debits
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :tags
   resources :recurring_credits
   resources :accounts
-  resources :statements, only: [:index]
+  resources :statements, only: [:index] do
+    collection do
+      get 'graph'
+    end
+  end
 
   post 'syncer', to: 'syncer#sync'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

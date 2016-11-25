@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require maskmoney
+//= require highcharts
 //= require_tree .
 
 

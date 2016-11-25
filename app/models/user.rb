@@ -9,4 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :accounts
+  has_many :credits, through: :accounts
+  has_many :debits, through: :accounts
+  has_many :transfers, through: :credits
 end
