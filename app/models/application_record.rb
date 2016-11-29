@@ -23,7 +23,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   after_create do
   	  unless self.class == Revision
-  	  	  puts "after_create"
   	  	  revision = Revision.new
   	  	  revision.model = self
   	  	  revision.revision_type = 'inserted'
@@ -34,7 +33,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   after_update do
   	  unless self.class == Revision
-  	  	  puts "after_update"
   	  	  revision = Revision.new
   	  	  revision.model = self
   	  	  revision.revision_type = 'updated'
@@ -45,7 +43,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   after_destroy do
   	  unless self.class == Revision
-  	  	  puts "after_destroy"
   	  	  revision = Revision.new
   	  	  revision.model = self
   	  	  revision.revision_type = 'deleted'
