@@ -28,6 +28,11 @@ var pageLoad = function() {
             $(this).removeClass('empty');
         }
     });
+    $('.field > select, .field > input').on('focus', function() {
+        $(this).parent().addClass('focus');
+    }).on('blur', function() {
+        $(this).parent().removeClass('focus');
+    });
 
     // Money inputs
     $('[data-money]').each(function() {
