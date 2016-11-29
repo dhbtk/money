@@ -1,4 +1,4 @@
-<%= form_for(credit) do |f| %>
+<%= form_for(credit, html: {style: 'display: flex; flex-direction: column', class: 'form'}) do |f| %>
     <% if credit.errors.any? %>
         <div id="error_explanation">
           <h2>Erro ao salvar o gasto:</h2>
@@ -10,43 +10,43 @@
           </ul>
         </div>
     <% end %>
-    <div class="field">
-      <%= f.text_field :value, data: {money: 'true'} %>
-      <%= f.label :value %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :value, class: 'mdl-textfield__input', data: {money: 'true'} %>
+      <%= f.label :value, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
-      <%= f.date_field :date %>
-      <%= f.label :date %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.date_field :date, class: 'mdl-textfield__input' %>
+      <%= f.label :date, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <%= f.collection_select :account_id, current_user.accounts, :id, :name %>
-      <%= f.label :account_id %>
+      <%= f.label :account_id, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
-      <%= f.text_field :name %>
-      <%= f.label :name %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :name, class: 'mdl-textfield__input' %>
+      <%= f.label :name, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
-      <%= f.number_field :months %>
-      <%= f.label :months %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.number_field :months, class: 'mdl-textfield__input' %>
+      <%= f.label :months, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+<% end %>
 
+<% content_for :toolbar_right do %>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="document.querySelector('form.form').submit()">Salvar</button>
 <% end %>
 
 <% if !credit.new_record? && credit.months == 1 %>
     <h2 style="margin: 8px 0">Transformar em Transferência</h2>
     <%= form_tag to_transfer_credit_path(credit), method: :post do %>
         <div style="display: flex">
-          <div class="field" style="flex: 1">
-            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? OR type IS NULL AND id <> ?', 'BillingAccount', credit.account.id), :id, :name)  %>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="flex: 1">
+            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? OR type IS NULL AND id <> ?', 'BillingAccount', credit.account.id), :id, :name) %>
             <%= label_tag :account_id, 'Conta de Destino' %>
           </div>
           <div class="actions" style="padding-top: 18px; padding-left: 8px">

@@ -1,9 +1,10 @@
 /*
  *= require material_icons
+ *= require dialog-polyfill
  */
-@import "reset";
 @import "variables";
 @import "functions";
-@import "layout/*";
+@import "material";
+@import "layout";
 @import "statements/*";
 @import "accounts/*";

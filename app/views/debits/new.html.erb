@@ -1,6 +1,5 @@
-<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, :back, title: 'Voltar' %><% end %>
-<% content_for :title do %>Novo Recebimento<% end %>
+<% content_for :title do %>Nova Receita<% end %>
 
-<%= render 'form', debit: @debit %>
-
-<%= link_to 'Back', debits_path %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= render 'form', debit: @debit %>
+</div>
