@@ -1,4 +1,4 @@
-<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, :back, title: 'Voltar' %><% end %>
-<% content_for :title do %>Editando Gasto<% end %>
-
-<%= render 'form', credit: @credit %>
+<% content_for :title do %>Editar Despesa<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= render 'form', credit: @credit %>
+</div>

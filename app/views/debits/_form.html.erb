@@ -1,4 +1,4 @@
-<%= form_for(debit) do |f| %>
+<%= form_for(debit, html: {style: 'display: flex; flex-direction: column', class: 'form'}) do |f| %>
     <% if debit.errors.any? %>
         <div id="error_explanation">
           <h2>Não foi possível salvar o recebimento:</h2>
@@ -10,27 +10,27 @@
           </ul>
         </div>
     <% end %>
-    <div class="field">
-      <%= f.text_field :value, data: {money: 'true'} %>
-      <%= f.label :value %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :value, class: 'mdl-textfield__input', data: {money: 'true'} %>
+      <%= f.label :value, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
-      <%= f.date_field :date %>
-      <%= f.label :date %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.date_field :date, class: 'mdl-textfield__input' %>
+      <%= f.label :date, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <%= f.collection_select :account_id, current_user.accounts.where(type: [nil, 'Account']), :id, :name %>
-      <%= f.label :account_id %>
+      <%= f.label :account_id, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="field">
-      <%= f.text_field :name %>
-      <%= f.label :name %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :name, class: 'mdl-textfield__input' %>
+      <%= f.label :name, class: 'mdl-textfield__label' %>
     </div>
+<% end %>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+<% content_for :toolbar_right do %>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="document.querySelector('form.form').submit()">Salvar</button>
 <% end %>

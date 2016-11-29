@@ -6,7 +6,7 @@
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -17,49 +17,43 @@
 </head>
 
 <body class="<%= params[:controller] %>-<%= params[:action] %>">
-<div id="header-container">
-  <%= yield :toolbar_left %>
-  <% unless content_for? :toolbar_left %>
-      <label for="toggle-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </label>
-  <% end %>
-  <header id="header">
-    <input type="checkbox" id="toggle-menu">
-    <nav id="menu">
-      <div class="background">
-        <%= link_to edit_user_registration_path do %>
-            <span>Usuário</span>
-            <strong><%= current_user.email %></strong>
-        <% end %>
-      </div>
-      <div class="links">
-        <%= link_to 'Home', root_path %>
-        <%= link_to 'Movimentações', statements_path %>
-        <%= link_to 'Contas', accounts_path %>
-      </div>
-      <div class="separator"></div>
-      <div class="links">
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-      </div>
-    </nav>
-    <label for="toggle-menu" id="overlay"></label>
-    <h1>
-      <% if content_for? :title %><%= yield :title %>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <header class="header mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">
+        <% if content_for? :title %><%= yield :title %>
       <% else %>Money
       <% end %>
-    </h1>
-    <%= yield :toolbar_right %>
+      </span>
+      <div class="mdl-layout-spacer"></div>
+      <%= yield :toolbar_right %>
+    </div>
   </header>
-</div>
-<div id="scrollable">
-  <div id="content">
-    <%= yield %>
+  <div class="drawer mdl-layout__drawer">
+    <header class="drawer-header">
+      <div class="avatar-dropdown">
+        <span><%= current_user.email %></span>
+        <div class="mdl-layout-spacer"></div>
+        <button id="profilebtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+          <%= material_icon.arrow_drop_down %>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="profilebtn">
+          <li class="mdl-menu__item"><%= link_to 'Perfil', edit_user_registration_path %></li>
+          <li class="mdl-menu__item"><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </div>
+    </header>
+    <nav class="navigation mdl-navigation">
+      <%= link_to root_path, class: 'mdl-navigation__link' do %><%= material_icon.dashboard %>Home<% end %>
+      <%= link_to statements_path, class: 'mdl-navigation__link' do %><%= material_icon.book %>Movimentações<% end %>
+      <%= link_to accounts_path, class: 'mdl-navigation__link' do %><%= material_icon.credit_card %>Contas<% end %>
+    </nav>
   </div>
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-grid content"><%= yield %></div>
+    <%= yield :fab %>
+  </main>
 </div>
-<%= yield :fab %>
 <%= yield :body %>
 </body>
 </html>

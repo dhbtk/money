@@ -35,6 +35,7 @@ gem 'material_icons'
 gem 'devise-i18n'
 gem 'maskmoney-rails'
 gem 'highcharts-rails'
+gem 'material_design_lite-sass'
 
 gem 'kaminari'
 gem 'cancancan'

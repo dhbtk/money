@@ -14,3 +14,14 @@ $container-border-color: rgb(204, 204, 204);
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $body-font-family: 'Open Sans', Helvetica, sans-serif;
+
+// material-design-lite
+$color-primary: "73, 98, 122";
+$color-primary-dark: "35, 60, 84";
+$color-accent: "249, 220, 92";
+$preferred_font: $body-font-family;
+$performance_font: $body-font-family;
+
+$checkbox-label-font-size: 14px;
+$radio-label-font-size: 14px;
+$input-text-font-size: 14px;

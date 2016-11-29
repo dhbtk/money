@@ -15,24 +15,14 @@
 //= require jquery_ujs
 //= require maskmoney
 //= require highcharts
+//= require material
+//= require dialog-polyfill
 //= require_tree .
 
 
 // For the floating labels
 var pageLoad = function() {
-    $('input[value=""], input:not([value])').addClass('empty');
-    $('input').on('keyup', function() {
-        if($(this).val() == "") {
-            $(this).addClass('empty');
-        } else {
-            $(this).removeClass('empty');
-        }
-    });
-    $('.field > select, .field > input').on('focus', function() {
-        $(this).parent().addClass('focus');
-    }).on('blur', function() {
-        $(this).parent().removeClass('focus');
-    });
+	componentHandler.upgradeDom();
 
     // Money inputs
     $('[data-money]').each(function() {

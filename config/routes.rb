@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :statements, only: [:index] do
     collection do
       get 'graph'
-      get 'table'
     end
   end
 
