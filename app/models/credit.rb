@@ -1,12 +1,9 @@
-class Credit < ApplicationRecord
+class Credit < Statement
   self.sync_selectors = [
       {joins: :account, where: {accounts: {user_id: :x}}}
   ]
   belongs_to :recurring_credit, optional: true
-  belongs_to :account
-  belongs_to :tag, optional: true
 
-  has_many :debits
   has_one :transfer, dependent: :destroy
 
   validates :date, :value, :account, presence: true
