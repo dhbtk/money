@@ -6,6 +6,7 @@ class Account < ApplicationRecord
   has_many :credits, -> { order(:date) }, dependent: :destroy
   has_many :recurring_credits, -> { order(:name) }, dependent: :destroy
   has_many :debits, -> { order(:date) }, dependent: :destroy
+  has_many :statements
   has_many :recurring_debits, -> { order(:name) }, dependent: :destroy
   has_many :incoming_transfers, through: :debits, class_name: 'Transfer', source: :transfer, dependent: :destroy
   has_many :outgoing_transfers, through: :credits, class_name: 'Transfer', source: :transfer, dependent: :destroy

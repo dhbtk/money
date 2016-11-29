@@ -9,7 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :accounts
-  has_many :credits, through: :accounts
-  has_many :debits, through: :accounts
-  has_many :transfers, through: :credits
+  has_many :credits, -> { order(date: :desc, created_at: :desc) }, through: :accounts 
+  has_many :debits, -> { order(date: :desc, created_at: :desc) }, through: :accounts
+  has_many :statements, -> { order(date: :desc, created_at: :desc) }, through: :accounts
+  has_many :transfers, -> { order(created_at: :desc) }, through: :credits
 end

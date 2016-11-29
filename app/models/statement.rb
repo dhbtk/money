@@ -1,11 +1,6 @@
-class Statement
-
-  def self.all(user, from, to)
-    debits = Debit.joins(:account).where(accounts: {user_id: user})
-    credits = Credit.joins(:account).where(accounts: {user_id: user})
-    statements = debits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer).includes(:account) + credits.where('"date" <= ? AND "date" >= ?', to, from).includes(:transfer).includes(:account)
-    statements.sort { |b, a| r = a.date <=> b.date; r == 0 ? a.created_at <=> b.created_at : r }
-  end
+class Statement < ApplicationRecord
+  belongs_to :account
+  belongs_to :tag, optional: true
 
   def self.by_date(user, from, to)
     all(user, from, to).group_by { |x| x.date.to_date }

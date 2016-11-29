@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125105552) do
+ActiveRecord::Schema.define(version: 20161129160450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,39 +27,6 @@ ActiveRecord::Schema.define(version: 20161125105552) do
     t.integer  "user_id"
     t.decimal  "limit",      precision: 8, scale: 2
     t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
-  end
-
-  create_table "credits", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "date"
-    t.decimal  "value",               precision: 8, scale: 2
-    t.integer  "recurring_credit_id"
-    t.integer  "account_id"
-    t.integer  "tag_id"
-    t.integer  "expiration"
-    t.decimal  "interest"
-    t.decimal  "fine"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.index ["account_id"], name: "index_credits_on_account_id", using: :btree
-    t.index ["recurring_credit_id"], name: "index_credits_on_recurring_credit_id", using: :btree
-    t.index ["tag_id"], name: "index_credits_on_tag_id", using: :btree
-  end
-
-  create_table "debits", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "date"
-    t.decimal  "value",              precision: 8, scale: 2
-    t.integer  "recurring_debit_id"
-    t.integer  "account_id"
-    t.integer  "tag_id"
-    t.integer  "credit_id"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.index ["account_id"], name: "index_debits_on_account_id", using: :btree
-    t.index ["credit_id"], name: "index_debits_on_credit_id", using: :btree
-    t.index ["recurring_debit_id"], name: "index_debits_on_recurring_debit_id", using: :btree
-    t.index ["tag_id"], name: "index_debits_on_tag_id", using: :btree
   end
 
   create_table "recurring_credits", force: :cascade do |t|
@@ -97,6 +64,21 @@ ActiveRecord::Schema.define(version: 20161125105552) do
     t.index ["model_type", "model_id"], name: "index_revisions_on_model_type_and_model_id", using: :btree
   end
 
+  create_table "statements", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "date"
+    t.decimal  "value",               precision: 8, scale: 2
+    t.integer  "account_id"
+    t.integer  "recurring_credit_id"
+    t.integer  "tag_id"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.index ["account_id"], name: "index_statements_on_account_id", using: :btree
+    t.index ["recurring_credit_id"], name: "index_statements_on_recurring_credit_id", using: :btree
+    t.index ["tag_id"], name: "index_statements_on_tag_id", using: :btree
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -131,15 +113,11 @@ ActiveRecord::Schema.define(version: 20161125105552) do
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "credits", "accounts"
-  add_foreign_key "credits", "recurring_credits"
-  add_foreign_key "credits", "tags"
-  add_foreign_key "debits", "accounts"
-  add_foreign_key "debits", "credits"
-  add_foreign_key "debits", "recurring_debits"
-  add_foreign_key "debits", "tags"
   add_foreign_key "recurring_credits", "accounts"
   add_foreign_key "recurring_debits", "accounts"
-  add_foreign_key "transfers", "credits"
-  add_foreign_key "transfers", "debits"
+  add_foreign_key "statements", "accounts"
+  add_foreign_key "statements", "recurring_credits"
+  add_foreign_key "statements", "tags"
+  add_foreign_key "transfers", "statements", column: "credit_id"
+  add_foreign_key "transfers", "statements", column: "debit_id"
 end
