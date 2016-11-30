@@ -1,2 +1,0 @@
-module RecurringDebitsHelper
-end

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :transfers
   resources :debits
-  resources :recurring_debits
   resources :credits do
     member do
       post 'to_transfer'
