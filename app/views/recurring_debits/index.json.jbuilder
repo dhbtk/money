@@ -1,1 +1,0 @@
-json.array! @recurring_debits, partial: 'recurring_debits/recurring_debit', as: :recurring_debit

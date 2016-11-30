@@ -28,7 +28,7 @@ class DebitsController < ApplicationController
 
     respond_to do |format|
       if @debit.save
-        format.html { redirect_to statements_path, notice: 'Debit was successfully created.' }
+        format.html { redirect_to graph_statements_path, notice: 'Receita criada' }
         format.json { render :show, status: :created, location: @debit }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DebitsController < ApplicationController
   def update
     respond_to do |format|
       if @debit.update(debit_params)
-        format.html { redirect_to @debit, notice: 'Debit was successfully updated.' }
+        format.html { redirect_to graph_statements_path, notice: 'Receita atualizada' }
         format.json { render :show, status: :ok, location: @debit }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DebitsController < ApplicationController
   def destroy
     @debit.destroy
     respond_to do |format|
-      format.html { redirect_to debits_url, notice: 'Debit was successfully destroyed.' }
+      format.html { redirect_to graph_statements_path, notice: 'Receita excluída' }
       format.json { head :no_content }
     end
   end

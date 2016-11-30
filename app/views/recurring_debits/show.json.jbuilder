@@ -1,1 +1,0 @@
-json.partial! "recurring_debits/recurring_debit", recurring_debit: @recurring_debit
