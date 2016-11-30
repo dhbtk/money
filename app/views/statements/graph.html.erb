@@ -12,7 +12,7 @@
       </div>
   <% end %>
   <% @statements.each do |date, statements| %>
-      <h2 class="date"><%= l date, format: :short %></h2>
+      <h2 class="date"><%= l date.to_date, format: :short %></h2>
       <div class="statements">
         <% statements.each do |statement| %>
             <div class="statement <%= statement.class.to_s.downcase %>">
