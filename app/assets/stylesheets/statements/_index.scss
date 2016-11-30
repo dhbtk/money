@@ -1,123 +1,52 @@
-// Date picker
-.statements-index .field.dates {
-  display: flex;
-  flex-direction: row;
-  height: inherit;
-  align-items: center;
-  flex-flow: row wrap;
-  & > input[type="date"] {
-    height: 33px;
-    margin: 0;
-    width: auto;
-  }
-  & > span {
-    padding: 8px;
-    &:first-child {
-      padding-left: 0;
+body.statements-index {
+  table.mdl-data-table {
+    width: 100%;
+
+    tr {
+      height: auto;
     }
-  }
-  & > [type="submit"] {
-    @media(min-width: 1023px) {
-      margin-left: 8px;
-    }
-    width: auto;
-  }
-}
 
-h2.date {
-  font-size: 90%;
-  margin: 4px 0;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: lighten($dark-text-color, 25%);
-  line-height: inherit;
-}
+    th, td {
+      width: 1em;
+      white-space: nowrap;
+      padding: 0 12px;
+      height: 36px;
 
-div.statements {
-  padding-left: 15px;
-}
-
-.icon {
-  width: 48px;
-  height: 48px;
-  background-color: #ccc;
-}
-
-.statement, .account {
-  display: flex;
-  padding: 10px;
-
-  & > div.content {
-    margin-left: 10px;
-  }
-
-  h3 {
-    margin: 0 0 5px;
-    font-size: 100%;
-    line-height: inherit;
-  }
-}
-
-.account {
-  padding-left: 25px;
-
-  ul > li {
-    margin-bottom: 5px;
-    font-size: 85%;
-    & > span {
-      color: #090;
-      &.negative {
-        color: #B00;
+      &.wide {
+        width: 100%;
       }
     }
   }
-}
 
-.statement {
-  &.credit {
-    h3 > span, span.transfer {
-      color: #B00;
-    }
+  #results {
+    font-size: 85%;
+    margin-bottom: 12px;
   }
 
-  &.debit {
-    h3 > span, span.transfer {
-      color: #090;
-    }
-  }
-}
-
-.name, .amount {
-  font-size: 85%;
-}
-
-// Modal
-
-.link-list {
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-
-  a {
+  form.table-filters {
     display: flex;
     flex-direction: row;
-    padding: 8px;
     align-items: center;
-    text-decoration: none;
-    background: transparent;
-    transition: background 0.12s ease-in-out;
 
-    &:hover {
-      background: $menu-link-background-color;
+    button[type="submit"] {
+      margin-left: auto;
     }
+  }
 
-    img {
-      display: block;
-      width: 32px;
-      height: 32px;
-    }
-    span {
-      margin-left: 8px;
-    }
+  span.transfer, span.credit, span.debit {
+    border-radius: 2px;
+    padding: 2px;
+  }
+
+  span.transfer {
+    background-color: rgba(0, 0, 255, 0.12);
+  }
+
+  span.credit {
+    background-color: rgba(255, 0, 0, 0.12);
+  }
+
+  span.debit {
+    background-color: rgba(0, 255, 0, 0.12);
   }
 }

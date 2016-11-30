@@ -136,3 +136,28 @@ body#login {
 .mdl-cell:not(.no-padding) {
   padding: 12px;
 }
+
+// Pagination
+
+nav.pagination {
+  display: flex;
+  flex-direction: row;
+
+  & > .pages {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+
+    & > .page > a {
+      font-size: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    a[disabled="disabled"] {
+      pointer-events: none;
+    }
+  }
+}

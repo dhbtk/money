@@ -3,3 +3,96 @@
   overflow: hidden;
   width: 100%;
 }
+
+// Date picker
+.statements-index .field.dates {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  align-items: center;
+  flex-flow: row wrap;
+  & > input[type="date"] {
+    height: 33px;
+    margin: 0;
+    width: auto;
+  }
+  & > span {
+    padding: 8px;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  & > [type="submit"] {
+    @media(min-width: 1023px) {
+      margin-left: 8px;
+    }
+    width: auto;
+  }
+}
+
+h2.date {
+  font-size: 90%;
+  margin: 4px 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: lighten($dark-text-color, 25%);
+  line-height: inherit;
+}
+
+div.statements {
+  padding-left: 15px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  background-color: #ccc;
+}
+
+.statement, .account {
+  display: flex;
+  padding: 10px;
+
+  & > div.content {
+    margin-left: 10px;
+  }
+
+  h3 {
+    margin: 0 0 5px;
+    font-size: 100%;
+    line-height: inherit;
+  }
+}
+
+.account {
+  padding-left: 25px;
+
+  ul > li {
+    margin-bottom: 5px;
+    font-size: 85%;
+    & > span {
+      color: #090;
+      &.negative {
+        color: #B00;
+      }
+    }
+  }
+}
+
+.statement {
+  &.credit {
+    h3 > span, span.transfer {
+      color: #B00;
+    }
+  }
+
+  &.debit {
+    h3 > span, span.transfer {
+      color: #090;
+    }
+  }
+}
+
+.name, .amount {
+  font-size: 85%;
+}
