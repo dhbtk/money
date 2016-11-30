@@ -1,12 +1,16 @@
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
   <%= form_tag(statements_path, method: :get, class: 'table-filters') do %>
-      <div class="mdl-textfield mdl-js-textfield">
-        <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, params[:account_id]), include_blank: true %>
-        <%= label_tag :account_id, nil, class: 'mdl-textfield__label' %>
+      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+        <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, params[:account_id]), include_blank: true, class: 'mdl-selectfield__select' %>
+        <%= label_tag :account_id, nil, class: 'mdl-selectfield__label' %>
       </div>
-      <div class="mdl-textfield mdl-js-textfield">
-        <%= select_tag :option, options_for_select(@options, params[:option]) %>
-        <%= label_tag :option, nil, class: 'mdl-textfield__label' %>
+      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+        <%= select_tag :period, options_for_select(@periods, params[:period]), class: 'mdl-selectfield__select' %>
+        <%= label_tag :period, nil, class: 'mdl-selectfield__label' %>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= text_field_tag :search, params[:search], class: 'mdl-textfield__input' %>
+        <%= label_tag :search, nil, class: 'mdl-textfield__label' %>
       </div>
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Filtrar</button>
   <% end %>
