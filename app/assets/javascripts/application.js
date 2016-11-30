@@ -17,6 +17,7 @@
 //= require highcharts
 //= require material
 //= require dialog-polyfill
+//= require selectfield
 //= require_tree .
 
 
