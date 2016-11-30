@@ -4,7 +4,7 @@
   <div id="statement-graph"></div>
 </div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-  <%= form_tag(statements_path, method: :get) do %>
+  <%= form_tag(graph_statements_path, method: :get) do %>
       <div class="field dates">
         <span>Mostrando desde</span>
         <%= date_field_tag :from, @from %>
@@ -58,75 +58,46 @@
       </div>
   <% end %>
 </div>
-
-
-<% content_for :fab do %>
-    <a href="javascript:openModal()" id="fab" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect"><%= material_icon.add %></a>
-<% end %>
+<%= render 'modal' %>
 <% content_for :body do %>
-    <dialog class="mdl-dialog">
-      <h4 class="mdl-dialog__title">Adicionar Transação</h4>
-      <div class="mdl-dialog__content"><p>Escolha um tipo de transação.</p></div>
-      <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
-        <%= link_to new_debit_path, class: 'mdl-button' do %>Receita
-        <% end %>
-        <%= link_to new_credit_path, class: 'mdl-button' do %>Despesa
-        <% end %>
-        <%= link_to new_transfer_path, class: 'mdl-button' do %>Transferência
-        <% end %>
-        <button type="button" class="mdl-button close" onclick="closeModal()">Fechar</button>
-      </div>
-    </dialog>
     <script>
-        var dialog = document.querySelector('dialog');
-        dialogPolyfill.registerDialog(dialog);
-        function openModal() {
-            dialog.showModal();
-        }
-        function closeModal() {
-            dialog.close();
-        }
-        var loadChart = function() {
-            Highcharts.chart('statement-graph', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie',
-                    spacingBottom: 0,
-                    spacingTop: 0,
-                    spacingLeft: 0,
-                    spacingRight: 0,
-                    style: {
-                        fontFamily: 'inherit'
-                    }
-                },
-                title: { text: '' },
-                series: [{
-                    name: 'Movimentações',
-                    innerSize: '50%',
-                    data: [{
-                        name: 'Gastos',
-                        y: <%= @credits.sum(:value) %>,
-                        color: '#EE3333'
-                    }, {
-                        name: 'Recebimentos',
-                        y: <%= @debits.sum(:value) %>,
-                        color: '#339933'
-                    }],
-                    dataLabels: {
-                        distance: -40
-                    }
-                }],
-                legend: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
+        Highcharts.chart('statement-graph', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 0,
+                spacingTop: 0,
+                spacingLeft: 0,
+                spacingRight: 0,
+                style: {
+                    fontFamily: 'inherit'
                 }
-            });
-        };
-        $(loadChart);
-        $(document).on('turbolinks:load', loadChart);
+            },
+            title: { text: '' },
+            series: [{
+                name: 'Movimentações',
+                innerSize: '50%',
+                data: [{
+                    name: 'Gastos',
+                    y: <%= @credits.sum(:value) %>,
+                    color: '#EE3333'
+                }, {
+                    name: 'Recebimentos',
+                    y: <%= @debits.sum(:value) %>,
+                    color: '#339933'
+                }],
+                dataLabels: {
+                    distance: -40
+                }
+            }],
+            legend: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            }
+        });
     </script>
 <% end %>

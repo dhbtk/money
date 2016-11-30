@@ -5,6 +5,7 @@
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -53,7 +54,6 @@
     <%= yield :fab %>
   </main>
 </div>
-<%= javascript_include_tag 'application' %>
 <%= yield :body %>
 <% if flash[:notice] %>
     <div id="toast" class="mdl-js-snackbar mdl-snackbar">

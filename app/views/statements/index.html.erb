@@ -1,3 +1,88 @@
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-  tabela vai aqui
+  <%= form_tag(statements_path, method: :get, class: 'table-filters') do %>
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, params[:account_id]), include_blank: true %>
+        <%= label_tag :account_id, nil, class: 'mdl-textfield__label' %>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <%= select_tag :option, options_for_select(@options, params[:option]) %>
+        <%= label_tag :option, nil, class: 'mdl-textfield__label' %>
+      </div>
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Filtrar</button>
+  <% end %>
+  <div id="results">
+    Mostrando <strong><%= @statements.count %></strong> movimentações
+    <% if @to %>
+        de <strong><%= l @from.to_date, format: :default %></strong> até <strong><%= l @to.to_date, format: :default %></strong>
+    <% else %>
+        a partir de <strong><%= l @from.to_date, format: :default %></strong>
+    <% end %>
+  </div>
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
+      <th class="mdl-data-table__cell--non-numeric">Origem e Destino</th>
+      <th>Valor</th>
+      <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
+      <th class="mdl-data-table__cell--non-numeric">Tag</th>
+      <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @statements.each do |statement| %>
+        <tr>
+          <td class="mdl-data-table__cell--non-numeric"><%= l statement.date.to_date, format: :default %></td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <% if statement.transfer.present? %>
+                <% if statement.is_a? Credit %>
+                    <span class="transfer"><%= statement.account.name %></span>
+                    »
+                    <span class="transfer"><%= statement.transfer.debit.account.name %></span>
+                <% else %>
+                    <span class="transfer"><%= statement.transfer.credit.account.name %></span>
+                    »
+                    <span class="transfer"><%= statement.account.name %></span>
+                <% end %>
+            <% else %>
+                <% if statement.is_a? Credit %>
+                    <span class="transfer"><%= statement.account.name %></span>
+                    »
+                    <span class="credit">Despesas</span>
+                <% else %>
+                    <span class="transfer">Receitas</span>
+                    »
+                    <span class="debit"><%= statement.account.name %></span>
+                <% end %>
+            <% end %>
+          </td>
+          <td><%= number_to_currency statement.value %></td>
+          <td class="mdl-data-table__cell--non-numeric wide">
+            <%= statement.name %>
+            <% if statement.recurring_credit_id.present? %>
+                (<%= statement.recurring_credit.credits.to_a.index(statement) + 1 %>/<%= statement.recurring_credit.months %>)
+            <% end %>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric"><%= statement.tag.present? ? statement.tag.name : '-' %></td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <% if statement.transfer.present? %>
+                <%= link_to material_icon.edit, edit_transfer_path(statement.transfer), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+                <%= link_to material_icon.delete, statement.transfer, method: :delete, data: {confirm: 'Excluir transferência?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <% elsif statement.recurring_credit_id.present? %>
+                <%= link_to material_icon.edit, edit_recurring_credit_path(statement.recurring_credit), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+                <%= link_to material_icon.delete, statement.recurring_credit, method: :delete, data: {confirm: 'Excluir parcelamento?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <% elsif statement.is_a? Credit %>
+                <%= link_to material_icon.edit, edit_credit_path(statement), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+                <%= link_to material_icon.delete, statement, method: :delete, data: {confirm: 'Excluir despesa?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <% else %>
+                <%= link_to material_icon.edit, edit_debit_path(statement), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+                <%= link_to material_icon.delete, statement, method: :delete, data: {confirm: 'Excluir receita?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @statements %>
 </div>
+<%= render 'modal' %>
