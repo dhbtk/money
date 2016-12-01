@@ -37,7 +37,9 @@ header.header {
 }
 
 nav.navigation {
-  flex-grow: 1;
+  &:not(.no-stretch) {
+    flex-grow: 1;
+  }
 
   & > .mdl-navigation__link {
     display: flex !important;
