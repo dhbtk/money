@@ -43,11 +43,12 @@
         </ul>
       </div>
     </header>
-    <nav class="navigation mdl-navigation">
+    <nav class="navigation mdl-navigation<%= ' no-stretch' if content_for? :drawer %>">
       <%= link_to root_path, class: 'mdl-navigation__link' do %><%= material_icon.dashboard %>Home<% end %>
       <%= link_to statements_path, class: 'mdl-navigation__link' do %><%= material_icon.book %>Movimentações<% end %>
       <%= link_to accounts_path, class: 'mdl-navigation__link' do %><%= material_icon.credit_card %>Contas<% end %>
     </nav>
+    <%= yield :drawer %>
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-grid content"><%= yield %></div>
