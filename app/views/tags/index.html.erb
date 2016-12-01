@@ -1,27 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tags</h1>
-
-<table>
-  <thead>
+<% content_for :title do %>Tags<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending wide">Nome</th>
+      <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
     </tr>
-  </thead>
-
-  <tbody>
+    </thead>
+    <tbody>
     <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.name %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td class="mdl-data-table__cell--non-numeric wide" style="display: flex; align-items: center">
+            <i class="material-icons"><%= tag.icon %></i>
+            <%= tag.name %>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <%= link_to material_icon.edit, edit_tag_path(tag), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <%= link_to material_icon.delete, tag, method: :delete, data: {confirm: 'Excluir tag?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+          </td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Tag', new_tag_path %>
+    </tbody>
+  </table>
+  <%= paginate @tags %>
+</div>
+<% content_for :fab do %>
+    <%= link_to material_icon.add, new_tag_path, id: :fab, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect' %>
+<% end %>

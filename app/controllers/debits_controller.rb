@@ -69,6 +69,6 @@ class DebitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def debit_params
-      params.require(:debit).permit(:name, :date, :value, :recurring_debit_id, :account_id, :tag_id, :credit_id)
+      params.require(:debit).permit(:name, :date, :value, :account_id, :tag_id)
     end
 end

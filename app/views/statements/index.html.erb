@@ -69,7 +69,14 @@
                 (<%= statement.recurring_credit.credits.to_a.index(statement) + 1 %>/<%= statement.recurring_credit.months %>)
             <% end %>
           </td>
-          <td class="mdl-data-table__cell--non-numeric"><%= statement.tag.present? ? statement.tag.name : '-' %></td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <% if statement.tag.present? %>
+                <i class="material-icons"><%= statement.tag.icon %></i>
+                <%= statement.tag.name %>
+            <% else %>
+                -
+            <% end %>
+          </td>
           <td class="mdl-data-table__cell--non-numeric">
             <% if statement.transfer.present? %>
                 <%= link_to material_icon.edit, edit_transfer_path(statement.transfer), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
