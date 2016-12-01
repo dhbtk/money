@@ -6,6 +6,6 @@ class CreditCard < Account
   end
 
   def available_limit
-    limit + balance
+    limit + debits.sum(:value) - credits.sum(:value)
   end
 end
