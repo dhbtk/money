@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    @tags = current_user.tags.page(params[:page])
   end
 
   # GET /tags/1
@@ -14,7 +14,7 @@ class TagsController < ApplicationController
 
   # GET /tags/new
   def new
-    @tag = Tag.new
+    @tag = current_user.tags.build
   end
 
   # GET /tags/1/edit
@@ -24,11 +24,11 @@ class TagsController < ApplicationController
   # POST /tags
   # POST /tags.json
   def create
-    @tag = Tag.new(tag_params)
+    @tag = current_user.tags.build(tag_params)
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: 'Tag was successfully created.' }
+        format.html { redirect_to tags_path, notice: 'Tag was successfully created.' }
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
+        format.html { redirect_to tags_path, notice: 'Tag was successfully updated.' }
         format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit }
@@ -64,11 +64,11 @@ class TagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
-      @tag = Tag.find(params[:id])
+      @tag = current_user.tags.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params
-      params.require(:tag).permit(:name)
+      params.require(:tag).permit(:name, :icon)
     end
 end

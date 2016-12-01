@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130162853) do
+ActiveRecord::Schema.define(version: 20161201180800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,9 @@ ActiveRecord::Schema.define(version: 20161130162853) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "icon"
+    t.index ["user_id"], name: "index_tags_on_user_id", using: :btree
   end
 
   create_table "transfers", force: :cascade do |t|
@@ -119,6 +122,7 @@ ActiveRecord::Schema.define(version: 20161130162853) do
   add_foreign_key "statements", "accounts"
   add_foreign_key "statements", "recurring_credits"
   add_foreign_key "statements", "tags"
+  add_foreign_key "tags", "users"
   add_foreign_key "transfers", "statements", column: "credit_id"
   add_foreign_key "transfers", "statements", column: "debit_id"
 end

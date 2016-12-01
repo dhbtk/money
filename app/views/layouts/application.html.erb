@@ -45,8 +45,9 @@
     </header>
     <nav class="navigation mdl-navigation<%= ' no-stretch' if content_for? :drawer %>">
       <%= link_to root_path, class: 'mdl-navigation__link' do %><%= material_icon.dashboard %>Home<% end %>
-      <%= link_to statements_path, class: 'mdl-navigation__link' do %><%= material_icon.book %>Movimentações<% end %>
-      <%= link_to accounts_path, class: 'mdl-navigation__link' do %><%= material_icon.credit_card %>Contas<% end %>
+      <%= link_to statements_path, class: 'mdl-navigation__link' do %><%= material_icon.receipt %>Movimentações<% end %>
+      <%= link_to accounts_path, class: 'mdl-navigation__link' do %><%= material_icon.chrome_reader_mode %>Contas<% end %>
+      <%= link_to tags_path, class: 'mdl-navigation__link' do %><%= material_icon.grade %>Tags<% end %>
     </nav>
     <%= yield :drawer %>
   </div>
