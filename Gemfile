@@ -40,3 +40,6 @@ gem 'material_design_lite-sass'
 gem 'kaminari'
 gem 'cancancan'
 gem 'devise'
+
+# scheduler
+gem 'whenever', require: false
