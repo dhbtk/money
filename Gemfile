@@ -39,3 +39,6 @@ gem 'material_design_lite-sass'
 
 gem 'kaminari'
 gem 'devise'
+
+# scheduler
+gem 'whenever', require: false
