@@ -91,4 +91,25 @@
 </div>
 <%= render 'modal' %>
 <% content_for :drawer do %>
+    <div class="account-totals">
+      <h6>Contas</h6>
+      <ul>
+        <% @accounts.each do |account| %>
+        <li class="account">
+          <div class="account-name">
+            <%= link_to account.name, account_path(account) %>
+          </div>
+          <div class="account-total">
+            <% if account.type.nil? %>
+                Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span>
+            <% elsif account.is_a? CreditCard %>
+                Total a pagar: <span><%= number_to_currency account.total_due %></span><br>
+                Limite disponível:
+                <span class="<%= 'negative' if account.available_limit <= 0 %>"><%= number_to_currency account.available_limit %></span>
+            <% end %>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
 <% end %>
