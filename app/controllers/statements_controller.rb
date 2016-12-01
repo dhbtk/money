@@ -4,6 +4,7 @@ class StatementsController < ApplicationController
         'Semana atual' => 'week',
         'Mês atual' => 'month',
         'Últimos três meses' => 'trimester',
+        'Todos até hoje' => 'past',
         'Futuros' => 'future'
     }
     @selected_period = params[:period].present? ? params[:period] : 'week'
@@ -21,6 +22,9 @@ class StatementsController < ApplicationController
       when 'future'
         @from = DateTime.now.to_date + 1.day
         @to = nil
+      when 'past'
+        @to = DateTime.now.to_date
+        @from = nil
       else
         @from = nil
         @to = nil

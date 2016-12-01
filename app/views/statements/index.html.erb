@@ -15,11 +15,13 @@
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Filtrar</button>
   <% end %>
   <div id="results">
-    Mostrando <strong><%= @statements.count %></strong> movimentações
-    <% if @to %>
+    Mostrando <strong><%= @statements.total_count %></strong> movimentações
+    <% if @to && @from %>
         de <strong><%= l @from.to_date, format: :default %></strong> até <strong><%= l @to.to_date, format: :default %></strong>
-    <% else %>
+    <% elsif @from %>
         a partir de <strong><%= l @from.to_date, format: :default %></strong>
+    <% elsif @to %>
+        até <strong><%= l @to.to_date, format: :default %></strong>
     <% end %>
   </div>
   <table class="mdl-data-table mdl-js-data-table">
@@ -95,20 +97,20 @@
       <h6>Contas</h6>
       <ul>
         <% @accounts.each do |account| %>
-        <li class="account">
-          <div class="account-name">
-            <%= link_to account.name, account_path(account) %>
-          </div>
-          <div class="account-total">
-            <% if account.type.nil? %>
-                Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span>
-            <% elsif account.is_a? CreditCard %>
-                Total a pagar: <span><%= number_to_currency account.total_due %></span><br>
-                Limite disponível:
-                <span class="<%= 'negative' if account.available_limit <= 0 %>"><%= number_to_currency account.available_limit %></span>
-            <% end %>
-          </div>
-        </li>
+            <li class="account">
+              <div class="account-name">
+                <%= link_to account.name, account_path(account) %>
+              </div>
+              <div class="account-total">
+                <% if account.type.nil? %>
+                    Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span>
+                <% elsif account.is_a? CreditCard %>
+                    Total a pagar: <span><%= number_to_currency account.total_due %></span><br>
+                    Limite disponível:
+                    <span class="<%= 'negative' if account.available_limit <= 0 %>"><%= number_to_currency account.available_limit %></span>
+                <% end %>
+              </div>
+            </li>
         <% end %>
       </ul>
     </div>
