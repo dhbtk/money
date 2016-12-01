@@ -32,8 +32,8 @@ class StatementsController < ApplicationController
     @statements = @statements.where('"date" >= ?', @from.to_date) if @from
     @statements = @statements.where('"date" <= ?', @to.to_date) if @to
     @statements = @statements.where(account_id: params[:account_id]) if params[:account_id].present?
-    @statements = @statements.where('unaccent("statements"."name") ILIKE unaccent(?)', "%#{params[:search]}%")
-    @statements = @statements.order(date: :desc, created_at: :desc).page(params[:page])
+    @statements = @statements.left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?)', "%#{params[:search]}%", "%#{params[:search]}%")
+    @statements = @statements.includes(:transfer, :tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
 
     @accounts = current_user.accounts.order(:name)
   end

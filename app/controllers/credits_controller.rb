@@ -84,7 +84,7 @@ class CreditsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_params
-    params.require(:credit).permit(:name, :date, :value, :account_id, :months)
+    params.require(:credit).permit(:name, :date, :value, :account_id, :months, :tag_id)
   end
 
   def to_transfer_params

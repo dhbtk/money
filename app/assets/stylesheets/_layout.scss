@@ -163,3 +163,24 @@ nav.pagination {
     }
   }
 }
+
+// data tables
+
+table.mdl-data-table {
+  width: 100%;
+
+  tr {
+    height: auto;
+  }
+
+  th, td {
+    width: 1em;
+    white-space: nowrap;
+    padding: 0 12px;
+    height: 36px;
+
+    &.wide {
+      width: 100%;
+    }
+  }
+}
