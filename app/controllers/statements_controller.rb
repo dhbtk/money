@@ -30,6 +30,8 @@ class StatementsController < ApplicationController
     @statements = @statements.where(account_id: params[:account_id]) if params[:account_id].present?
     @statements = @statements.where('unaccent("statements"."name") ILIKE unaccent(?)', "%#{params[:search]}%")
     @statements = @statements.order(date: :desc, created_at: :desc).page(params[:page])
+
+    @accounts = current_user.accounts.order(:name)
   end
 
   def graph
