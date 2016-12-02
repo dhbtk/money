@@ -30,7 +30,7 @@ class StatementsController < ApplicationController
         @to = nil
     end
 
-    @search = params[:search]
+    @search = !params[:search].nil? ? params[:search] : session[:statements_search]
     @account_id = !params[:account_id].nil? ? params[:account_id] : session[:statements_account_id]
     @statements = @statements.where('"date" >= ?', @from.to_date) if @from
     @statements = @statements.where('"date" <= ?', @to.to_date) if @to
@@ -41,6 +41,7 @@ class StatementsController < ApplicationController
     @accounts = current_user.accounts.order(:name)
 
     session[:statements_period] = @selected_period
+    session[:statements_search] = @search
     session[:statements_account_id] = @account_id
   end
 
