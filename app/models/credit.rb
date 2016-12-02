@@ -5,6 +5,7 @@ class Credit < Statement
   belongs_to :recurring_credit, optional: true
 
   has_one :transfer, dependent: :destroy
+  has_one :bill, dependent: :nullify
 
   validates :date, :value, :account, presence: true
   validates :name, presence: true, if: 'months > 1'
