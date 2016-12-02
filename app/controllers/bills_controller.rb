@@ -32,6 +32,13 @@ class BillsController < ApplicationController
     redirect_to @bill.billing_account, notice: 'Despesa excluída'
   end
 
+  def pay
+    @bill = current_user.bills.find(params[:bill_id])
+    if @bill.pay current_user.accounts.find(params[:account_id])
+      redirect_to @bill.billing_account, notice: 'Despesa paga'
+    end
+  end
+
   private
 
   def set_billing_account

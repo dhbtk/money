@@ -1,4 +1,5 @@
-<% content_for :title do %>Despesas<% end %>
+<% content_for :title do %>Despesas
+<% end %>
 <% content_for :toolbar_right do %>
     <%= link_to material_icon.edit, edit_billing_account_path(@billing_account), class: 'mdl-button mdl-js-button mdl-button--icon' %>
 <% end %>
@@ -19,7 +20,8 @@
     <tr>
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
       <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
-      <th>Valor</th>
+      <th style="text-align: center">Valor</th>
+      <th class="mdl-data-table__cell--non-numeric">Pago?</th>
       <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
     </tr>
     </thead>
@@ -31,9 +33,21 @@
             <%= bill.name %>
           </td>
           <td><%= number_to_currency bill.value %></td>
+          <td class="mdl-data-table__cell--non-numeric" style="text-align: center">
+            <% if bill.credit.present? %>
+                <%= material_icon.done %>
+            <% else %>
+                <%= material_icon.clear %>
+            <% end %>
+          </td>
           <td class="mdl-data-table__cell--non-numeric">
-            <%= link_to material_icon.edit, edit_bill_path(bill), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
-            <%= link_to material_icon.delete, bill, method: :delete, data: {confirm: 'Excluir despesa?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <% if bill.credit.present? %>
+                <button disabled type="button" class="mdl-button mdl-js-button mdl-button--icon mdl-button--primary" title="Pagar"><%= material_icon.attach_money %></button>
+            <% else %>
+                <%= link_to material_icon.attach_money, 'javascript:payBill(' + bill.id.to_s + ')', class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary', title: 'Pagar' %>
+            <% end %>
+            <%= link_to material_icon.edit, edit_bill_path(bill), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary', title: 'Editar' %>
+            <%= link_to material_icon.delete, bill, method: :delete, data: {confirm: 'Excluir despesa?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary', title: 'Excluir' %>
           </td>
         </tr>
     <% end %>
@@ -43,4 +57,37 @@
 </div>
 <% content_for :fab do %>
     <%= link_to material_icon.add, new_billing_account_bill_path(@billing_account), id: :fab, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect' %>
+<% end %>
+<% content_for :body do %>
+    <dialog class="mdl-dialog" id="pay-bill-dialog">
+      <h4 class="mdl-dialog__title">Pagar Despesa</h4>
+      <div class="mdl-dialog__content">
+        <%= form_tag(bill_pay_path(1), method: :post) do %>
+            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+              <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, params[:account_id]), include_blank: true, class: 'mdl-selectfield__select' %>
+              <%= label_tag :account_id, nil, class: 'mdl-selectfield__label' %>
+            </div>
+        <% end %>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" id="pay-bill">Pagar</button>
+        <button type="button" class="mdl-button close">Fechar</button>
+      </div>
+    </dialog>
+    <script type="text/javascript" charset="utf-8">
+        var dialog = document.querySelector('dialog');
+        dialogPolyfill.registerDialog(dialog);
+        dialog.querySelector('.close').addEventListener('click', function() {
+            dialog.close();
+        });
+
+        function payBill(id) {
+            dialog.querySelector('form').action = '<%= bill_pay_url(1) %>'.replace('/1/pay', '/' + id + '/pay');
+            dialog.showModal();
+        }
+
+        document.querySelector('#pay-bill').addEventListener('click', function() {
+            dialog.querySelector('form').submit();
+        })
+    </script>
 <% end %>
