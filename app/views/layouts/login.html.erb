@@ -18,7 +18,7 @@
 
 <body id="login">
 	<div id="login-container">
-		<img src="/logo.png" alt="Money" title="Money">
+    <%= image_tag 'logo.png' %>
     <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
     <% end %>
