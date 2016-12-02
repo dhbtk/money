@@ -21,7 +21,9 @@
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
       <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
       <th style="text-align: center">Valor</th>
-      <th class="mdl-data-table__cell--non-numeric">Pago?</th>
+      <% if @billing_account.enabled %>
+          <th class="mdl-data-table__cell--non-numeric">Pago?</th>
+          <% end %>
       <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
     </tr>
     </thead>
@@ -33,6 +35,7 @@
             <%= bill.name %>
           </td>
           <td><%= number_to_currency bill.value %></td>
+          <% if @billing_account.enabled %>
           <td class="mdl-data-table__cell--non-numeric" style="text-align: center">
             <% if bill.credit.present? %>
                 <%= material_icon.done %>
@@ -40,8 +43,9 @@
                 <%= material_icon.clear %>
             <% end %>
           </td>
+              <% end %>
           <td class="mdl-data-table__cell--non-numeric">
-            <% if bill.credit.present? %>
+            <% if bill.credit.present? || !@billing_account.enabled %>
                 <button disabled type="button" class="mdl-button mdl-js-button mdl-button--icon mdl-button--primary" title="Pagar"><%= material_icon.attach_money %></button>
             <% else %>
                 <%= link_to material_icon.attach_money, 'javascript:payBill(' + bill.id.to_s + ')', class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary', title: 'Pagar' %>
