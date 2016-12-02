@@ -28,7 +28,7 @@ class CreditsController < ApplicationController
 
     respond_to do |format|
       if @credit.save
-        format.html { redirect_to graph_statements_path, notice: 'Despesa criada' }
+        format.html { redirect_to statements_path, notice: 'Despesa criada' }
         format.json { render :show, status: :created, location: @credit }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CreditsController < ApplicationController
   def update
     respond_to do |format|
       if @credit.update(credit_params)
-        format.html { redirect_to graph_statements_path, notice: 'Despesa atualizada' }
+        format.html { redirect_to statements_path, notice: 'Despesa atualizada' }
         format.json { render :show, status: :ok, location: @credit }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CreditsController < ApplicationController
   def destroy
     @credit.destroy
     respond_to do |format|
-      format.html { redirect_to graph_statements_path, notice: 'Despesa excluída' }
+      format.html { redirect_to statements_path, notice: 'Despesa excluída' }
       format.json { head :no_content }
     end
   end
