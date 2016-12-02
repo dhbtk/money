@@ -1,3 +1,5 @@
-<% content_for :toolbar_left do %><%= link_to material_icon.keyboard_backspace, accounts_path %><% end %>
 <% content_for :title do %>Nova Conta<% end %>
-<%= render 'form', account: @account %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= render 'form', account: @account %>
+</div>
+

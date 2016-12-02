@@ -5,14 +5,14 @@ div#credit-card-fields {
   max-width: 450px;
 }
 
-div#credit-card-fields > .field {
+div#credit-card-fields > div {
   flex: 1;
 }
 
-div#credit-card-fields > .field:not(:last-child) {
+div#credit-card-fields > div:not(:last-child) {
   padding-right: 4px;
 }
 
-div#credit-card-fields > .field:not(:first-child) {
+div#credit-card-fields > .div:not(:first-child) {
   padding-left: 4px;
 }
