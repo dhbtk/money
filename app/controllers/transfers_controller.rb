@@ -28,7 +28,7 @@ class TransfersController < ApplicationController
 
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to graph_statements_path, notice: 'Transferência criada' }
+        format.html { redirect_to statements_path, notice: 'Transferência criada' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TransfersController < ApplicationController
   def update
     respond_to do |format|
       if @transfer.update(transfer_params)
-        format.html { redirect_to graph_statements_path, notice: 'Transferência atualizada' }
+        format.html { redirect_to statements_path, notice: 'Transferência atualizada' }
         format.json { render :show, status: :ok, location: @transfer }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class TransfersController < ApplicationController
   def destroy
     @transfer.destroy
     respond_to do |format|
-      format.html { redirect_to graph_statements_path, notice: 'Transferência excluída' }
+      format.html { redirect_to statements_path, notice: 'Transferência excluída' }
       format.json { head :no_content }
     end
   end
