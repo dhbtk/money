@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Billing Accounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Enabled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @billing_accounts.each do |billing_account| %>
+      <tr>
+        <td><%= billing_account.user %></td>
+        <td><%= billing_account.name %></td>
+        <td><%= billing_account.enabled %></td>
+        <td><%= link_to 'Show', billing_account %></td>
+        <td><%= link_to 'Edit', edit_billing_account_path(billing_account) %></td>
+        <td><%= link_to 'Destroy', billing_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Billing Account', new_billing_account_path %>

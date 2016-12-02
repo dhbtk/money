@@ -1,5 +1,3 @@
-class BillingAccount < Account
-  def total_due
-    balance.abs
-  end
+class BillingAccount < ApplicationRecord
+  belongs_to :user
 end
