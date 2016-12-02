@@ -1,6 +1,4 @@
-<h1>Editing Recurring Credit</h1>
-
-<%= render 'form', recurring_credit: @recurring_credit %>
-
-<%= link_to 'Show', @recurring_credit %> |
-<%= link_to 'Back', recurring_credits_path %>
+<% content_for :title do %>Editando Parcelamento<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= render 'form', recurring_credit: @recurring_credit %>
+</div>
