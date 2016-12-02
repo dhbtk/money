@@ -14,7 +14,7 @@ class Credit < Statement
   def self.from_recurring_credit(recurring_credit, month)
     credit = Credit.new
     credit.name = recurring_credit.name
-    credit.value = recurring_credit.value
+    credit.value = recurring_credit.credits_value[1]
     credit.account = recurring_credit.account
     credit.date = recurring_credit.start_date + month.months
     credit.recurring_credit = recurring_credit
@@ -37,6 +37,7 @@ class Credit < Statement
     # Then we create a recurring credit
     if self.months > 1
       self.recurring_credit = RecurringCredit.from_credit(self) unless recurring_credit
+      self.value = self.recurring_credit.credits_value[0]
     end
   end
 end
