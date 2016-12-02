@@ -41,7 +41,6 @@ class RecurringCredit < ApplicationRecord
   end
 
   after_update do
-    puts "after_update"
     if months_was > months
       credits.order(:date)[months..-1].each(&:destroy)
     elsif months > months_was
