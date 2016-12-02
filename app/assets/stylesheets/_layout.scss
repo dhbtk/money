@@ -184,3 +184,20 @@ table.mdl-data-table {
     }
   }
 }
+
+// Cells
+
+.mdl-cell > h6 {
+  margin-top: 0;
+}
+
+// Forms
+
+form.form {
+  display: flex;
+  flex-direction: column;
+
+  .mdl-textfield > span:last-child {
+    font-size: $input-text-floating-label-fontsize;
+  }
+}
