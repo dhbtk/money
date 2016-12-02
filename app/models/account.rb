@@ -34,7 +34,7 @@ class Account < ApplicationRecord
     dates = (0..(days - 1)).map{ |i| i.days.ago.to_date }
     totals = []
     dates.each do |date|
-      totals << credits.where.not(id: transfers.pluck(:credit_id)).where('date("date") = ?', date).sum(:value)
+      totals << credits.where.not(id: outgoing_transfers.pluck(:credit_id)).where('date("date") = ?', date).sum(:value)
     end
 
     [dates.reverse, totals.reverse]
