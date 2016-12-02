@@ -16,7 +16,7 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-<body class="<%= params[:controller] %>-<%= params[:action] %>">
+<body class="<%= params[:controller].split('/')[-1] %>-<%= params[:action] %>">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
   <header class="header mdl-layout__header">
     <div class="mdl-layout__header-row">

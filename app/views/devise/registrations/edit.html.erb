@@ -1,39 +1,45 @@
-<%= content_for :title do %><%= t('.title', resource: resource_class.model_name.human) %><% end %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.email_field :email %>
-    <%= f.label :email %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %>
-    </p>
-  <% end %>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.label :password %> <em>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</em>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation %>
-    <%= f.label :password_confirmation %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :current_password %>
-    <%= f.label :current_password %> <em>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</em>
-  </div>
-
-  <div class="actions"><%= f.submit t('.update') %></div>
+<%= content_for :title do %><%= t('.title', resource: resource_class.model_name.human) %>
 <% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: 'form'}) do |f| %>
+      <%= devise_error_messages! %>
 
-<h3><%= t('.cancel_my_account') %></h3>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.email_field :email, class: 'mdl-textfield__input' %>
+        <%= f.label :email, class: 'mdl-textfield__label' %>
+      </div>
 
-<p><%= t('.unhappy') %>? <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>
+            <%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %>
+          </p>
+      <% end %>
 
-<%= link_to t('devise.shared.links.back'), :back %>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.password_field :password, autocomplete: 'off', class: 'mdl-textfield__input' %>
+        <%= f.label :password, class: 'mdl-textfield__label' %> <span>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</span>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.password_field :password_confirmation, class: 'mdl-textfield__input' %>
+        <%= f.label :password_confirmation, class: 'mdl-textfield__label' %>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.password_field :current_password, class: 'mdl-textfield__input' %>
+        <%= f.label :current_password, class: 'mdl-textfield__label' %> <span>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</span>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary">
+          <%= t('.update') %>
+        </button>
+      </div>
+  <% end %>
+</div>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <h6><%= t('.cancel_my_account') %></h6>
+  <p>
+    <%= t('.unhappy') %>?
+    <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: {confirm: t('.are_you_sure')}, method: :delete %>.</p>
+</div>
