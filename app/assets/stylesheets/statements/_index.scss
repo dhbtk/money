@@ -36,33 +36,33 @@ body.statements-index {
   span.debit {
     background-color: rgba(0, 255, 0, 0.12);
   }
-}
 
-.account-totals {
-  padding: 16px;
-}
+  .account-totals {
+    padding: 16px;
+  }
 
-.account-totals > h6 {
-  margin-top: 0;
-}
+  .account-totals > h6 {
+    margin-top: 0;
+  }
 
-.account-totals > ul {
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-}
+  .account-totals > ul {
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+  }
 
-.account-totals > ul > li.account {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
+  .account-totals > ul > li.account {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
-li.account > .account-name > a {
-  color: inherit;
-  font-weight: bold;
-}
+  li.account > .account-name > a {
+    color: inherit;
+    font-weight: bold;
+  }
 
-li.account > .account-total {
-  padding-left: 8px;
+  li.account > .account-total {
+    padding-left: 8px;
+  }
 }

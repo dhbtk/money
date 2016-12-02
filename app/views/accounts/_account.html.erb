@@ -1,0 +1,55 @@
+<div class="mdl-cell mdl-cell--6-col mdl-color--white mdl-shadow--2dp account">
+  <div class="title">
+    <h6><%= link_to account.name, account.becomes(Account) %></h6>
+    <button id="more_<%= account.id %>" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <%= material_icon.more_vert %>
+    </button>
+    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="more_<%= account.id %>">
+      <li class="mdl-menu__item"><%= link_to 'Editar', edit_account_path(account.becomes(Account)) %></li>
+      <li class="mdl-menu__item"><%= link_to 'Excluir', account.becomes(Account), method: :delete, data: {confirm: 'Excluir conta? Todo o histórico dela será apagado.'} %></li>
+    </ul>
+  </div>
+  <div class="graph" id="graph_<%= account.id %>"></div>
+  <div class="details">
+    <% if account.is_a? CreditCard %>
+        <div>Total a pagar: <span><%= number_to_currency account.total_due %></span></div>
+        <div>Limite disponível:
+          <span class="<%= 'negative' if account.available_limit <= 0 %>"><%= number_to_currency account.available_limit %></span>
+        </div>
+    <% else %>
+        <div>Saldo: <span class="<%= 'negative' if account.balance < 0 %>"><%= number_to_currency account.balance %></span></div>
+    <% end %>
+  </div>
+</div>
+<% content_for :body do %>
+    <% spending = account.spending(10) %>
+    <script type="text/javascript" charset="utf-8">
+        Highcharts.chart('graph_<%= account.id %>', {
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: [<%= spending[0].map{|d| '"' + d.strftime('%d/%m') + '"'}.join(',').html_safe %>]
+            },
+            yAxis: {
+                title: {
+                    text: 'Valor Gasto'
+                }
+            },
+            tooltip: {
+                valuePrefix: 'R$ '
+            },
+            series: [{
+                name: 'Gastos',
+                data: [<%= spending[1].join(', ') %>]
+            }],
+            legend: { enabled: false },
+            credits: { enabled: false },
+            plotOptions: {
+                series: {
+                    color: '#E00'
+                }
+            }
+        });
+    </script>
+<% end %>
