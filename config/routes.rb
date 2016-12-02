@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :billing_accounts do
-    resources :bills, shallow: true, except: [:index, :show]
+    resources :bills, shallow: true, except: [:index, :show] do
+      post 'pay'
+    end
   end
   devise_for :users, controllers: {
   	  sessions: 'users/sessions',
