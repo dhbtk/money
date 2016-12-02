@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :billing_accounts
+  resources :billing_accounts do
+    resources :bills, shallow: true, except: [:index, :show]
+  end
   devise_for :users, controllers: {
   	  sessions: 'users/sessions',
   	  registrations: 'users/registrations',
@@ -7,14 +9,14 @@ Rails.application.routes.draw do
   }
   root to: 'statements#graph'
 
-  resources :transfers
-  resources :debits
-  resources :credits do
+  resources :transfers, except: [:index, :show]
+  resources :debits, except: [:index, :show]
+  resources :credits, except: [:index, :show] do
     member do
       post 'to_transfer'
     end
   end
-  resources :tags
+  resources :tags, except: [:show]
   resources :recurring_credits
   resources :accounts
   resources :statements, only: [:index] do

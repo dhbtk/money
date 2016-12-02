@@ -1,0 +1,19 @@
+body.billing_accounts-show {
+  .billing-account-header {
+    .title {
+      display: flex;
+      align-items: center;
+
+      h6 {
+        margin: 0;
+      }
+      p.disabled {
+        margin: 0 0 0 auto;
+        font-weight: bold;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

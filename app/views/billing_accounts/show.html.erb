@@ -1,19 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @billing_account.user %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @billing_account.name %>
-</p>
-
-<p>
-  <strong>Enabled:</strong>
-  <%= @billing_account.enabled %>
-</p>
-
-<%= link_to 'Edit', edit_billing_account_path(@billing_account) %> |
-<%= link_to 'Back', billing_accounts_path %>
+<% content_for :title do %>Despesas<% end %>
+<% content_for :toolbar_right do %>
+    <%= link_to material_icon.edit, edit_billing_account_path(@billing_account), class: 'mdl-button mdl-js-button mdl-button--icon' %>
+<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col billing-account-header">
+  <div class="title">
+    <h6><%= @billing_account.name %></h6>
+    <% unless @billing_account.enabled %>
+        <p class="disabled">Não habilitado</p>
+    <% end %>
+  </div>
+  <p class="total">
+    Total: <%= number_to_currency @billing_account.bills.sum(:value) %>
+  </p>
+</div>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col billing-account-bills">
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
+      <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
+      <th>Valor</th>
+      <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @bills.each do |bill| %>
+        <tr>
+          <td class="mdl-data-table__cell--non-numeric"><%= l bill.expiration.to_date, format: :default %></td>
+          <td class="mdl-data-table__cell--non-numeric wide">
+            <%= bill.name %>
+          </td>
+          <td><%= number_to_currency bill.value %></td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <%= link_to material_icon.edit, edit_bill_path(bill), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <%= link_to material_icon.delete, bill, method: :delete, data: {confirm: 'Excluir despesa?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @bills %>
+</div>
+<% content_for :fab do %>
+    <%= link_to material_icon.add, new_billing_account_bill_path(@billing_account), id: :fab, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect' %>
+<% end %>
