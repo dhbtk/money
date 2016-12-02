@@ -35,9 +35,24 @@
       <%= f.label :name, class: 'mdl-textfield__label' %>
     </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <%= f.number_field :months, class: 'mdl-textfield__input' %>
-      <%= f.label :months, class: 'mdl-textfield__label' %>
+    <% if credit.new_record? %>
+
+        <label for="toggle_months" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+          <input type="checkbox"
+                 <% if credit.months > 1 %>checked
+                 <% end %> id="toggle_months" class="mdl-checkbox__input">
+          <span class="mdl-checkbox__label">Parcelar</span>
+        </label>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="months" style="display: none">
+          <%= f.number_field :months, class: 'mdl-textfield__input' %>
+          <%= f.label :months, class: 'mdl-textfield__label' %>
+        </div>
+
+    <% end %>
+
+    <div class="actions">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised">Salvar</button>
     </div>
 
 <% end %>
@@ -45,18 +60,15 @@
 <% content_for :toolbar_right do %>
     <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="document.querySelector('form.form').submit()">Salvar</button>
 <% end %>
-
-<% if !credit.new_record? && credit.months == 1 %>
-    <h2 style="margin: 8px 0">Transformar em Transferência</h2>
-    <%= form_tag to_transfer_credit_path(credit), method: :post do %>
-        <div style="display: flex">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="flex: 1">
-            <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts.where('type <> ? OR type IS NULL AND id <> ?', 'BillingAccount', credit.account.id), :id, :name) %>
-            <%= label_tag :account_id, 'Conta de Destino' %>
-          </div>
-          <div class="actions" style="padding-top: 18px; padding-left: 8px">
-            <%= submit_tag 'Transformar' %>
-          </div>
-        </div>
-    <% end %>
+<% content_for :body do %>
+    <script type="text/javascript" charset="utf-8">
+      $('#toggle_months').on('change', function() {
+          if(this.checked) {
+              $('#months').show();
+          } else {
+              $('#months').hide();
+              document.getElementById('credit_months').value = '1';
+          }
+      });
+    </script>
 <% end %>
