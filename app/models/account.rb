@@ -29,4 +29,14 @@ class Account < ApplicationRecord
     statements = debits.where('"date" <= ? AND "date" >= ?', to, from) + credits.where('"date" <= ? AND "date" >= ?', to, from)
     statements.sort { |b, a| r = a.date <=> b.date; r == 0 ? a.id <=> b.id : r }.group_by { |x| x.date.to_date }
   end
+
+  def spending(days)
+    dates = (0..(days - 1)).map{ |i| i.days.ago.to_date }
+    totals = []
+    dates.each do |date|
+      totals << credits.where('date("date") = ?', date).sum(:value)
+    end
+
+    [dates.reverse, totals.reverse]
+  end
 end

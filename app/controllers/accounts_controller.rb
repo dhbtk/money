@@ -6,7 +6,6 @@ class AccountsController < ApplicationController
   def index
     @accounts = current_user.accounts.where(type: nil).order(:name)
     @credit_cards = current_user.accounts.where(type: 'CreditCard').order(:name)
-    @billing_accounts = current_user.accounts.where(type: 'BillingAccount').order(:name)
   end
 
   # GET /accounts/1

@@ -1,33 +1,37 @@
-.account-list-wrapper {
-  margin: 12px 0;
-  padding: 8px;
-  @include card(1);
-}
-
-.account-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-
-  & > a {
+body.accounts-index {
+  .mdl-cell > h6 {
+    margin: 0;
+  }
+  .account {
     display: flex;
     flex-direction: column;
-    padding: 8px;
-    min-width: 128px;
-    min-height: 128px;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
+    .title {
+      display: flex;
+      align-items: center;
 
-    &:not(:last-child) {
-      margin-right: 8px;
+      h6 {
+        margin: 0;
+        & > a {
+          text-decoration: inherit;
+          color: inherit;
+        }
+      }
+      button {
+        margin-left: auto;
+      }
     }
 
-    & > .icon {
-      width: 84px;
-      height: 84px;
+    .graph {
+      height: 200px;
+    }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+
+      .negative {
+        color: #B00;
+      }
     }
   }
 }
