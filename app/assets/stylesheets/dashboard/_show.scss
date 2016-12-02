@@ -3,6 +3,15 @@ body.dashboard-show {
     height: 320px;
     max-height: 320px;
   }
+
+  ul.spending {
+    padding: 0;
+    margin: 0;
+    .mdl-list__item--two-line {
+      height: 48px
+    }
+  }
+  
   .graph {
     height: 250px;
   }
