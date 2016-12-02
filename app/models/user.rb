@@ -16,4 +16,14 @@ class User < ApplicationRecord
   has_many :debits, -> { order(date: :desc, created_at: :desc) }, through: :accounts
   has_many :statements, -> { order(date: :desc, created_at: :desc) }, through: :accounts
   has_many :transfers, -> { order(created_at: :desc) }, through: :credits
+
+  def spending(days)
+    dates = (0..(days - 1)).map{ |i| i.days.ago.to_date }
+    totals = []
+    dates.each do |date|
+      totals << credits.where.not(id: transfers.pluck(:credit_id)).where('date("date") = ?', date).sum(:value)
+    end
+
+    [dates.reverse, totals.reverse]
+  end
 end

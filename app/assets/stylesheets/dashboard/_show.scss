@@ -1,0 +1,9 @@
+body.dashboard-show {
+  .mdl-cell:not(.auto) {
+    height: 320px;
+    max-height: 320px;
+  }
+  .graph {
+    height: 250px;
+  }
+}
