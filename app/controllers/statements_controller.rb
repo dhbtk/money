@@ -7,7 +7,7 @@ class StatementsController < ApplicationController
         'Todos até hoje' => 'past',
         'Futuros' => 'future'
     }
-    @selected_period = params[:period].present? ? params[:period] : 'week'
+    @selected_period = params[:period].present? ? params[:period] : (session[:statements_period] || 'week')
     @statements = current_user.statements
     case @selected_period
       when 'week'
@@ -29,13 +29,19 @@ class StatementsController < ApplicationController
         @from = nil
         @to = nil
     end
+
+    @search = params[:search]
+    @account_id = !params[:account_id].nil? ? params[:account_id] : session[:statements_account_id]
     @statements = @statements.where('"date" >= ?', @from.to_date) if @from
     @statements = @statements.where('"date" <= ?', @to.to_date) if @to
-    @statements = @statements.where(account_id: params[:account_id]) if params[:account_id].present?
-    @statements = @statements.left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?)', "%#{params[:search]}%", "%#{params[:search]}%")
+    @statements = @statements.where(account_id: params[:account_id]) if @account_id.present?
+    @statements = @statements.left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?)', "%#{@search}%", "%#{@search}%")
     @statements = @statements.includes(:transfer, :tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
 
     @accounts = current_user.accounts.order(:name)
+
+    session[:statements_period] = @selected_period
+    session[:statements_account_id] = @account_id
   end
 
   def graph
