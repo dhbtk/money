@@ -20,7 +20,7 @@ class Account < ApplicationRecord
 
   # Simple account balance, not taking into account expired credits
   # nor this account's possible expiration/closing date.
-  def balance(date = DateTime.now)
+  def balance(date = DateTime.now.to_date)
     debits.where('"date" <= ?', date).sum(:value) - credits.where('"date" <= ?', date).sum(:value)
   end
 
