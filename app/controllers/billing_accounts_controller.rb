@@ -10,6 +10,7 @@ class BillingAccountsController < ApplicationController
   # GET /billing_accounts/1
   # GET /billing_accounts/1.json
   def show
+    @bills = @billing_account.bills.page(params[:page])
   end
 
   # GET /billing_accounts/new

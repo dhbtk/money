@@ -1,5 +1,4 @@
-<h1>New Billing Account</h1>
-
-<%= render 'form', billing_account: @billing_account %>
-
-<%= link_to 'Back', billing_accounts_path %>
+<%= content_for :title do %>Novo Grupo de Despesas<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <%= render 'form', billing_account: @billing_account %>
+</div>

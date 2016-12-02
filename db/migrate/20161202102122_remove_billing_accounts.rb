@@ -1,5 +1,5 @@
 class RemoveBillingAccounts < ActiveRecord::Migration[5.0]
   def up
-    Account.where(type: 'BillingAccount').destroy_all
+    Account.connection.execute("DELETE FROM accounts WHERE type = 'BillingAccount';")
   end
 end
