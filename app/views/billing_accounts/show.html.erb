@@ -1,4 +1,5 @@
-<% content_for :title do %>Despesas
+<% content_for :toolbar_left do %><%= link_to material_icon.chevron_left, billing_accounts_path, class: 'mdl-button mdl-js-button mdl-button--icon' %><% end %>
+<% content_for :title do %><%= @billing_account.name %>
 <% end %>
 <% content_for :toolbar_right do %>
     <%= link_to material_icon.edit, edit_billing_account_path(@billing_account), class: 'mdl-button mdl-js-button mdl-button--icon' %>
@@ -11,7 +12,7 @@
     <% end %>
   </div>
   <p class="total">
-    Total: <%= number_to_currency @billing_account.bills.sum(:value) %>
+    Total a pagar: <%= number_to_currency @billing_account.bills.where(credit: nil).sum(:value) %>
   </p>
 </div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col billing-account-bills">
