@@ -1,57 +1,60 @@
-<%= form_for(recurring_credit) do |f| %>
-  <% if recurring_credit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h2>
+<%= form_for(recurring_credit, html: {class: 'form'}) do |f| %>
+    <% if recurring_credit.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h2>
 
-      <ul>
-      <% recurring_credit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% recurring_credit.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :value, class: 'mdl-textfield__input', data: {money: 'true'} %>
+      <%= f.label :value, class: 'mdl-textfield__label' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.text_field :name %>
-<%= f.label :name %>
-  </div>
+    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+      <%= f.collection_select :tag_id, current_user.tags, :id, :name, {include_blank: true}, class: 'mdl-selectfield__select' %>
+      <%= f.label :tag_id, class: 'mdl-selectfield__label' %>
+    </div>
 
-  <div class="field">
-    <%= f.number_field :months %>
-<%= f.label :months %>
-  </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.date_field :start_date, class: 'mdl-textfield__input' %>
+      <%= f.label :start_date, class: 'mdl-textfield__label' %>
+    </div>
 
-  <div class="field">
-    <%= f.number_field :day %>
-<%= f.label :day %>
-  </div>
+    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+      <%= f.collection_select :account_id, current_user.accounts, :id, :name, {}, class: 'mdl-selectfield__select' %>
+      <%= f.label :account_id, class: 'mdl-selectfield__label' %>
+    </div>
 
-  <div class="field">
-    <%= f.text_field :value %>
-<%= f.label :value %>
-  </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.text_field :name, class: 'mdl-textfield__input' %>
+      <%= f.label :name, class: 'mdl-textfield__label' %>
+    </div>
 
-  <div class="field">
-    <%= f.text_field :account_id %>
-<%= f.label :account_id %>
-  </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.number_field :months, class: 'mdl-textfield__input' %>
+      <%= f.label :months, class: 'mdl-textfield__label' %>
+    </div>
 
-  <div class="field">
-    <%= f.number_field :expiration %>
-<%= f.label :expiration %>
-  </div>
+    <h6>Valores das Parcelas</h6>
+    <ol>
+      <%= f.fields_for :credits do |ff| %>
+      <li>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= ff.text_field :value, class: 'mdl-textfield__input', data: {money: 'true'} %>
+          <%= ff.label :value, class: 'mdl-textfield__label' %>
+        </div>
+      </li>
+      <% end %>
+    </ol>
 
-  <div class="field">
-    <%= f.text_field :interest %>
-<%= f.label :interest %>
-  </div>
 
-  <div class="field">
-    <%= f.text_field :fine %>
-<%= f.label :fine %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised">Salvar</button>
+    </div>
 <% end %>

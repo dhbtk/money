@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tags, except: [:show]
-  resources :recurring_credits
+  resources :recurring_credits, only: [:edit, :update, :destroy]
   resources :accounts
   resources :statements, only: [:index] do
     collection do

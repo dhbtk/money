@@ -28,7 +28,7 @@ class RecurringCreditsController < ApplicationController
 
     respond_to do |format|
       if @recurring_credit.save
-        format.html { redirect_to @recurring_credit, notice: 'Recurring credit was successfully created.' }
+        format.html { redirect_to statements_path, notice: 'Recurring credit was successfully created.' }
         format.json { render :show, status: :created, location: @recurring_credit }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class RecurringCreditsController < ApplicationController
   def update
     respond_to do |format|
       if @recurring_credit.update(recurring_credit_params)
-        format.html { redirect_to @recurring_credit, notice: 'Recurring credit was successfully updated.' }
+        format.html { redirect_to statements_path, notice: 'Recurring credit was successfully updated.' }
         format.json { render :show, status: :ok, location: @recurring_credit }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class RecurringCreditsController < ApplicationController
   def destroy
     @recurring_credit.destroy
     respond_to do |format|
-      format.html { redirect_to recurring_credits_url, notice: 'Recurring credit was successfully destroyed.' }
+      format.html { redirect_to statements_path, notice: 'Recurring credit was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class RecurringCreditsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurring_credit_params
-      params.require(:recurring_credit).permit(:name, :months, :start_date, :value, :account_id)
+      params.require(:recurring_credit).permit(:name, :months, :start_date, :value, :account_id, :tag_id, credits_attributes: [:id, :value])
     end
 end

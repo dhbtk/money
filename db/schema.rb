@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202133421) do
+ActiveRecord::Schema.define(version: 20161202163509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 20161202133421) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.datetime "start_date"
+    t.integer  "tag_id"
     t.index ["account_id"], name: "index_recurring_credits_on_account_id", using: :btree
+    t.index ["tag_id"], name: "index_recurring_credits_on_tag_id", using: :btree
   end
 
   create_table "recurring_debits", force: :cascade do |t|
@@ -142,6 +144,7 @@ ActiveRecord::Schema.define(version: 20161202133421) do
   add_foreign_key "bills", "billing_accounts"
   add_foreign_key "bills", "statements", column: "credit_id"
   add_foreign_key "recurring_credits", "accounts"
+  add_foreign_key "recurring_credits", "tags"
   add_foreign_key "recurring_debits", "accounts"
   add_foreign_key "statements", "accounts"
   add_foreign_key "statements", "recurring_credits"
