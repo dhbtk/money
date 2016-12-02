@@ -4,6 +4,7 @@
     <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending wide">Nome</th>
+      <th>Total a pagar</th>
       <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
     </tr>
     </thead>
@@ -13,6 +14,7 @@
           <td class="mdl-data-table__cell--non-numeric wide">
             <%= link_to billing_account.name, billing_account %>
           </td>
+          <td><%= number_to_currency billing_account.bills.where(credit: nil).sum(:value) %></td>
           <td class="mdl-data-table__cell--non-numeric">
             <%= link_to material_icon.edit, edit_billing_account_path(billing_account), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
             <%= link_to material_icon.delete, billing_account, method: :delete, data: {confirm: 'Excluir grupo? Isto irá excluir todas as despesas dele.'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
