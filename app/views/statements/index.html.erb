@@ -54,7 +54,11 @@
                 <% if statement.is_a? Credit %>
                     <span class="transfer"><%= statement.account.name %></span>
                     »
-                    <span class="credit">Despesas</span>
+                    <% if statement.bill.present? %>
+                        <span class="credit"><%= statement.bill.billing_account.name %></span>
+                    <% else %>
+                        <span class="credit">Despesas</span>
+                    <% end %>
                 <% else %>
                     <span class="transfer">Receitas</span>
                     »
