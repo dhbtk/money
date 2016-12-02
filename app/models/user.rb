@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :accounts, -> { order(:name) }
+  has_many :billing_accounts, -> { order(:name) }
   has_many :tags, -> { order(:name) }
   has_many :credits, -> { order(date: :desc, created_at: :desc) }, through: :accounts 
   has_many :debits, -> { order(date: :desc, created_at: :desc) }, through: :accounts

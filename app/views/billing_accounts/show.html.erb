@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @billing_account.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @billing_account.name %>
+</p>
+
+<p>
+  <strong>Enabled:</strong>
+  <%= @billing_account.enabled %>
+</p>
+
+<%= link_to 'Edit', edit_billing_account_path(@billing_account) %> |
+<%= link_to 'Back', billing_accounts_path %>

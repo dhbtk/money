@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  billing_account: one
+  name: MyString
+  value: 9.99
+  expiration: 2016-12-02 08:34:23
+
+two:
+  billing_account: two
+  name: MyString
+  value: 9.99
+  expiration: 2016-12-02 08:34:23
