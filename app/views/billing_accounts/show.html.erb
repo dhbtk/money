@@ -33,7 +33,7 @@
         <tr>
           <td class="mdl-data-table__cell--non-numeric" style="text-align: center"><%= bill.expiration ? l(bill.expiration.to_date, format: :default) : '-' %></td>
           <td class="mdl-data-table__cell--non-numeric wide">
-            <%= bill.name %>
+            <%= link_to bill.name, bill %>
           </td>
           <td><%= number_to_currency bill.value %></td>
           <% if @billing_account.enabled %>

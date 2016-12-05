@@ -1,0 +1,12 @@
+body.bills-show {
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      h6 {
+        margin: 0;
+      }
+    }
+  }
+}

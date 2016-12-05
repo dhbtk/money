@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   before_action :set_billing_account, only: [:new, :create]
-  before_action :set_bill, only: [:edit, :update, :destroy]
+  before_action :set_bill, only: [:edit, :update, :destroy, :show]
 
   def new
     @bill = @billing_account.bills.build
@@ -37,6 +37,9 @@ class BillsController < ApplicationController
     if @bill.pay current_user.accounts.find(params[:account_id])
       redirect_to @bill.billing_account, notice: 'Despesa paga'
     end
+  end
+
+  def show
   end
 
   private
