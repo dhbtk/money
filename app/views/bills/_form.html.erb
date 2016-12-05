@@ -25,8 +25,28 @@
       <%= f.label :expiration, class: 'mdl-textfield__label' %>
     </div>
 
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= f.number_field :barcode, class: 'mdl-textfield__input' %>
+      <%= f.label :barcode, class: 'mdl-textfield__label' %>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+      <input value="<%= @bill.attachment&.file&.filename %>" type="text" name="filename" id="bill_filename" class="mdl-textfield__input" placeholder="Anexo" readonly>
+      <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+        <%= material_icon.attach_file %>
+        <%= f.file_field :attachment %>
+      </div>
+    </div>
+
 <% end %>
 
 <% content_for :toolbar_right do %>
     <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="document.querySelector('form.form').submit()">Salvar</button>
+<% end %>
+<% content_for :body do %>
+    <script type="text/javascript" charset="utf-8">
+        document.getElementById('bill_attachment').onchange = function() {
+            document.getElementById('bill_filename').value = this.files[0].name;
+        }
+    </script>
 <% end %>

@@ -38,3 +38,5 @@ gem 'material_design_lite-sass'
 
 gem 'kaminari'
 gem 'devise'
+gem 'carrierwave'
+gem 'barby'

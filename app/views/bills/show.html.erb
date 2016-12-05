@@ -11,15 +11,37 @@
     <h6><%= @bill.name %></h6>
     <span><%= number_to_currency @bill.value %></span>
   </div>
-  <% if @bill.expiration %>
+  <% if @bill.expiration.present? %>
       <div class="expiration">
         <p>Vence em <%= l @bill.expiration.to_date, format: :default %>,
-          <% if @bill.expiration - DateTime.now < 0 # já foi  %>
+          <% if @bill.expiration - DateTime.now < 0 # já foi    %>
               <%= distance_of_time_in_words DateTime.now, @bill.expiration %> atrás
           <% else %>
               daqui <%= distance_of_time_in_words DateTime.now, @bill.expiration %>
           <% end %>
         </p>
+      </div>
+  <% end %>
+  <% if @bill.barcode.present? %>
+      <div class="barcode">
+        <span>Código de barras:</span>
+        <div>
+          <%= Barby::Code25Interleaved.new(@bill.barcode).to_svg.html_safe %>
+        </div>
+        <span>Linha digitável:</span>
+        <div>
+          <%= @bill.rendered_barcode %>
+        </div>
+      </div>
+  <% end %>
+  <% if @bill.attachment.file.present? %>
+      <div class="attachment">
+        <span>Anexo:</span>
+        <% if %w(png gif jpg jpeg bmp tif tiff).include? @bill.attachment.file.extension.downcase %>
+            <img src="<%= @bill.attachment %>" alt="Anexo">
+        <% else %>
+            <%= link_to 'Visualizar', @bill.attachment.to_s, class: 'mdl-button mdl-js-button mdl-button--primary', target: '_blank' %>
+        <% end %>
       </div>
   <% end %>
 </div>
