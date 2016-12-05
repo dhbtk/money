@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :billing_accounts do
-    resources :bills, shallow: true, except: [:index, :show] do
+    resources :bills, shallow: true, except: [:index] do
       post 'pay'
     end
   end

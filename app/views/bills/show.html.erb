@@ -1,0 +1,25 @@
+<% content_for :toolbar_left do %><%= link_to material_icon.chevron_left, @bill.billing_account, class: 'mdl-button mdl-js-button mdl-button--icon' %>
+<% end %>
+<% content_for :title do %><%= @bill.name %>
+<% end %>
+<% content_for :toolbar_right do %>
+    <%= link_to material_icon.edit, edit_bill_path(@bill), class: 'mdl-button mdl-js-button mdl-button--icon' %>
+<% end %>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col info">
+  <div class="name">
+    <h6><%= @bill.name %></h6>
+    <span><%= number_to_currency @bill.value %></span>
+  </div>
+  <% if @bill.expiration %>
+      <div class="expiration">
+        <p>Vence em <%= l @bill.expiration.to_date, format: :default %>,
+          <% if @bill.expiration - DateTime.now < 0 # já foi  %>
+              <%= distance_of_time_in_words DateTime.now, @bill.expiration %> atrás
+          <% else %>
+              daqui <%= distance_of_time_in_words DateTime.now, @bill.expiration %>
+          <% end %>
+        </p>
+      </div>
+  <% end %>
+</div>
