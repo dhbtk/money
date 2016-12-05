@@ -4,15 +4,24 @@ body.dashboard-show {
     max-height: 320px;
   }
 
-  ul.spending {
-    padding: 0;
-    margin: 0;
-    .mdl-list__item--two-line {
-      height: 48px
-    }
-  }
-
   .graph {
     height: 250px;
+  }
+
+  div.spending {
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+      flex: 1;
+      overflow: auto;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      .mdl-list__item--two-line {
+        height: 48px
+      }
+    }
   }
 }

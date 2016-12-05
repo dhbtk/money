@@ -12,10 +12,10 @@ class User < ApplicationRecord
   has_many :billing_accounts, -> { order(:name) }
   has_many :bills, through: :billing_accounts
   has_many :tags, -> { order(:name) }
-  has_many :credits, -> { order(date: :desc, created_at: :desc) }, through: :accounts 
-  has_many :debits, -> { order(date: :desc, created_at: :desc) }, through: :accounts
-  has_many :statements, -> { order(date: :desc, created_at: :desc) }, through: :accounts
-  has_many :transfers, -> { order(created_at: :desc) }, through: :credits
+  has_many :credits, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts
+  has_many :debits, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts
+  has_many :statements, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts
+  has_many :transfers, -> { except(:order).order(created_at: :desc) }, through: :credits
 
   def spending(days)
     dates = (0..(days - 1)).map{ |i| i.days.ago.to_date }

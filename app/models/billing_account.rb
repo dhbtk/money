@@ -1,6 +1,6 @@
 class BillingAccount < ApplicationRecord
   belongs_to :user
-  has_many :bills, -> { order(expiration: :desc, created_at: :desc) }, dependent: :destroy
+  has_many :bills, -> { order(expiration: :asc, created_at: :asc) }, dependent: :destroy
 
   validates :name, presence: true
 end
