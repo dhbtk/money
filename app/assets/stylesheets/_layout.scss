@@ -207,3 +207,29 @@ form.form {
     font-size: $input-text-floating-label-fontsize;
   }
 }
+
+.mdl-textfield--file .mdl-textfield__input {
+  width: calc(100% - 32px);
+  box-sizing: border-box;
+}
+
+.mdl-textfield--file .mdl-button--file {
+  right: 0;
+}
+
+.mdl-button--file input {
+  right: 0;
+  top: 0;
+  width: 300px;
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  z-index: 4;
+  cursor: pointer;
+}
+
+// Por não usarmos roboto
+
+.mdl-button:not(.mdl-button--raised) {
+  font-weight: bold;
+}

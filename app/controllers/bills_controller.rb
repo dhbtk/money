@@ -1,3 +1,6 @@
+require 'barby/barcode/code_25_interleaved'
+require 'barby/outputter/svg_outputter'
+
 class BillsController < ApplicationController
   before_action :set_billing_account, only: [:new, :create]
   before_action :set_bill, only: [:edit, :update, :destroy, :show]
@@ -40,6 +43,7 @@ class BillsController < ApplicationController
   end
 
   def show
+
   end
 
   private
@@ -53,6 +57,6 @@ class BillsController < ApplicationController
   end
 
   def bill_params
-    params.require(:bill).permit(:name, :value, :expiration)
+    params.require(:bill).permit(:name, :value, :expiration, :barcode, :attachment)
   end
 end

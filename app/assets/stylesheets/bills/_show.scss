@@ -9,4 +9,12 @@ body.bills-show {
       }
     }
   }
+
+  .attachment > img {
+    max-width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
 }
