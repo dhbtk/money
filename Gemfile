@@ -33,7 +33,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'turbolinks', '~> 5.0.0'
 gem 'material_icons'
 gem 'devise-i18n'
-gem 'maskmoney-rails'
 gem 'highcharts-rails'
 gem 'material_design_lite-sass'
 

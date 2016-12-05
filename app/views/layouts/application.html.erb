@@ -66,11 +66,7 @@
       <button class="mdl-snackbar__action" type="button"></button>
     </div>
     <script type="text/javascript" charset="utf-8">
-      var f = function() {
-          document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: '<%= notice %>'});
-      };
-      $(f);
-      $(document).on('turbolinks:load', f);
+        document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: '<%= notice %>'});
     </script>
 <% end %>
 </body>
