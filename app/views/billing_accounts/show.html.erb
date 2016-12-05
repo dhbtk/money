@@ -19,7 +19,7 @@
   <table class="mdl-data-table mdl-js-data-table">
     <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending">Vencimento</th>
       <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
       <th style="text-align: center">Valor</th>
       <% if @billing_account.enabled %>
@@ -31,7 +31,7 @@
     <tbody>
     <% @bills.each do |bill| %>
         <tr>
-          <td class="mdl-data-table__cell--non-numeric"><%= l bill.expiration.to_date, format: :default %></td>
+          <td class="mdl-data-table__cell--non-numeric" style="text-align: center"><%= bill.expiration ? l(bill.expiration.to_date, format: :default) : '-' %></td>
           <td class="mdl-data-table__cell--non-numeric wide">
             <%= bill.name %>
           </td>

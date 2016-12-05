@@ -2,19 +2,21 @@
   <h6>Gastos nos últimos 30 dias</h6>
   <div id="user-spending" class="graph"></div>
 </div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col spending">
   <h6>Últimos gastos</h6>
-  <div style="overflow: auto">
-    <ul class="mdl-list spending">
+  <div>
+    <ul class="mdl-list">
       <% @latest_spending.each do |credit| %>
           <li class="mdl-list__item--two-line">
 
           <span class="mdl-list__item-primary-content">
             <% if credit.tag.present? %>
               <i class="material-icons mdl-list__item-avatar"><%= credit.tag.icon %></i>
-          <% end %>
-            <span><%= l credit.date.to_date, format: :default %> - <%= credit.name %></span>
-        <span class="mdl-list__item-sub-title"><%= number_to_currency credit.value %></span>
+          <% else %>
+            <i class="material-icons mdl-list__item-avatar">attach_money</i>
+            <% end %>
+            <span style="padding-left: 8px"><%= number_to_currency credit.value %> - <%= credit.name %></span>
+        <span class="mdl-list__item-sub-title" style="padding-left: 48px"><%= l credit.date.to_date, format: :default %></span>
       </span>
           </li>
       <% end %>

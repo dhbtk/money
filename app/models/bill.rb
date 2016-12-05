@@ -1,10 +1,7 @@
 class Bill < ApplicationRecord
   belongs_to :billing_account
   belongs_to :credit, optional: true
-
-  after_initialize do
-    self.expiration ||= DateTime.now.to_date
-  end
+  validates :name, presence: true
 
   def pay(account)
     self.credit = account.credits.build(value: value, name: name)
