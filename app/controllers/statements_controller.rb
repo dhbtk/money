@@ -1,4 +1,4 @@
-class StatementsController < ApplicationController
+class StatementsController < AuthenticatedController
   def index
     @periods = {
         'Semana atual' => 'week',

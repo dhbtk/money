@@ -1,4 +1,4 @@
-class BillingAccountsController < ApplicationController
+class BillingAccountsController < AuthenticatedController
   before_action :set_billing_account, only: [:show, :edit, :update, :destroy]
 
   # GET /billing_accounts

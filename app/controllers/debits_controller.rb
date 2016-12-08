@@ -1,4 +1,4 @@
-class DebitsController < ApplicationController
+class DebitsController < AuthenticatedController
   before_action :set_debit, only: [:show, :edit, :update, :destroy]
 
   # GET /debits

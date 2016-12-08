@@ -1,4 +1,4 @@
-class RecurringCreditsController < ApplicationController
+class RecurringCreditsController < AuthenticatedController
   before_action :set_recurring_credit, only: [:show, :edit, :update, :destroy]
 
   # GET /recurring_credits
