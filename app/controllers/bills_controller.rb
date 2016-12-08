@@ -1,7 +1,7 @@
 require 'barby/barcode/code_25_interleaved'
 require 'barby/outputter/svg_outputter'
 
-class BillsController < ApplicationController
+class BillsController < AuthenticatedController
   before_action :set_billing_account, only: [:new, :create]
   before_action :set_bill, only: [:edit, :update, :destroy, :show]
 

@@ -1,4 +1,4 @@
-class TransfersController < ApplicationController
+class TransfersController < AuthenticatedController
   before_action :set_transfer, only: [:show, :edit, :update, :destroy]
 
   # GET /transfers

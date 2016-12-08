@@ -1,4 +1,4 @@
-class CreditsController < ApplicationController
+class CreditsController < AuthenticatedController
   before_action :set_credit, only: [:show, :edit, :update, :destroy, :to_transfer]
 
   # GET /credits
@@ -19,6 +19,10 @@ class CreditsController < ApplicationController
 
   # GET /credits/1/edit
   def edit
+  	  respond_to do |format|
+  	  	  format.json { render :show }
+  	  	  format.html {}
+  	  end
   end
 
   # POST /credits

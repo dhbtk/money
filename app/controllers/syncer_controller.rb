@@ -1,5 +1,4 @@
-class SyncerController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class SyncerController < AuthenticatedController
   def sync
     received_data = SyncData.new
     received_data.revision = params[:revision].to_i
