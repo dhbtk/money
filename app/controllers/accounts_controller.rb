@@ -4,8 +4,15 @@ class AccountsController < AuthenticatedController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = current_user.accounts.where(type: nil).order(:name)
-    @credit_cards = current_user.accounts.where(type: 'CreditCard').order(:name)
+    respond_to do |format|
+      format.html do
+        @accounts = current_user.accounts.where(type: nil).order(:name)
+        @credit_cards = current_user.accounts.where(type: 'CreditCard').order(:name)
+      end
+      format.json do
+        @accounts = current_user.accounts
+      end
+    end
   end
 
   # GET /accounts/1
