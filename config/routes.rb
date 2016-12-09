@@ -13,14 +13,14 @@ Rails.application.routes.draw do
   
   root to: 'dashboard#show'
 
-  resources :transfers, except: [:index, :show]
-  resources :debits, except: [:index, :show]
-  resources :credits, except: [:index, :show] do
+  resources :transfers, except: [:index]
+  resources :debits, except: [:index]
+  resources :credits, except: [:index] do
     member do
       post 'to_transfer'
     end
   end
-  resources :tags, except: [:show]
+  resources :tags
   resources :recurring_credits, only: [:edit, :update, :destroy]
   resources :accounts
   resources :statements, only: [:index]
