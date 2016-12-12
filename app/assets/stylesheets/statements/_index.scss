@@ -1,4 +1,8 @@
 body.statements-index {
+  .mdl-grid.content {
+    position: relative;
+  }
+
   #results {
     font-size: 85%;
     margin-bottom: 12px;
@@ -64,5 +68,21 @@ body.statements-index {
 
   li.account > .account-total {
     padding-left: 8px;
+  }
+
+  div#selection-total {
+    position: absolute;
+    font-size: 85%;
+    font-weight: bold;
+    left: 100%;
+    width: 100px;
+    top: 180px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  div#selection-total > span:first-child {
+    margin-bottom: 5px;
   }
 }

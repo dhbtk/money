@@ -27,9 +27,14 @@
         até <strong><%= l @to.to_date, format: :default %></strong>
     <% end %>
   </div>
-  <table class="mdl-data-table mdl-js-data-table">
+  <table class="mdl-data-table mdl-js-data-table" id="statements-table">
     <thead>
     <tr>
+      <th>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="table-header">
+          <input type="checkbox" id="table-header" class="mdl-checkbox__input" />
+        </label>
+      </th>
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
       <th class="mdl-data-table__cell--non-numeric">Origem e Destino</th>
       <th>Valor</th>
@@ -40,7 +45,12 @@
     </thead>
     <tbody>
     <% @statements.each do |statement| %>
-        <tr>
+        <tr data-id="<%= statement.id %>" data-value="<%= statement.value %>">
+          <td>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="row[<%= statement.id %>]">
+              <input type="checkbox" id="row[<%= statement.id %>]" class="mdl-checkbox__input" />
+            </label>
+          </td>
           <td class="mdl-data-table__cell--non-numeric"><%= l statement.date.to_date, format: :default %></td>
           <td class="mdl-data-table__cell--non-numeric">
             <% if statement.transfer.present? %>
@@ -105,6 +115,10 @@
   </table>
   <%= paginate @statements %>
 </div>
+<div id="selection-total" class="mdl-color--white mdl-shadow--2dp" style="display: none">
+  <span>Total da seleção:</span>
+  <span id="num"></span>
+</div>
 <%= render 'modal' %>
 <% content_for :drawer do %>
     <div class="account-totals">
@@ -128,4 +142,47 @@
         <% end %>
       </ul>
     </div>
+<% end %>
+<% content_for :body do %>
+<script>
+  function updateSelectionTotal() {
+      var values = $('tr.is-selected').map(function() { return parseFloat($(this).data('value')); });
+      var total = 0;
+      for(var i = 0; i < values.length; i++) {
+          total += values[i];
+      }
+      if(total != 0) {
+          var nice_total = 'R$ ' + total.toFixed(2).replace('.', ','); // FIXME localize
+          $('#num').text(nice_total);
+          $('#selection-total').show();
+      } else {
+          $('#selection-total').hide();
+      }
+  }
+
+  var checkboxes = document.getElementById('statements-table').querySelector('tbody').querySelectorAll('.mdl-checkbox__input');
+  for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].addEventListener('change', function() {
+          $(this).parent().parent().parent().toggleClass('is-selected');
+          updateSelectionTotal();
+      });
+  }
+
+  document.querySelector('#table-header').addEventListener('change', function() {
+      if(this.checked) {
+          for(var i = 0; i < checkboxes.length; i++ ) {
+              if(!checkboxes[i].checked) {
+                  checkboxes[i].click();
+              }
+          }
+      } else {
+          for(i = 0; i < checkboxes.length; i++ ) {
+              if(checkboxes[i].checked) {
+                  checkboxes[i].click();
+              }
+          }
+      }
+      updateSelectionTotal();
+  })
+</script>
 <% end %>
