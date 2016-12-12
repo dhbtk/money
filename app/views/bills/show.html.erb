@@ -26,7 +26,7 @@
       <div class="barcode">
         <span>Código de barras:</span>
         <div>
-          <%= Barby::Code25Interleaved.new(@bill.barcode).to_svg.html_safe %>
+          <%= @bill.svg_barcode.html_safe %>
         </div>
         <span>Linha digitável:</span>
         <div>
