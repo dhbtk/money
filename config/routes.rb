@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :billing_accounts do
     resources :bills, shallow: true, except: [:index] do
       post 'pay'
+      get 'pay_form'
     end
   end
 

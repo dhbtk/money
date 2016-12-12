@@ -42,6 +42,13 @@ class BillsController < AuthenticatedController
     end
   end
 
+  def pay_form
+    @bill = current_user.bills.find(params[:bill_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show
 
   end
