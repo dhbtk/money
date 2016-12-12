@@ -19,9 +19,9 @@
           <div class="attachment">
             <span>Anexo:</span>
             <% if %w(png gif jpg jpeg bmp tif tiff).include? @bill.attachment.file.extension.downcase %>
-                <img src="<%= @bill.attachment %>" alt="Anexo">
+                <img src="<%= attachment_bill_path(@bill) %>" alt="Anexo">
             <% else %>
-                <%= link_to 'Visualizar', @bill.attachment.to_s, class: 'mdl-button mdl-js-button mdl-button--primary', target: '_blank' %>
+                <%= link_to 'Visualizar', attachment_bill_path(@bill), class: 'mdl-button mdl-js-button mdl-button--primary', target: '_blank' %>
             <% end %>
           </div>
       <% end %>
@@ -46,7 +46,7 @@
         <span></span>
         <span>
           <% if @bill.credit.present? || !@bill.billing_account.enabled %>
-                <button disabled type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary" title="Pagar">Pagar</button>
+                Pago em <%= l @bill.credit.date.to_date, format: :default %><br> na conta <%= link_to @bill.credit.account.name, @bill.credit.account %>
             <% else %>
                 <%= link_to 'Pagar', bill_pay_form_path(@bill), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary', title: 'Pagar', data: {remote: true} %>
             <% end %>

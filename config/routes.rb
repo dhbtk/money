@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-  	           sessions: 'users/sessions',
-  	           registrations: 'users/registrations',
-  	           passwords: 'users/passwords'
-  	    }
-	namespace :api do
-		namespace :v1 do
-  mount_devise_token_auth_for 'User', at: 'auth'
-  		end
-  	end
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      passwords: 'users/passwords'
+  }
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
+    end
+  end
 
-  
+
   root to: 'dashboard#show'
 
   resources :transfers, except: [:index]
@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resources :bills, shallow: true, except: [:index] do
       post 'pay'
       get 'pay_form'
+      member do
+        get 'attachment'
+      end
     end
   end
 
