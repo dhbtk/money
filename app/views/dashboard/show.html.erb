@@ -23,8 +23,17 @@
     </ul>
   </div>
 </div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
-  <h6>Gastos por categoria nos últimos 30 dias</h6>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col tags">
+  <h6>Gastos nos últimos 15 dias</h6>
+  <div class="tag-list" style="overflow: auto">
+    <% @tags.each do |tag| %>
+        <div class="tag">
+          <div class="avatar"><i class="material-icons"><%= tag.icon %></i></div>
+          <span class="name"><%= tag.name %></span>
+          <span class="value"><%= number_to_currency tag.credit_total %></span>
+        </div>
+    <% end %>
+  </div>
 </div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
   <h6>Gastos vs. despesas nos últimos 30 dias</h6>

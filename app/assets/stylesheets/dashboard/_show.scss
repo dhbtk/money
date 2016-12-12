@@ -24,4 +24,33 @@ body.dashboard-show {
       }
     }
   }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .tag {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      min-width: 125px;
+      padding: 5px;
+      align-items: center;
+      box-sizing: border-box;
+
+      .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.54);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+
+        i.material-icons {
+          color: $light-text-color;
+        }
+      }
+    }
+  }
 }
