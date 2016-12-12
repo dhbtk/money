@@ -6,7 +6,7 @@ class Bill < ApplicationRecord
   mount_uploader :attachment, AttachmentUploader
 
   before_validation do
-    self.barcode = barcode.trim if barcode.present?
+    self.barcode = barcode.strip if barcode.present?
   end
 
   def pay(account)
