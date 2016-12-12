@@ -25,9 +25,15 @@ body.dashboard-show {
     }
   }
 
+  div.tags {
+  	  display: flex;
+  	  flex-direction: column;
+  }
+
   .tag-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     .tag {
       display: flex;
