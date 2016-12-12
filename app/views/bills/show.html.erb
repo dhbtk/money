@@ -6,42 +6,57 @@
     <%= link_to material_icon.edit, edit_bill_path(@bill), class: 'mdl-button mdl-js-button mdl-button--icon' %>
 <% end %>
 
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col info">
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
   <div class="name">
-    <h6><%= @bill.name %></h6>
-    <span><%= number_to_currency @bill.value %></span>
+    <h6>
+      <span><%= @bill.name %></span>
+      <span><%= @bill.rendered_barcode %></span>
+    </h6>
   </div>
-  <% if @bill.expiration.present? %>
+  <div class="body">
+    <div class="left">
+      <% if @bill.attachment.file.present? %>
+          <div class="attachment">
+            <span>Anexo:</span>
+            <% if %w(png gif jpg jpeg bmp tif tiff).include? @bill.attachment.file.extension.downcase %>
+                <img src="<%= @bill.attachment %>" alt="Anexo">
+            <% else %>
+                <%= link_to 'Visualizar', @bill.attachment.to_s, class: 'mdl-button mdl-js-button mdl-button--primary', target: '_blank' %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+    <div class="right">
       <div class="expiration">
-        <p>Vence em <%= l @bill.expiration.to_date, format: :default %>,
+        <span>Vencimento</span>
+        <span>
+          <%= l @bill.expiration.to_date, format: :default %>,
           <% if @bill.expiration - DateTime.now < 0 # já foi    %>
               <%= distance_of_time_in_words DateTime.now, @bill.expiration %> atrás
           <% else %>
               daqui <%= distance_of_time_in_words DateTime.now, @bill.expiration %>
           <% end %>
-        </p>
+        </span>
       </div>
-  <% end %>
-  <% if @bill.barcode.present? %>
-      <div class="barcode">
-        <span>Código de barras:</span>
-        <div>
-          <%= @bill.svg_barcode.html_safe %>
-        </div>
-        <span>Linha digitável:</span>
-        <div>
-          <%= @bill.rendered_barcode %>
-        </div>
+      <div class="value">
+        <span>Valor</span>
+        <span><%= number_to_currency @bill.value %></span>
       </div>
-  <% end %>
-  <% if @bill.attachment.file.present? %>
-      <div class="attachment">
-        <span>Anexo:</span>
-        <% if %w(png gif jpg jpeg bmp tif tiff).include? @bill.attachment.file.extension.downcase %>
-            <img src="<%= @bill.attachment %>" alt="Anexo">
-        <% else %>
-            <%= link_to 'Visualizar', @bill.attachment.to_s, class: 'mdl-button mdl-js-button mdl-button--primary', target: '_blank' %>
-        <% end %>
+      <div class="pay">
+        <span></span>
+        <span>
+          <% if @bill.credit.present? || !@bill.billing_account.enabled %>
+                <button disabled type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary" title="Pagar">Pagar</button>
+            <% else %>
+                <%= link_to 'Pagar', bill_pay_form_path(@bill), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary', title: 'Pagar', data: {remote: true} %>
+            <% end %>
+        </span>
       </div>
-  <% end %>
+    </div>
+  </div>
+  <div class="barcode">
+    <div>
+      <%= @bill.svg_barcode(75).html_safe %>
+    </div>
+  </div>
 </div>
