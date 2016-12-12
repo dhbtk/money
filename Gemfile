@@ -38,6 +38,5 @@ gem 'material_design_lite-sass'
 
 gem 'kaminari'
 gem 'devise'
-gem 'devise_token_auth'
 gem 'carrierwave'
 gem 'barby'
