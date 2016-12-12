@@ -27,10 +27,13 @@ class Bill < ApplicationRecord
     end
   end
 
-  def svg_barcode
+  def svg_barcode(height = 120)
+    return '' unless barcode.present?
     code = Barby::Code25Interleaved.new(barcode)
     code.include_checksum = barcode.length == 47
-    code.to_svg
+    out = Barby::SvgOutputter.new(code)
+    out.height = height
+    out.to_svg
   end
 
   def validate_barcode

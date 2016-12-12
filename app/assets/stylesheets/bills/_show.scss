@@ -1,11 +1,41 @@
 body.bills-show {
-  .info {
+  .name {
+    h6 {
+      display: flex;
+      margin: 0;
+      margin-bottom: 5px;
+      span:last-child {
+        margin-left: auto;
+      }
+    }
+    border-bottom: 1px solid $dark-text-color;
+  }
+  .body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    .left {
+      flex: 1;
+      padding: 5px;
+    }
+    .right {
+      max-width: 33%;
+      width: 250px;
+      border-left: 1px solid $dark-text-color;
 
-    .name {
-      h6 {
-        margin: 0;
+      & > div {
+        padding: 5px;
+        border-bottom: 1px solid $dark-text-color;
+        display: flex;
+        flex-direction: column;
+
+        span:first-child {
+          font-size: 85%;
+        }
+
+        span:last-child {
+          margin: 0 auto;
+          margin-top: 10px;
+        }
       }
     }
   }
