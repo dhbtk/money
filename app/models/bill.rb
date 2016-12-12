@@ -1,3 +1,6 @@
+require 'barby/barcode/code_25_interleaved'
+require 'barby/outputter/svg_outputter'
+
 class Bill < ApplicationRecord
   belongs_to :billing_account
   belongs_to :credit, optional: true
@@ -22,6 +25,12 @@ class Bill < ApplicationRecord
     elsif barcode.length == 48 # concessionária
       "#{barcode[0..10]}-#{barcode[11]} #{barcode[12..22]}-#{barcode[23]} #{barcode[24..34]}-#{barcode[35]} #{barcode[36..46]}-#{barcode[47]}"
     end
+  end
+
+  def svg_barcode
+    code = Barby::Code25Interleaved.new(barcode)
+    code.include_checksum = barcode.length == 47
+    code.to_svg
   end
 
   def validate_barcode
