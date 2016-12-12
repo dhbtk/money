@@ -1,6 +1,6 @@
 class BillsController < AuthenticatedController
   before_action :set_billing_account, only: [:new, :create]
-  before_action :set_bill, only: [:edit, :update, :destroy, :show]
+  before_action :set_bill, only: [:edit, :update, :destroy, :show, :attachment]
 
   def new
     @bill = @billing_account.bills.build
@@ -47,7 +47,14 @@ class BillsController < AuthenticatedController
   end
 
   def show
+  end
 
+  def attachment
+    if @bill.attachment.present?
+      send_file @bill.attachment.file.path,
+                type: @bill.attachment.file.content_type,
+                disposition: 'inline'
+    end
   end
 
   private
