@@ -18,12 +18,15 @@ class User < ApplicationRecord
   has_many :transfers, -> { except(:order).order(created_at: :desc) }, through: :credits
 
   def spending(days)
+  	  totals = credits.unscope(:order).where.not(id: transfers.pluck(:credit_id)).where('date(date) >= ? and date(date) <= ?', days.days.ago.to_date, Date.today).order('date(date)').group('date(date)').sum('coalesce(value, 0)')
     dates = (0..(days - 1)).map{ |i| i.days.ago.to_date }
-    totals = []
     dates.each do |date|
-      totals << credits.where.not(id: transfers.pluck(:credit_id)).where('date("date") = ?', date).sum(:value)
+    	if totals[date].nil?
+    		totals[date] = 0
+    	end
     end
 
-    [dates.reverse, totals.reverse]
+	totals = totals.to_a.sort{|a,b| a[0] <=> b[0]}.to_h
+	[totals.keys, totals.values]
   end
 end
