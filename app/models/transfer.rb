@@ -55,6 +55,8 @@ class Transfer < ApplicationRecord
     self.debit.date = date
     self.credit.value = value
     self.debit.value = value
+    self.credit.name = description
+    self.debit.name = description
   end
 
   def values_must_be_the_same

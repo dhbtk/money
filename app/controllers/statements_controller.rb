@@ -34,9 +34,9 @@ class StatementsController < AuthenticatedController
     @account_id = !params[:account_id].nil? ? params[:account_id] : session[:statements_account_id]
     @statements = @statements.where('"date" >= ?', @from.to_date) if @from
     @statements = @statements.where('"date" <= ?', @to.to_date) if @to
-    @statements = @statements.where(account_id: params[:account_id]) if @account_id.present?
-    @statements = @statements.left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?)', "%#{@search}%", "%#{@search}%")
-    @statements = @statements.includes(:transfer, :tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
+    @statements = @statements.where(account_id: @account_id) if @account_id.present?
+    @statements = @statements.left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?) OR "statements"."name" IS NULL', "%#{@search}%", "%#{@search}%")
+    @statements = @statements.includes(:tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
 
     @accounts = current_user.accounts.order(:name)
 
