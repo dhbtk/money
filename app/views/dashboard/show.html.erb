@@ -54,13 +54,27 @@
       </tr>
       </thead>
       <tbody id="calendar-table-body">
-          <%= render 'calendar', spending: @spending_calendar, today: Date.today %>
+      <%= render 'calendar', spending: @spending_calendar, today: Date.today %>
       </tbody>
     </table>
   </div>
 </div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col bills">
   <h6>Contas a vencer</h6>
+  <div class="bills-list" style="overflow: auto">
+    <ul class="mdl-list">
+      <% @bills.each do |bill| %>
+          <li class="mdl-list__item--two-line">
+
+          <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-avatar">attach_money</i>
+            <span style="padding-left: 8px"><%= link_to bill.name, bill.billing_account %></span>
+        <span class="mdl-list__item-sub-title" style="padding-left: 48px"><%= l bill.expiration.to_date, format: :default %></span>
+      </span>
+          </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 

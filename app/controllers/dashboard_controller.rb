@@ -4,6 +4,7 @@ class DashboardController < AuthenticatedController
     @latest_spending = current_user.credits.includes(:tag).except(:order).where('"date" <= ?', Date.today).where.not(id: current_user.transfers.pluck(:credit_id)).order(date: :desc, created_at: :desc).limit(15)
     @tags = current_user.tags.with_recent_spending
     @spending_calendar = current_user.spending_calendar
+    @bills = current_user.bills.where('date(expiration) <= ?', 15.days.from_now).where(credit_id: nil)
   end
 
   def calendar
