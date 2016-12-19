@@ -1,0 +1,6 @@
+credit1:
+  name: Gasto de Teste
+  account: account1
+  value: 3.45
+  type: Credit
+  date: <%= 1.week.ago + 1.day %>
