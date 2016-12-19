@@ -1,0 +1,6 @@
+debit1:
+  name: Depósito de Teste
+  account: account1
+  value: 123.45
+  type: Debit
+  date: <%= 1.week.ago %>
