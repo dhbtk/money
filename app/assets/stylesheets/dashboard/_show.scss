@@ -43,6 +43,9 @@ body.dashboard-show {
       padding: 5px;
       align-items: center;
       box-sizing: border-box;
+      @media(max-width: 1279px) {
+      	  width: 50%;
+      }
 
       .avatar {
         display: flex;
@@ -57,6 +60,83 @@ body.dashboard-show {
           color: $light-text-color;
         }
       }
+    }
+  }
+
+  .calendar {
+    display: flex;
+    flex-direction: column;
+
+    .table-wrapper > table th, .table-wrapper > table td {
+      width: 48px;
+      height: 32px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .table-wrapper > table td.out {
+      color: rgba(0, 0, 0, .12);
+    }
+
+    .table-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+
+      table {
+        border-collapse: collapse;
+      }
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 32px;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .table-wrapper table td {
+      border: 1px solid #e1e1e1;
+    }
+
+    .table-wrapper table td[data-total] {
+      position: relative;
+    }
+
+    .table-wrapper table td[data-total]:after {
+      z-index: 1000;
+      padding: 2px;
+      height: 24px;
+      background: unquote("rgba(#{$color-primary}, 0.78)");
+      color: $light-text-color;
+      content: attr(data-total);
+      position: absolute;
+      opacity: 0;
+      width: 72px;
+      box-sizing: border-box;
+      top: 4px;
+      left: calc(100% + 8px);
+      visibility: hidden;
+      transition: opacity ease-in-out 0.25s;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    .table-wrapper table td[data-total]:not(.out):hover:after {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .spending-progress {
+      position: absolute;
+      height: 100%;
+      width: 5px;
+      bottom: 0;
+      right: 0;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      background-color: rgb(211, 43, 43);
     }
   }
 }

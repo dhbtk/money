@@ -35,8 +35,29 @@
     <% end %>
   </div>
 </div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
-  <h6>Gastos vs. despesas nos últimos 30 dias</h6>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col calendar">
+  <h6>Calendário de gastos</h6>
+  <div class="table-wrapper mdl-shadow--2dp">
+    <div class="title">
+      <%= link_to material_icon.navigate_before, calendar_path(Date.today - 1.month), remote: true, id: 'prev-month' %>
+      <span id="current-month">
+        <%= I18n.t("date.month_names")[Date.today.month] %>
+      </span>
+      <%= link_to material_icon.navigate_next, calendar_path(Date.today + 1.month), remote: true, id: 'next-month' %>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <% I18n.t('date.abbr_day_names').each do |day| %>
+            <th><%= day %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody id="calendar-table-body">
+          <%= render 'calendar', spending: @spending_calendar, today: Date.today %>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col">
   <h6>Contas a vencer</h6>
