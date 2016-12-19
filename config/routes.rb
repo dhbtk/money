@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root to: 'dashboard#show'
 
+  get 'dashboard/calendar/:year/:month', to: 'dashboard#calendar'
+
   resources :transfers, except: [:index]
   resources :debits, except: [:index]
   resources :credits, except: [:index] do
