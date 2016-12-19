@@ -26,7 +26,7 @@
     </div>
 
     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-      <%= f.collection_select :account_id, current_user.accounts.where(type: [nil, 'Account']), :id, :name, {}, class: 'mdl-selectfield__select' %>
+      <%= f.collection_select :account_id, current_user.accounts, :id, :name, {}, class: 'mdl-selectfield__select' %>
       <%= f.label :account_id, class: 'mdl-selectfield__label' %>
     </div>
 
