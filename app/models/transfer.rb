@@ -5,7 +5,7 @@ class Transfer < ApplicationRecord
   belongs_to :debit, autosave: true
   belongs_to :credit, autosave: true
 
-  attr_writer :source_account, :destination_account, :value, :date, :description
+  attr_writer :source_account, :destination_account, :value, :date
 
   validate :values_must_be_the_same
   validates :source_account, :destination_account, :value, :date, presence: true

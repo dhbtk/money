@@ -1,3 +1,14 @@
 account1:
   name: Conta Corrente
   user: user1
+account2:
+  name: Conta Corrente 2
+  user: user2
+credit_card:
+  name: Cartão de Crédito
+  type: CreditCard
+  user: user2
+  expiration: 15
+  closing: 8
+  interest: 14
+  limit: 5000

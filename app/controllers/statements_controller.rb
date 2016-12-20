@@ -8,7 +8,7 @@ class StatementsController < AuthenticatedController
         'Futuros' => 'future'
     }
     @selected_period = params[:period].present? ? params[:period] : (session[:statements_period] || 'week')
-    @statements = current_user.statements
+    @statements = current_user.statements.skip_transfer_debits
     case @selected_period
       when 'week'
         @from = DateTime.now.beginning_of_week

@@ -4,3 +4,9 @@ credit1:
   value: 3.45
   type: Credit
   date: <%= 1.week.ago + 1.day %>
+credit2:
+  name: Gasto no Cartão de Crédito
+  account: credit_card
+  value: 50.00
+  type: Credit
+  date: <%= 1.day.ago %>
