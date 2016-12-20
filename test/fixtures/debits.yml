@@ -4,3 +4,9 @@ debit1:
   value: 123.45
   type: Debit
   date: <%= 1.week.ago %>
+debit2:
+  name: Saldo da Conta Corrente
+  account: account2
+  value: 1000
+  type: Debit
+  date: <%= 2.days.ago %>

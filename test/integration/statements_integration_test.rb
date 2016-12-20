@@ -13,10 +13,10 @@ class StatementsIntegrationTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
     follow_redirect!
     post user_session_path,
-        params: { user: { email: 'user@user.com', password: '12345678' } }
+        params: { user: { email: 'user1@user.com', password: '12345678' } }
     assert_redirected_to root_path
     follow_redirect!
-    assert_select 'div.avatar-dropdown > span', 'user@user.com'
+    assert_select 'div.avatar-dropdown > span', 'user1@user.com'
 
     get statements_path, params: { period: 'month' }
     assert_select '#statements-table > tbody > tr', 2
