@@ -12,3 +12,6 @@ credit_card:
   closing: 8
   interest: 14
   limit: 5000
+account3:
+  name: Account with null named statements
+  user: user3

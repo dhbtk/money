@@ -10,3 +10,14 @@ debit2:
   value: 1000
   type: Debit
   date: <%= 2.days.ago %>
+null_named_debit:
+  account: account3
+  type: Debit
+  value: 500
+  date: <%= 2.days.ago %>
+named_debit:
+  account: account3
+  name: Named
+  type: Debit
+  value: 500
+  date: <%= 2.days.ago %>
