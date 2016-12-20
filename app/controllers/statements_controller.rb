@@ -36,7 +36,7 @@ class StatementsController < AuthenticatedController
     @statements = @statements.where(account_id: @account_id) if @account_id.present?
 
     @search = !params[:search].nil? ? params[:search] : session[:statements_search]
-    @statements = @statements.search(@search)
+    @statements = @statements.search(@search) unless @search.blank?
 
     @statements = @statements.includes(:transfer, :tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
 
