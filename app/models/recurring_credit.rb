@@ -51,7 +51,8 @@ class RecurringCredit < ApplicationRecord
     end
     if start_date_was != start_date
       0.upto(months - 1) do |month|
-        Credit.where(recurring_credit_id: id).to_a[month].update(date: start_date + month.months)
+      	  puts "Updating date to #{account.financed_credit_date(start_date + month.months, start_date)}"
+          Credit.where(recurring_credit_id: id).to_a[month].update(date: account.financed_credit_date(start_date + month.months, start_date))
       end
     end
     if value_was != value
