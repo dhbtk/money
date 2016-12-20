@@ -16,7 +16,9 @@ class Credit < Statement
     credit.name = recurring_credit.name
     credit.value = recurring_credit.credits_value[1]
     credit.account = recurring_credit.account
-    credit.date = credit.account.financed_credit_date(recurring_credit.start_date + month.months)
+    puts "Data original: #{recurring_credit.start_date + month.months}"
+    credit.date = credit.account.financed_credit_date(recurring_credit.start_date + month.months, recurring_credit.start_date)
+    puts "Data alterada: #{credit.date}"
     credit.recurring_credit = recurring_credit
     credit
   end
