@@ -16,7 +16,7 @@ class Credit < Statement
     credit.name = recurring_credit.name
     credit.value = recurring_credit.credits_value[1]
     credit.account = recurring_credit.account
-    credit.date = recurring_credit.start_date + month.months
+    credit.date = credit.account.financed_credit_date(recurring_credit.start_date + month.months)
     credit.recurring_credit = recurring_credit
     credit
   end

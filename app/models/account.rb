@@ -33,4 +33,8 @@ class Account < ApplicationRecord
 
     [dates.reverse, totals.reverse]
   end
+
+  def financed_credit_date(date)
+  	  date
+  end
 end
