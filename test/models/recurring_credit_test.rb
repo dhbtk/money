@@ -7,26 +7,24 @@ class RecurringCreditTest < ActiveSupport::TestCase
     recurring_credit = credit.recurring_credit
     assert recurring_credit
     first = true
-    recurring_credit.credits.to_a.each do |credit|
+    recurring_credit.credits.to_a.each do |c|
       if first
-        assert_equal recurring_credit.start_date, credit.date
+        assert_equal recurring_credit.start_date, c.date
         first = false
       else
-        assert_equal accounts(:credit_card).closing, credit.date.day
+        assert_equal accounts(:credit_card).closing, c.date.day
       end
     end
-    puts 'testing update'
     # verifying that it holds for the update
-    assert recurring_credit.update(start_date: '2015-12-21')
+    assert recurring_credit.update(start_date: Date.new(2015, 12, 21))
     recurring_credit.reload
     first = true
-    recurring_credit.credits.reload.to_a.each do |credit|
-      puts credit.date
+    Credit.where(recurring_credit_id: recurring_credit.id).order(:date).each do |c|
       if first
-        assert_equal recurring_credit.start_date, credit.date
+        assert_equal recurring_credit.start_date, c.date
         first = false
       else
-        assert_equal accounts(:credit_card).closing, credit.date.day
+        assert_equal accounts(:credit_card).closing, c.date.day
       end
     end
   end
