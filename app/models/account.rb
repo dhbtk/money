@@ -1,7 +1,4 @@
 class Account < ApplicationRecord
-  self.sync_selectors = [
-      {joins: nil, where: {user_id: :x}}
-  ]
   belongs_to :user
   has_many :credits, -> { order(:date) }, dependent: :destroy
   has_many :recurring_credits, -> { order(:name) }, dependent: :destroy

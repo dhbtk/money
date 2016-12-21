@@ -1,7 +1,4 @@
 class RecurringCredit < ApplicationRecord
-  self.sync_selectors = [
-      {joins: :account, where: {accounts: {user_id: :x}}}
-  ]
   belongs_to :account
   belongs_to :tag, optional: true
   has_many :credits, -> { order(:date) }

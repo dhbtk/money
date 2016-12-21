@@ -1,7 +1,4 @@
 class Credit < Statement
-  self.sync_selectors = [
-      {joins: :account, where: {accounts: {user_id: :x}}}
-  ]
   belongs_to :recurring_credit, optional: true
 
   has_one :transfer, dependent: :destroy

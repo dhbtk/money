@@ -3,9 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  self.sync_selectors = [
-      {joins: nil, where: {id: :x}}
-  ]
   validates :email, presence: true, uniqueness: true
 
   has_many :accounts, -> { order(:name) }
