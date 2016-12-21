@@ -21,3 +21,13 @@ named_debit:
   type: Debit
   value: 500
   date: <%= 2.days.ago %>
+user_starter_debit:
+  account: account4
+  type: Debit
+  value: 500
+  date: <%= 4.days.ago %>
+wallet_debit:
+  account: wallet
+  type: Debit
+  value: 100
+  date: <%= 1.day.ago %>

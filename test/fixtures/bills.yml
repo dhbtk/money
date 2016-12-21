@@ -1,0 +1,6 @@
+bill1:
+  name: Power
+  value: 150
+  billing_account: billing_account1
+  expiration: <%= 3.days.from_now %>
+  credit: bill_credit

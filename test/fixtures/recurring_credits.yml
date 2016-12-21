@@ -1,0 +1,6 @@
+recurring1:
+  name: Recurring
+  account: account4
+  start_date: <%= Date.today %>
+  months: 3
+  value: 60

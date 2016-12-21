@@ -15,3 +15,9 @@ credit_card:
 account3:
   name: Account with null named statements
   user: user3
+account4:
+  name: User's bank account
+  user: user4
+wallet:
+  name: User's wallet
+  user: user4

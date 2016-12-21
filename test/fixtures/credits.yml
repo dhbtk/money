@@ -10,3 +10,42 @@ credit2:
   value: 50.00
   type: Credit
   date: <%= 1.day.ago %>
+
+# user 4
+
+bill_credit:
+  account: account4
+  type: Credit
+  value: 150
+  date: <%= 2.days.ago %>
+wallet_credit:
+  account: account4
+  type: Credit
+  value: 100
+  date: <%= 1.day.ago %>
+regular_credit:
+  account: account4
+  type: Credit
+  value: 20
+  date: <%= 1.day.ago %>
+installment1:
+  recurring_credit: recurring1
+  value: 20
+  type: Credit
+  name: Recurring
+  account: account4
+  date: <%= Date.today %>
+installment2:
+  recurring_credit: recurring1
+  value: 20
+  type: Credit
+  name: Recurring
+  account: account4
+  date: <%= Date.today + 1.month %>
+installment3:
+  recurring_credit: recurring1
+  value: 20
+  type: Credit
+  name: Recurring
+  account: account4
+  date: <%= Date.today + 2.months %>

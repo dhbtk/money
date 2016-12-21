@@ -18,7 +18,7 @@ class StatementsIntegrationTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'div.avatar-dropdown > span', 'user1@user.com'
 
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_select '#statements-table > tbody > tr', 2
 
 
@@ -31,7 +31,7 @@ class StatementsIntegrationTest < ActionDispatch::IntegrationTest
     assert_response :success
     post credits_path, params: { credit: { name: 'Gasto', account_id: accounts(:account1).id, value: 20 }}
     assert_redirected_to statements_path
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_select '#statements-table > tbody > tr', 3
     # verifying balance
     get accounts_path
@@ -40,7 +40,7 @@ class StatementsIntegrationTest < ActionDispatch::IntegrationTest
 
     delete credit_path(credits(:credit1))
     assert_redirected_to statements_path
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_select '#statements-table > tbody > tr', 2
     get accounts_path
     assert_select 'div.account', 1
@@ -50,7 +50,7 @@ class StatementsIntegrationTest < ActionDispatch::IntegrationTest
     assert_response :success
     post debits_path, params: { debit: { name: 'Receita', account_id: accounts(:account1).id, value: 1.55 }}
     assert_redirected_to statements_path
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_select '#statements-table > tbody > tr', 3
     assert_select 'li.account > .account-total > span', number_to_currency(105)
   end
