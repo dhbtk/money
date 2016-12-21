@@ -1,4 +1,5 @@
 class BillingAccount < ApplicationRecord
+  audited
   belongs_to :user
   has_many :bills, -> { order(expiration: :asc, created_at: :asc) }, dependent: :destroy
 

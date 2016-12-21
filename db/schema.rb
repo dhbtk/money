@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220190340) do
+ActiveRecord::Schema.define(version: 20161221180419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,28 @@ ActiveRecord::Schema.define(version: 20161220190340) do
     t.integer  "user_id"
     t.decimal  "limit",      precision: 8, scale: 2
     t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+    t.index ["associated_id", "associated_type"], name: "associated_index", using: :btree
+    t.index ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
+    t.index ["created_at"], name: "index_audits_on_created_at", using: :btree
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+    t.index ["user_id", "user_type"], name: "user_index", using: :btree
   end
 
   create_table "billing_accounts", force: :cascade do |t|
@@ -78,16 +100,6 @@ ActiveRecord::Schema.define(version: 20161220190340) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["account_id"], name: "index_recurring_debits_on_account_id", using: :btree
-  end
-
-  create_table "revisions", force: :cascade do |t|
-    t.string   "model_type"
-    t.integer  "model_id"
-    t.integer  "revision_type"
-    t.json     "data"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["model_type", "model_id"], name: "index_revisions_on_model_type_and_model_id", using: :btree
   end
 
   create_table "statements", force: :cascade do |t|

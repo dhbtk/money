@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
+  audited
   belongs_to :user
 
   has_many :credits

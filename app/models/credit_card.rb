@@ -1,4 +1,5 @@
 class CreditCard < Account
+  audited
   validates :expiration, :closing, :interest, :limit, presence: true
 
   def total_due

@@ -1,4 +1,5 @@
 class Credit < Statement
+  audited
   belongs_to :recurring_credit, optional: true
 
   has_one :transfer, dependent: :destroy
