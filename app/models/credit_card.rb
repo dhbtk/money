@@ -23,7 +23,7 @@ class CreditCard < Account
     if date > next_closing_date(today)
       Date.new(date.year, date.month, closing)
     else
-      date
+      date.to_date
     end
   end
 end
