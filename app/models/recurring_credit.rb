@@ -24,13 +24,9 @@ class RecurringCredit < ApplicationRecord
 
   def credits_value
     initial_value = value/months
-    if initial_value.exponent < 3
-      (1..months).map{|i| initial_value}
-    else
-      other_credits_value = initial_value - (initial_value % BigDecimal.new('0.01'))
-      first_credit_value = other_credits_value + (value - other_credits_value*months)
-      [first_credit_value] + (1..(months - 1)).map{|i| other_credits_value}
-    end
+    other_credits_value = initial_value - (initial_value % BigDecimal.new('0.01'))
+    first_credit_value = other_credits_value + (value - other_credits_value*months)
+    [first_credit_value] + (1..(months - 1)).map{|i| other_credits_value}
   end
 
   after_create do

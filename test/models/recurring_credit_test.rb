@@ -28,4 +28,15 @@ class RecurringCreditTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test 'uneven installment values should be accounted for in the first installment' do
+    # total is 50.56. First installment should be 10.12, others should be 10.11
+    first_installment = Credit.new(
+        value: BigDecimal.new('50.56'), months: 5, account: accounts(:credit_card), date: '2013-02-05', name: 'Teste de Valor de Parcela')
+    assert first_installment.save
+    assert_equal BigDecimal.new('10.12'), first_installment.value
+    first_installment.recurring_credit.credits.to_a[1..-1].each do |credit|
+      assert_equal BigDecimal.new('10.11'), credit.value
+    end
+  end
 end
