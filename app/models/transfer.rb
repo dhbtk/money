@@ -1,4 +1,5 @@
 class Transfer < ApplicationRecord
+  audited
   belongs_to :debit, autosave: true
   belongs_to :credit, autosave: true
 

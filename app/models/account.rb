@@ -1,4 +1,5 @@
 class Account < ApplicationRecord
+  audited
   belongs_to :user
   has_many :credits, -> { order(:date) }, dependent: :destroy
   has_many :recurring_credits, -> { order(:name) }, dependent: :destroy

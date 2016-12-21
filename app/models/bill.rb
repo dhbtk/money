@@ -2,6 +2,7 @@ require 'barby/barcode/code_25_interleaved'
 require 'barby/outputter/svg_outputter'
 
 class Bill < ApplicationRecord
+  audited
   belongs_to :billing_account
   belongs_to :credit, optional: true
   validates :name, presence: true

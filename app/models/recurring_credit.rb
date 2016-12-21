@@ -1,4 +1,5 @@
 class RecurringCredit < ApplicationRecord
+  audited
   belongs_to :account
   belongs_to :tag, optional: true
   has_many :credits, -> { order(:date) }
