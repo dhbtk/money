@@ -12,7 +12,7 @@ class TransfersIntegrationTest < ActionDispatch::IntegrationTest
     follow_redirect!
     post user_session_path, params: { user: { email: 'user2@user.com', password: '12345678' } }
     assert_redirected_to root_path
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_response :success
     assert_select '#statements-table > tbody > tr', 2
 
@@ -21,7 +21,7 @@ class TransfersIntegrationTest < ActionDispatch::IntegrationTest
         params: { transfer: { value: 50.00, source_account_id: accounts(:account2).id, destination_account_id: accounts(:credit_card).id, description: 'Transferência de Teste' } }
     assert_redirected_to statements_path
 
-    get statements_path, params: { period: 'month' }
+    get statements_path
     assert_select '#statements-table > tbody > tr', 3
     assert_select '#statements-table > tbody > tr:first-child > td:nth-child(3) > span.transfer', 2
     assert_select '#statements-table > tbody > tr:first-child > td:nth-child(5)', 'Transferência de Teste'

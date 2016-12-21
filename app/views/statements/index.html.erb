@@ -2,6 +2,10 @@
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
   <%= form_tag(statements_path, method: :get, class: 'table-filters') do %>
       <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+        <%= select_tag :type, options_for_select(@types, @type), class: 'mdl-selectfield__select' %>
+        <%= label_tag :type, nil, class: 'mdl-selectfield__label' %>
+      </div>
+      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
         <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, @account_id), include_blank: true, class: 'mdl-selectfield__select' %>
         <%= label_tag :account_id, nil, class: 'mdl-selectfield__label' %>
       </div>

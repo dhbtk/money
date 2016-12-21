@@ -7,30 +7,54 @@ class StatementsController < AuthenticatedController
         'Todos até hoje' => 'past',
         'Futuros' => 'future'
     }
+    @types = {
+        'Todos' => '',
+        'Receitas' => 'debit',
+        'Despesas' => 'credit',
+        'Contas pagas' => 'bill',
+        'Parcelamentos' => 'recurring_credit',
+        'Transferências' => 'transfer'
+    }
     @selected_period = params[:period].present? ? params[:period] : (session[:statements_period] || 'week')
+    @type = params[:type].blank? ? (session[:statements_type] || '') : params[:type]
+
     @statements = current_user.statements.skip_transfer_debits
     case @selected_period
       when 'week'
-        @from = DateTime.now.beginning_of_week
-        @to = DateTime.now.to_date
+        @from = Date.today - 7.days
+        @to = Date.today
       when 'month'
-        @from = DateTime.now.beginning_of_month
-        @to = DateTime.now.to_date
+        @from = DateTime.now - (Date.today.end_of_month.day).days
+        @to = Date.today
       when 'trimester'
-        @from = (DateTime.now - 2.months).beginning_of_month
-        @to = DateTime.now.to_date
+        @from = DateTime.now - 3.months
+        @to = Date.today
       when 'future'
-        @from = DateTime.now.to_date + 1.day
+        @from = Date.today + 1.day
         @to = nil
       when 'past'
-        @to = DateTime.now.to_date
+        @to = Date.today
         @from = nil
       else
         @from = nil
         @to = nil
     end
-    @statements = @statements.where('"date" >= ?', @from.to_date) if @from
-    @statements = @statements.where('"date" <= ?', @to.to_date) if @to
+    case @type
+      when 'debit'
+        @statements = @statements.debits
+      when 'credit'
+        @statements = @statements.credits current_user
+      when 'bill'
+        @statements = @statements.bill_credits current_user
+      when 'recurring_credit'
+        @statements = @statements.recurring_credits
+      when 'transfer'
+        @statements = @statements.transfers current_user
+      else
+        @statements = @statements
+    end
+    @statements = @statements.where('date("date") >= ?', @from.to_date) if @from
+    @statements = @statements.where('date("date") <= ?', @to.to_date) if @to
 
     @account_id = !params[:account_id].nil? ? params[:account_id] : session[:statements_account_id]
     @statements = @statements.where(account_id: @account_id) if @account_id.present?
@@ -48,10 +72,10 @@ class StatementsController < AuthenticatedController
   end
 
   def graph
-    @credits = current_user.credits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, DateTime.now.to_date).where.not(id: current_user.transfers.pluck(:credit_id))
-    @debits = current_user.debits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, DateTime.now.to_date).where.not(id: current_user.transfers.pluck(:debit_id))
+    @credits = current_user.credits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, Date.today).where.not(id: current_user.transfers.pluck(:credit_id))
+    @debits = current_user.debits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, Date.today).where.not(id: current_user.transfers.pluck(:debit_id))
     @from = params[:from].present? ? params[:from] : 7.days.ago.to_date
-    @to = DateTime.now.to_date
+    @to = Date.today
     @statements = current_user.statements.where('"date" >= ? AND "date" <= ?', @from, @to).order(date: :desc, created_at: :desc).group_by{|x| x.date}
   end
 end
