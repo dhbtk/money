@@ -1,7 +1,7 @@
 <%= form_for(recurring_credit, html: {class: 'form'}) do |f| %>
     <% if recurring_credit.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h2>
+          <h6><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h6>
 
           <ul>
             <% recurring_credit.errors.full_messages.each do |message| %>
@@ -52,9 +52,10 @@
       </li>
       <% end %>
     </ol>
-
-
     <div class="actions">
       <button type="submit" class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised">Salvar</button>
     </div>
+<% end %>
+<% content_for :toolbar_right do %>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="document.querySelector('form.form').submit()">Salvar</button>
 <% end %>

@@ -1,7 +1,7 @@
 <%= form_for(credit, html: {class: 'form'}) do |f| %>
     <% if credit.errors.any? %>
         <div id="error_explanation">
-          <h2>Erro ao salvar o gasto:</h2>
+          <h6>Erro ao salvar o gasto:</h6>
 
           <ul>
             <% credit.errors.full_messages.each do |message| %>

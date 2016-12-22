@@ -1,7 +1,7 @@
 <%= form_for([@billing_account, bill], html: {class: 'form'}) do |f| %>
     <% if bill.errors.any? %>
         <div id="error_explanation">
-          <h2>Erro ao salvar a despesa:</h2>
+          <h6>Erro ao salvar a despesa:</h6>
 
           <ul>
             <% bill.errors.full_messages.each do |message| %>

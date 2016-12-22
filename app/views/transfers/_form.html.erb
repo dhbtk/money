@@ -1,7 +1,7 @@
 <%= form_for(transfer, html: {class: 'form'}) do |f| %>
     <% if transfer.errors.any? %>
         <div id="error_explanation">
-          <h2>Não foi possível salvar a transferência:</h2>
+          <h6>Não foi possível salvar a transferência:</h6>
 
           <ul>
             <% transfer.errors.full_messages.each do |message| %>

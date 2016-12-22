@@ -1,7 +1,7 @@
 <%= form_for(account.becomes(Account), html: {class: 'form'}) do |f| %>
     <% if account.errors.any? %>
         <div id="error_explanation">
-          <h2>Erros foram encontrados ao salvar a conta.</h2>
+          <h6>Erros foram encontrados ao salvar a conta.</h6>
 
           <ul>
             <% account.errors.full_messages.each do |message| %>

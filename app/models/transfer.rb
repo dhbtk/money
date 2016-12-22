@@ -69,6 +69,7 @@ class Transfer < ApplicationRecord
       credit.errors.add(:base, 'Não é permitido transferir para a mesma conta.')
     else
       transfer.credit = credit
+      transfer.description = credit.name
       transfer.build_debit(account: account, date: credit.date, value: credit.value, name: credit.name)
     end
     transfer
