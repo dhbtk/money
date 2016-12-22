@@ -1,7 +1,7 @@
 <%= form_for(debit, html: {class: 'form'}) do |f| %>
     <% if debit.errors.any? %>
         <div id="error_explanation">
-          <h6>Não foi possível salvar o recebimento:</h6>
+          <p>Por favor verifique os erros abaixo.</p>
 
           <ul>
             <% debit.errors.full_messages.each do |message| %>

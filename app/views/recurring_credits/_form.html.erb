@@ -1,7 +1,7 @@
 <%= form_for(recurring_credit, html: {class: 'form'}) do |f| %>
     <% if recurring_credit.errors.any? %>
         <div id="error_explanation">
-          <h6><%= pluralize(recurring_credit.errors.count, "error") %> prohibited this recurring_credit from being saved:</h6>
+          <p>Por favor verifique os erros abaixo.</p>
 
           <ul>
             <% recurring_credit.errors.full_messages.each do |message| %>
