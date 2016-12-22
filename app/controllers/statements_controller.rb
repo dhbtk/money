@@ -69,5 +69,6 @@ class StatementsController < AuthenticatedController
     session[:statements_period] = @selected_period
     session[:statements_search] = @search
     session[:statements_account_id] = @account_id
+    session[:statements_type] = @type
   end
 end
