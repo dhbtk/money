@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post 'to_transfer'
     end
   end
-  resources :tags
+  resources :categories
   resources :recurring_credits, only: [:edit, :update, :destroy]
   resources :accounts
   resources :statements, only: [:index]

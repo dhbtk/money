@@ -62,7 +62,7 @@ class StatementsController < AuthenticatedController
     @search = !params[:search].nil? ? params[:search] : session[:statements_search]
     @statements = @statements.search(@search) unless @search.blank?
 
-    @statements = @statements.includes(:transfer, :tag, :account).order(date: :desc, created_at: :desc).page(params[:page])
+    @statements = @statements.includes(:transfer, :category, :account).order(date: :desc, created_at: :desc).page(params[:page])
 
     @accounts = current_user.accounts.order(:name)
 

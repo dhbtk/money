@@ -1,7 +1,7 @@
 class RecurringCredit < ApplicationRecord
   audited
   belongs_to :account
-  belongs_to :tag, optional: true
+  belongs_to :category, optional: true
   has_many :credits, -> { order(:date) }
 
   accepts_nested_attributes_for :credits
@@ -15,7 +15,7 @@ class RecurringCredit < ApplicationRecord
     recurring_credit.account = credit.account
     recurring_credit.months = credit.months
     recurring_credit.start_date = credit.date
-    recurring_credit.tag = credit.tag
+    recurring_credit.category = credit.category
     recurring_credit.save
     recurring_credit
   end
@@ -55,6 +55,6 @@ class RecurringCredit < ApplicationRecord
         i += 1
       end
     end
-    Credit.where(recurring_credit_id: id).update(name: name, account: account, tag: tag)
+    Credit.where(recurring_credit_id: id).update(name: name, account: account, category: category)
   end
 end

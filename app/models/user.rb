@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :accounts, -> { order(:name) }
   has_many :billing_accounts, -> { order(:name) }
   has_many :bills, -> { except(:order).order(expiration: :desc) }, through: :billing_accounts
-  has_many :tags, -> { order(:name) }
+  has_many :categories, -> { order(:name) }
   has_many :credits, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts
   has_many :debits, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts
   has_many :statements, -> { except(:order).order(date: :desc, created_at: :desc) }, through: :accounts

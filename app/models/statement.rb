@@ -1,9 +1,9 @@
 class Statement < ApplicationRecord
   belongs_to :account
-  belongs_to :tag, optional: true
+  belongs_to :category, optional: true
 
   def self.search(term)
-  	  left_outer_joins(:tag).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("tags"."name") ILIKE unaccent (?)', "%#{term}%", "%#{term}%")
+  	  left_outer_joins(:category).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("categories"."name") ILIKE unaccent (?)', "%#{term}%", "%#{term}%")
   end
 
   def self.skip_transfer_debits
