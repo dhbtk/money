@@ -228,6 +228,20 @@ form.form {
   cursor: pointer;
 }
 
+#error_explanation {
+  padding: 8px;
+  background-color: #FFEBEE;
+}
+
+#error_explanation > p {
+  margin: 0;
+}
+
+#error_explanation > ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
 // Por não usarmos roboto
 
 .mdl-button:not(.mdl-button--raised) {
