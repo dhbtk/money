@@ -2,7 +2,7 @@ div#credit-card-fields {
   padding-top: 16px;
   display: flex;
   flex-direction: row;
-  max-width: 450px;
+  max-width: 650px;
 }
 
 div#credit-card-fields > div {
@@ -15,6 +15,15 @@ div#credit-card-fields > div:not(:last-child) {
 
 div#credit-card-fields > .div:not(:first-child) {
   padding-left: 4px;
+}
+
+.icon-selector {
+  padding-bottom: 20px;
+}
+
+.icon-selector > span, span.faux-label {
+  font-size: 12px;
+  color: $primary-background-color;
 }
 
 .icon-selector > div {

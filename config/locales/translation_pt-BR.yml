@@ -18,13 +18,14 @@ pt-BR:
 
     attributes:
       account:
-        closing: Fechamento
+        closing: Dia de fechamento  #g
         credits: Créditos  #g
         debits: Débitos  #g
-        expiration: Vencimento
-        fine: Multa
+        expiration: Dia de vencimento  #g
+        interest: Juros (%)  #g
+        credits: Créditos  #g
+        debits: Débitos  #g
         incoming_transfers: Transferências recebidas  #g
-        interest: Juros
         name: Nome  #g
         outgoing_transfers: Transferências de saída  #g
         recurring_credits: Créditos recorrentes  #g
@@ -116,13 +117,11 @@ pt-BR:
         enabled: Ativado  #g
 
       credit_card:
-        closing: Encerramento  #g
+        closing: Dia de fechamento  #g
         credits: Créditos  #g
         debits: Débitos  #g
-        expiration: Expiração  #g
-        fine: Bem  #g
-        incoming_transfers: Transferências recebidas  #g
-        interest: Interesse  #g
+        expiration: Dia de vencimento  #g
+        interest: Juros (%)  #g
         limit: Limite  #g
         name: Nome  #g
         outgoing_transfers: Transferências de saída  #g
