@@ -1,5 +1,8 @@
 <div class="mdl-cell mdl-cell--6-col mdl-color--white mdl-shadow--2dp account">
   <div class="title">
+    <% if account.icon.present? %>
+        <%= image_tag account.icon %>
+    <% end %>
     <h6><%= link_to account.name, account.becomes(Account) %></h6>
     <button id="more_<%= account.id %>" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
       <%= material_icon.more_vert %>
