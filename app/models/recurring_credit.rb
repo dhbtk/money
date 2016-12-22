@@ -24,7 +24,7 @@ class RecurringCredit < ApplicationRecord
     initial_value = value/months
     other_credits_value = initial_value - (initial_value % BigDecimal.new('0.01'))
     first_credit_value = other_credits_value + (value - other_credits_value*months)
-    [first_credit_value] + (1..(months - 1)).map{|i| other_credits_value}
+    [first_credit_value] + (1..(months - 1)).map { |i| other_credits_value }
   end
 
   after_create do
@@ -45,12 +45,12 @@ class RecurringCredit < ApplicationRecord
     end
     if start_date_was != start_date
       0.upto(months - 1) do |month|
-          Credit.where(recurring_credit_id: id).order(:date).to_a[month].update(date: account.financed_credit_date(start_date + month.months, start_date))
+        Credit.where(recurring_credit_id: id).order(:date).to_a[month].update(date: account.financed_credit_date(start_date + month.months, start_date))
       end
     end
     if value_was != value
       i = 0
-      Credit.where(recurring_credit_id: id).each do |credit|
+      Credit.where(recurring_credit_id: id).order(:date).each do |credit|
         credit.update(value: credits_value[i])
         i += 1
       end

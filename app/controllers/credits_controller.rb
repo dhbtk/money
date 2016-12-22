@@ -19,10 +19,13 @@ class CreditsController < AuthenticatedController
 
   # GET /credits/1/edit
   def edit
-  	  respond_to do |format|
-  	  	  format.json { render :show }
-  	  	  format.html {}
-  	  end
+    redirect_to edit_transfer_path(@credit.transfer) if @credit.transfer.present?
+    redirect_to edit_recurring_credit_path(@credit.recurring_credit) if @credit.recurring_credit.present?
+
+    respond_to do |format|
+      format.json { render :show }
+      format.html {}
+    end
   end
 
   # POST /credits

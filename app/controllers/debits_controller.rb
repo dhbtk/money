@@ -19,6 +19,8 @@ class DebitsController < AuthenticatedController
 
   # GET /debits/1/edit
   def edit
+    redirect_to edit_transfer_path(@debit.transfer) if @debit.transfer.present?
+    redirect_to edit_recurring_credit_path(@debit.recurring_credit) if @debit.recurring_credit.present?
   end
 
   # POST /debits
