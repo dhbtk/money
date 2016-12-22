@@ -8,6 +8,13 @@ body.dashboard-show {
     height: 250px;
   }
 
+  .spending div.icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: transparent;
+  }
+
   div.spending, div.bills {
     display: flex;
     flex-direction: column;
@@ -33,7 +40,6 @@ body.dashboard-show {
   .tag-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 
     .tag {
       display: flex;

@@ -9,6 +9,12 @@ body.accounts-index {
       display: flex;
       align-items: center;
 
+      img {
+        max-width: 32px;
+        max-height: 32px;
+        margin-right: 8px;
+      }
+
       h6 {
         margin: 0;
         & > a {

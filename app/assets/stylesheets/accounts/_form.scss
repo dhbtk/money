@@ -16,3 +16,46 @@ div#credit-card-fields > div:not(:last-child) {
 div#credit-card-fields > .div:not(:first-child) {
   padding-left: 4px;
 }
+
+.icon-selector > div {
+  display: flex;
+
+  & > label {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &:not(.empty) {
+      padding-left: 0;
+
+      & > .mdl-radio__outer-circle {
+        left: calc(50% - 8px);
+      }
+
+      & > .mdl-radio__inner-circle {
+        left: calc(50% - 4px);
+      }
+    }
+
+    & > img {
+      max-width: 64px;
+      max-height: 64px;
+    }
+
+    & > .empty-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    & > .mdl-radio__outer-circle {
+      top: inherit;
+      bottom: 4px;
+    }
+
+    & > .mdl-radio__inner-circle {
+      top: inherit;
+      bottom: 8px;
+    }
+
+  }
+}
