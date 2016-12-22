@@ -8,9 +8,13 @@ pt-BR:
       recurring_debit: Débito recorrente  #g
       tag: Tag  #g
       transfer: Transferência
-      billing_account: Conta de faturamento  #g
+      billing_account: Grupo de Despesas  #g
       credit_card: Cartão de crédito  #g
       user: Usuário  #g
+      audited/audit: Auditoria / auditoria  #g
+      bill: Despesa  #g
+      category: Categoria  #g
+      statement: Declaração  #g
 
     attributes:
       account:
@@ -28,9 +32,13 @@ pt-BR:
         type: Tipo
         limit: Limite  #g
         user: :activerecord.models.user  #g
+        audits: Auditorias  #g
+        icon: Ícone  #g
+        statements: Declarações  #g
 
       credit:
-        account: :activerecord.models.account  #g
+        account: :activerecord.models.account
+        account_id: :activerecord.models.account
         date: Data
         debits: Débitos  #g
         expiration: Expiração  #g
@@ -41,19 +49,26 @@ pt-BR:
         tag: :activerecord.models.tag  #g
         transfer: :activerecord.models.transfer  #g
         value: Valor  #g
+        audits: Auditorias  #g
+        bill: :activerecord.models.bill  #g
+        category: :activerecord.models.category  #g
+        category_id: :activerecord.models.category  #g
 
       debit:
         account: :activerecord.models.account  #g
-        credit: :activerecord.models.credit  #g
+        account_id: :activerecord.models.account  #g
         date: Data
         name: Nome  #g
-        recurring_debit: :activerecord.models.recurring_debit  #g
         tag: :activerecord.models.tag  #g
         transfer: :activerecord.models.transfer  #g
         value: Valor  #g
+        audits: Auditorias  #g
+        category: :activerecord.models.category  #g
+        category_id: :activerecord.models.category  #g
 
       recurring_credit:
         account: :activerecord.models.account  #g
+        account_id: :activerecord.models.account  #g
         credits: Créditos  #g
         day: Dia  #g
         expiration: Vencimento
@@ -62,14 +77,10 @@ pt-BR:
         months: Meses  #g
         name: Nome  #g
         value: Valor  #g
-
-      recurring_debit:
-        account: :activerecord.models.account  #g
-        day: Dia  #g
-        debits: Débitos  #g
-        months: Meses  #g
-        name: Nome  #g
-        value: Valor  #g
+        audits: Auditorias  #g
+        category: :activerecord.models.category  #g
+        category_id: :activerecord.models.category  #g
+        start_date: Data
 
       tag:
         credits: Créditos  #g
@@ -77,9 +88,14 @@ pt-BR:
         name: Nome  #g
 
       transfer:
+        value: Valor
+        date: Data
+        source_account_id: Conta de origem
+        destination_account_id: Conta de destino
         credit: :activerecord.models.credit  #g
         debit: :activerecord.models.debit  #g
         description: Descrição  #g
+        audits: Auditorias  #g
 
       billing_account:
         closing: Encerramento  #g
@@ -95,6 +111,9 @@ pt-BR:
         recurring_credits: Créditos recorrentes  #g
         recurring_debits: Débitos recorrentes  #g
         user: :activerecord.models.user  #g
+        audits: Auditorias  #g
+        bills: Contas  #g
+        enabled: Ativado  #g
 
       credit_card:
         closing: Encerramento  #g
@@ -110,6 +129,9 @@ pt-BR:
         recurring_credits: Créditos recorrentes  #g
         recurring_debits: Débitos recorrentes  #g
         user: :activerecord.models.user  #g
+        audits: Auditorias  #g
+        icon: Ícone  #g
+        statements: Declarações  #g
 
       user:
         accounts: Contas  #g
@@ -122,3 +144,53 @@ pt-BR:
         remember_created_at: Lembre-se criado em  #g
         reset_password_sent_at: Redefinir senha enviada em  #g
         reset_password_token: Resetar token de senha  #g
+        audits: Auditorias  #g
+        billing_accounts: Contas de faturamento  #g
+        bills: Contas  #g
+        categories: Categorias  #g
+        credits: Créditos  #g
+        debits: Débitos  #g
+        image: Imagem  #g
+        name: Nome  #g
+        statements: Declarações  #g
+        transfers: Transferências  #g
+
+      audited/audit:
+        action: Açao  #g
+        associated: :activerecord.models.associated  #g
+        associated_type: Tipo associado  #g
+        auditable: :activerecord.models.auditable  #g
+        auditable_type: Tipo auditável  #g
+        audited_changes: Alterações auditadas  #g
+        comment: Comente  #g
+        remote_address: Endereço remoto  #g
+        request_uuid: Pedido uuid  #g
+        user: :activerecord.models.user  #g
+        user_type: Tipo de usuário  #g
+        username: Nome de usuário  #g
+        version: Versão  #g
+
+      bill:
+        attachment: Anexo  #g
+        audits: Auditorias  #g
+        barcode: Código de barras  #g
+        billing_account: :activerecord.models.billing_account  #g
+        credit: :activerecord.models.credit  #g
+        expiration: Vencimento
+        name: Nome  #g
+        value: Valor  #g
+
+      category:
+        audits: Auditorias  #g
+        credits: Créditos  #g
+        debits: Débitos  #g
+        icon: Ícone  #g
+        name: Nome  #g
+        user: :activerecord.models.user  #g
+
+      statement:
+        account: :activerecord.models.account  #g
+        category: :activerecord.models.category  #g
+        date: Data  #g
+        name: Nome  #g
+        value: Valor  #g
