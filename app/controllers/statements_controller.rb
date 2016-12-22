@@ -16,7 +16,7 @@ class StatementsController < AuthenticatedController
         'Transferências' => 'transfer'
     }
     @selected_period = params[:period].present? ? params[:period] : (session[:statements_period] || 'week')
-    @type = params[:type].blank? ? (session[:statements_type] || '') : params[:type]
+    @type = !params[:type].nil? ? (session[:statements_type] || '') : params[:type]
 
     @statements = current_user.statements.skip_transfer_debits
     case @selected_period
