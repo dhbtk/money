@@ -29,7 +29,7 @@ class BillingAccountsController < AuthenticatedController
 
     respond_to do |format|
       if @billing_account.save
-        format.html { redirect_to @billing_account, notice: 'Billing account was successfully created.' }
+        format.html { redirect_to @billing_account, notice: 'Grupo de despesas criado' }
         format.json { render :show, status: :created, location: @billing_account }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class BillingAccountsController < AuthenticatedController
   def update
     respond_to do |format|
       if @billing_account.update(billing_account_params)
-        format.html { redirect_to @billing_account, notice: 'Billing account was successfully updated.' }
+        format.html { redirect_to @billing_account, notice: 'Grupo de despesas atualizado' }
         format.json { render :show, status: :ok, location: @billing_account }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class BillingAccountsController < AuthenticatedController
   def destroy
     @billing_account.destroy
     respond_to do |format|
-      format.html { redirect_to billing_accounts_url, notice: 'Billing account was successfully destroyed.' }
+      format.html { redirect_to billing_accounts_url, notice: 'Grupo de despesas excluído' }
       format.json { head :no_content }
     end
   end

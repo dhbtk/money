@@ -28,7 +28,7 @@ class Credit < Statement
   end
 
   after_initialize do
-    self.date ||= DateTime.now.to_date
+    self.date ||= Date.today
   end
 
   before_create do

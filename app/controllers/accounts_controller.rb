@@ -36,7 +36,7 @@ class AccountsController < AuthenticatedController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to account_path(@account), notice: 'Account was successfully created.' }
+        format.html { redirect_to account_path(@account), notice: 'Conta criada' }
         format.json { render :show, status: :created, location: account_path(@account) }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class AccountsController < AuthenticatedController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to account_path(@account), notice: 'Account was successfully updated.' }
+        format.html { redirect_to account_path(@account), notice: 'Conta atualizada' }
         format.json { render :show, status: :ok, location: account_path(@account) }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class AccountsController < AuthenticatedController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'Conta excluída' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +77,6 @@ class AccountsController < AuthenticatedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name, :type, :closing, :expiration, :interest, :limit)
+      params.require(:account).permit(:name, :type, :closing, :expiration, :interest, :limit, :icon)
     end
 end

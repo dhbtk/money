@@ -70,12 +70,4 @@ class StatementsController < AuthenticatedController
     session[:statements_search] = @search
     session[:statements_account_id] = @account_id
   end
-
-  def graph
-    @credits = current_user.credits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, Date.today).where.not(id: current_user.transfers.pluck(:credit_id))
-    @debits = current_user.debits.where('"date" >= ? AND "date" <= ?', (DateTime.now - 30.days).to_date, Date.today).where.not(id: current_user.transfers.pluck(:debit_id))
-    @from = params[:from].present? ? params[:from] : 7.days.ago.to_date
-    @to = Date.today
-    @statements = current_user.statements.where('"date" >= ? AND "date" <= ?', @from, @to).order(date: :desc, created_at: :desc).group_by{|x| x.date}
-  end
 end
