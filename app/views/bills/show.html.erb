@@ -46,7 +46,7 @@
         <span></span>
         <span>
           <% if @bill.credit.present? || !@bill.billing_account.enabled %>
-                Pago em <%= l @bill.credit.date.to_date, format: :default %><br> na conta <%= link_to @bill.credit.account.name, @bill.credit.account %>
+                <%= link_to 'Pago', edit_credit_path(@bill.credit) %> em <%= l @bill.credit.date.to_date, format: :default %><br> na conta <%= link_to @bill.credit.account.name, @bill.credit.account %>
             <% else %>
                 <%= link_to 'Pagar', bill_pay_form_path(@bill), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--primary', title: 'Pagar', data: {remote: true} %>
             <% end %>

@@ -3,6 +3,9 @@
   <%= render 'form', credit: @credit %>
 </div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+  <% if @credit.bill.present? %>
+      <p>Esta despesa pagou a conta <%= link_to @credit.bill.name, @credit.bill %>.</p>
+  <% end %>
   <h6>Transformar em Transferência</h6>
   <%= form_tag to_transfer_credit_path(@credit), method: :post do %>
       <div style="display: flex; align-items: center">
