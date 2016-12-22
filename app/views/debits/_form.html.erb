@@ -16,8 +16,8 @@
     </div>
 
     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-      <%= f.collection_select :tag_id, current_user.tags, :id, :name, {include_blank: true}, class: 'mdl-selectfield__select' %>
-      <%= f.label :tag_id, class: 'mdl-selectfield__label' %>
+      <%= f.collection_select :category_id, current_user.categories, :id, :name, {include_blank: true}, class: 'mdl-selectfield__select' %>
+      <%= f.label :category_id, class: 'mdl-selectfield__label' %>
     </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

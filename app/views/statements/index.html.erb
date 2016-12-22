@@ -91,9 +91,9 @@
             <% end %>
           </td>
           <td class="mdl-data-table__cell--non-numeric">
-            <% if statement.tag.present? %>
-                <i class="material-icons"><%= statement.tag.icon %></i>
-                <%= statement.tag.name %>
+            <% if statement.category.present? %>
+                <i class="material-icons"><%= statement.category.icon %></i>
+                <%= statement.category.name %>
             <% else %>
                 -
             <% end %>

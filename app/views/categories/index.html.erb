@@ -1,0 +1,29 @@
+<% content_for :title do %>Categorias<% end %>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending wide">Nome</th>
+      <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @categories.each do |category| %>
+        <tr>
+          <td class="mdl-data-table__cell--non-numeric wide" style="display: flex; align-items: center">
+            <i class="material-icons"><%= category.icon %></i>
+            <%= category.name %>
+          </td>
+          <td class="mdl-data-table__cell--non-numeric">
+            <%= link_to material_icon.edit, edit_category_path(category), class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+            <%= link_to material_icon.delete, category, method: :delete, data: {confirm: 'Excluir categoria?'}, class: 'mdl-button mdl-js-button mdl-button--icon mdl-button--primary' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @categories %>
+</div>
+<% content_for :fab do %>
+    <%= link_to material_icon.add, new_category_path, id: :fab, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect' %>
+<% end %>

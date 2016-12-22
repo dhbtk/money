@@ -12,27 +12,32 @@
           <span class="mdl-list__item-primary-content">
             <% if credit.account.icon.present? %>
                 <div class="mdl-list__item-avatar icon" style="background-image: url(<%= asset_path credit.account.icon %>)"></div>
-            <% elsif credit.tag.present? %>
-              <i class="material-icons mdl-list__item-avatar"><%= credit.tag.icon %></i>
+            <% elsif credit.category.present? %>
+              <i class="material-icons mdl-list__item-avatar"><%= credit.category.icon %></i>
           <% else %>
             <i class="material-icons mdl-list__item-avatar">attach_money</i>
             <% end %>
             <span style="padding-left: 8px"><%= number_to_currency credit.value %> - <%= credit.name %></span>
-        <span class="mdl-list__item-sub-title" style="padding-left: 48px"><%= l credit.date.to_date, format: :default %></span>
+        <span class="mdl-list__item-sub-title" style="padding-left: 48px">
+          <%= l credit.date.to_date, format: :default %>
+          <% if credit.category.present? %>
+          - <%= credit.category.name %>
+              <% end %>
+        </span>
       </span>
           </li>
       <% end %>
     </ul>
   </div>
 </div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col tags">
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--6-col categories">
   <h6>Gastos nos últimos 15 dias</h6>
   <div class="tag-list" style="overflow: auto">
-    <% @tags.each do |tag| %>
+    <% @categories.each do |category| %>
         <div class="tag">
-          <div class="avatar"><i class="material-icons"><%= tag.icon %></i></div>
-          <span class="name"><%= tag.name %></span>
-          <span class="value"><%= number_to_currency tag.credit_total %></span>
+          <div class="avatar"><i class="material-icons"><%= category.icon %></i></div>
+          <span class="name"><%= category.name %></span>
+          <span class="value"><%= number_to_currency category.credit_total %></span>
         </div>
     <% end %>
   </div>
