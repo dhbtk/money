@@ -7,6 +7,8 @@ class RecurringCredit < ApplicationRecord
   accepts_nested_attributes_for :credits
 
   validates :name, :value, :start_date, :months, presence: true
+  validates :value, numericality: { greater_than: 0 }
+  validates :months, numericality: { greater_than: 1 }
 
   def self.from_credit(credit)
     recurring_credit = RecurringCredit.new

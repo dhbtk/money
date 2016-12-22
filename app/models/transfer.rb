@@ -7,6 +7,7 @@ class Transfer < ApplicationRecord
 
   validate :values_must_be_the_same
   validates :source_account, :destination_account, :value, :date, presence: true
+  validates :value, numericality: { greater_than: 0 }
 
   def source_account
     @source_account ||= credit&.account

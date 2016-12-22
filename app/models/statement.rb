@@ -1,6 +1,7 @@
 class Statement < ApplicationRecord
   belongs_to :account
   belongs_to :category, optional: true
+  validates :value, numericality: { greater_than: 0 }
 
   def self.search(term)
   	  left_outer_joins(:category).where('unaccent("statements"."name") ILIKE unaccent(?) OR unaccent("categories"."name") ILIKE unaccent (?)', "%#{term}%", "%#{term}%")
