@@ -2,8 +2,8 @@ class Tag < ApplicationRecord
   audited
   belongs_to :user
 
-  has_many :credits
-  has_many :debits
+  has_many :credits, dependent: :nullify
+  has_many :debits, dependent: :nullify
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
 

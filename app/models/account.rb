@@ -1,16 +1,17 @@
 class Account < ApplicationRecord
+  ICONS = Dir.glob(Rails.root.join(*%w[app assets images account_*.png])).map{ |x| File.basename x }
   audited
   belongs_to :user
   has_many :credits, -> { order(:date) }, dependent: :destroy
   has_many :recurring_credits, -> { order(:name) }, dependent: :destroy
   has_many :debits, -> { order(:date) }, dependent: :destroy
   has_many :statements
-  has_many :recurring_debits, -> { order(:name) }, dependent: :destroy
   has_many :incoming_transfers, through: :debits, class_name: 'Transfer', source: :transfer, dependent: :destroy
   has_many :outgoing_transfers, through: :credits, class_name: 'Transfer', source: :transfer, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :user, presence: true
+  validates :icon, inclusion: { in: ICONS }, if: 'icon.present?'
 
   before_save do
     self.type = nil if type.blank? || type == 'Account'
@@ -18,7 +19,7 @@ class Account < ApplicationRecord
 
   # Simple account balance, not taking into account expired credits
   # nor this account's possible expiration/closing date.
-  def balance(date = DateTime.now.to_date)
+  def balance(date = Date.today)
     debits.where('"date" <= ?', date).sum(:value) - credits.where('"date" <= ?', date).sum(:value)
   end
 

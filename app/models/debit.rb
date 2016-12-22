@@ -5,6 +5,6 @@ class Debit < Statement
   validates :date, :value, presence: true
 
   after_initialize do
-    self.date ||= DateTime.now.to_date
+    self.date ||= Date.today
   end
 end
