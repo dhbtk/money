@@ -1,6 +1,8 @@
 class CreditCard < Account
   audited
   validates :expiration, :closing, :interest, :limit, presence: true
+  validates :expiration, :closing, numericality: { greater_than: 0, less_than_or_equal_to: 31 }
+  validates :interest, :limit, numericality: { greater_than_or_equal_to: 0 }
 
   def total_due
     balance = statements.where('date(date) < ?', next_closing_date).sum("CASE type WHEN 'Credit' THEN -value ELSE value END")

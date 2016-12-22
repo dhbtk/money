@@ -6,6 +6,7 @@ class Bill < ApplicationRecord
   belongs_to :billing_account
   belongs_to :credit, optional: true
   validates :name, presence: true
+  validates :value, numericality: { greater_than: 0 }, if: 'value.present?'
 
   mount_uploader :attachment, AttachmentUploader
 
