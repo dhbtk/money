@@ -1,21 +1,22 @@
-<% content_for :title do %>Movimentações<% end %>
+<% content_for :title do %>Movimentações
+<% end %>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col">
   <%= form_tag(statements_path, method: :get, class: 'table-filters') do %>
       <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
         <%= select_tag :type, options_for_select(@types, @type), class: 'mdl-selectfield__select' %>
-        <%= label_tag :type, nil, class: 'mdl-selectfield__label' %>
+        <%= label_tag :type, 'Tipo', class: 'mdl-selectfield__label' %>
       </div>
       <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
         <%= select_tag :account_id, options_from_collection_for_select(current_user.accounts, :id, :name, @account_id), include_blank: true, class: 'mdl-selectfield__select' %>
-        <%= label_tag :account_id, nil, class: 'mdl-selectfield__label' %>
+        <%= label_tag :account_id, 'Conta', class: 'mdl-selectfield__label' %>
       </div>
       <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
         <%= select_tag :period, options_for_select(@periods, @selected_period), class: 'mdl-selectfield__select' %>
-        <%= label_tag :period, nil, class: 'mdl-selectfield__label' %>
+        <%= label_tag :period, 'Período', class: 'mdl-selectfield__label' %>
       </div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <%= text_field_tag :search, @search, class: 'mdl-textfield__input' %>
-        <%= label_tag :search, nil, class: 'mdl-textfield__label' %>
+        <%= label_tag :search, 'Busca', class: 'mdl-textfield__label' %>
       </div>
       <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect">Filtrar</button>
   <% end %>
@@ -36,7 +37,7 @@
     <tr>
       <th>
         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="table-header">
-          <input type="checkbox" id="table-header" class="mdl-checkbox__input" />
+          <input type="checkbox" id="table-header" class="mdl-checkbox__input"/>
         </label>
       </th>
       <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-descending">Data</th>
@@ -52,7 +53,7 @@
         <tr data-id="<%= statement.id %>" data-value="<%= statement.value %>">
           <td>
             <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="row[<%= statement.id %>]">
-              <input type="checkbox" id="row[<%= statement.id %>]" class="mdl-checkbox__input" />
+              <input type="checkbox" id="row[<%= statement.id %>]" class="mdl-checkbox__input"/>
             </label>
           </td>
           <td class="mdl-data-table__cell--non-numeric"><%= l statement.date.to_date, format: :default %></td>
@@ -85,7 +86,11 @@
           </td>
           <td><%= number_to_currency statement.value %></td>
           <td class="mdl-data-table__cell--non-numeric wide">
-            <%= statement.name %>
+            <% if statement.is_a?(Credit) && statement.bill.present? %>
+                <%= link_to statement.name, statement.bill %>
+            <% else %>
+                <%= statement.name %>
+            <% end %>
             <% if statement.recurring_credit_id.present? %>
                 (<%= statement.recurring_credit.credits.to_a.index(statement) + 1 %>/<%= statement.recurring_credit.months %>)
             <% end %>
@@ -148,45 +153,47 @@
     </div>
 <% end %>
 <% content_for :body do %>
-<script>
-  function updateSelectionTotal() {
-      var values = $('tr.is-selected').map(function() { return parseFloat($(this).data('value')); });
-      var total = 0;
-      for(var i = 0; i < values.length; i++) {
-          total += values[i];
-      }
-      if(total != 0) {
-          var nice_total = 'R$ ' + total.toFixed(2).replace('.', ','); // FIXME localize
-          $('#num').text(nice_total);
-          $('#selection-total').show();
-      } else {
-          $('#selection-total').hide();
-      }
-  }
+    <script>
+        function updateSelectionTotal() {
+            var values = $('tr.is-selected').map(function() {
+                return parseFloat($(this).data('value'));
+            });
+            var total = 0;
+            for (var i = 0; i < values.length; i++) {
+                total += values[i];
+            }
+            if (total != 0) {
+                var nice_total = 'R$ ' + total.toFixed(2).replace('.', ','); // FIXME localize
+                $('#num').text(nice_total);
+                $('#selection-total').show();
+            } else {
+                $('#selection-total').hide();
+            }
+        }
 
-  var checkboxes = document.getElementById('statements-table').querySelector('tbody').querySelectorAll('.mdl-checkbox__input');
-  for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].addEventListener('change', function() {
-          $(this).parent().parent().parent().toggleClass('is-selected');
-          updateSelectionTotal();
-      });
-  }
+        var checkboxes = document.getElementById('statements-table').querySelector('tbody').querySelectorAll('.mdl-checkbox__input');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', function() {
+                $(this).parent().parent().parent().toggleClass('is-selected');
+                updateSelectionTotal();
+            });
+        }
 
-  document.querySelector('#table-header').addEventListener('change', function() {
-      if(this.checked) {
-          for(var i = 0; i < checkboxes.length; i++ ) {
-              if(!checkboxes[i].checked) {
-                  checkboxes[i].click();
-              }
-          }
-      } else {
-          for(i = 0; i < checkboxes.length; i++ ) {
-              if(checkboxes[i].checked) {
-                  checkboxes[i].click();
-              }
-          }
-      }
-      updateSelectionTotal();
-  })
-</script>
+        document.querySelector('#table-header').addEventListener('change', function() {
+            if (this.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (!checkboxes[i].checked) {
+                        checkboxes[i].click();
+                    }
+                }
+            } else {
+                for (i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        checkboxes[i].click();
+                    }
+                }
+            }
+            updateSelectionTotal();
+        })
+    </script>
 <% end %>
