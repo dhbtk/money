@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  ICONS = Dir.glob(Rails.root.join(*%w[app assets images account_*.png])).map{ |x| File.basename x }
+  ICONS = Dir.glob(Rails.root.join(*%w[app assets images account_*.png])).map{ |x| File.basename x }.sort
   audited
   belongs_to :user
   has_many :credits, -> { order(:date) }, dependent: :destroy
