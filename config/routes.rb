@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :recurring_credits, only: [:edit, :update, :destroy]
   resources :accounts
-  resources :statements, only: [:index]
+  resources :statements, only: [:index] do
+    collection do
+      get 'report'
+    end
+  end
   resources :billing_accounts do
     resources :bills, shallow: true, except: [:index] do
       post 'pay'

@@ -1,0 +1,85 @@
+<% content_for :title do %>Gastos de <%= l @report.date, format: '%B de %Y' %>
+<% end %>
+<% content_for :toolbar_left do %><%= link_to material_icon.navigate_before, report_statements_path(date: @report.date.prev_month), class: 'mdl-button mdl-js-button mdl-button--icon' %><% end %>
+<% content_for :toolbar_right do %><%= link_to material_icon.navigate_next, report_statements_path(date: @report.date.next_month), class: 'mdl-button mdl-js-button mdl-button--icon' %><% end %>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
+  <h6>Total de despesas: <%= number_to_currency @report.total_spending %></h6>
+  <h6>Total de receitas: <%= number_to_currency @report.total_earning %></h6>
+  <% if @report.total_spending > @report.total_earning %>
+      <p>Déficit: <%= number_to_currency(@report.total_spending - @report.total_earning) %></p>
+  <% else %>
+      <p>Superávit: <%= number_to_currency(@report.total_earning - @report.total_spending) %></p>
+  <% end %>
+</div>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
+  <h6>Despesas por categoria</h6>
+  <table class="category-table">
+    <tbody>
+    <% @report.spending_by_categories.each do |category, sum| %>
+        <tr>
+          <td style="white-space: nowrap; width: 1em"><%= category.name %></td>
+          <td style="white-space: nowrap; width: 1em">
+            <strong><%= number_to_currency sum %> (<%= '%.2f' % ((sum/@report.total_spending)*100).truncate(2) %>%)</strong></td>
+          <td style="width: 100%">
+            <div style="width: <%= (sum/@report.total_spending)*100 %>%; background-color: #ccc; height: 24px"></div>
+          </td>
+        </tr>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td><%= number_to_currency @report.total_spending %></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
+  <h6>Receitas por categoria</h6>
+  <table class="category-table">
+    <tbody>
+    <% @report.earning_by_categories.each do |category, sum| %>
+        <tr>
+          <td style="white-space: nowrap; width: 1em"><%= category.name %></td>
+          <td style="white-space: nowrap; width: 1em">
+            <strong><%= number_to_currency sum %> (<%= '%.2f' % ((sum/@report.total_earning)*100).truncate(2) %>%)</strong></td>
+          <td style="width: 100%">
+            <div style="width: <%= (sum/@report.total_earning)*100 %>%; background-color: #ccc; height: 24px"></div>
+          </td>
+        </tr>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td><%= number_to_currency @report.total_earning %></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
+  <h6>Detalhamento de despesas</h6>
+  <% @report.spending_by_categories.each do |category, sum| %>
+      <h6><%= category.name %> (<%= number_to_currency sum %>)</h6>
+      <ul>
+        <% current_user.credits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:credit_id)).unscope(:order).order(:date).each do |credit| %>
+            <li>
+              <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
+              <%= credit.account.name %> - <%= l credit.date.to_date %>
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
+<div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
+  <h6>Detalhamento de receitas</h6>
+  <% @report.earning_by_categories.each do |category, sum| %>
+      <h6><%= category.name %> (<%= number_to_currency sum %>)</h6>
+      <ul>
+        <% current_user.debits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:debit_id)).unscope(:order).order(:date).each do |credit| %>
+            <li>
+              <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
+              <%= credit.account.name %> - <%= l credit.date.to_date %>
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
