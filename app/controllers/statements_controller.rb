@@ -71,4 +71,9 @@ class StatementsController < AuthenticatedController
     session[:statements_account_id] = @account_id
     session[:statements_type] = @type
   end
+
+  def report
+    @date = params[:date].present? ? params[:date] : Date.today
+    @report = StatementReport.new(current_user, @date)
+  end
 end
