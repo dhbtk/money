@@ -8,6 +8,9 @@ class Bill < ApplicationRecord
   validates :name, presence: true
   validates :value, numericality: { greater_than: 0 }, if: 'value.present?'
 
+  scope :paid, -> { where.not(credit_id: nil) }
+  scope :unpaid, -> { where(credit_id: nil) }
+
   mount_uploader :attachment, AttachmentUploader
 
   before_validation do
