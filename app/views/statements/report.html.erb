@@ -60,10 +60,13 @@
   <% @report.spending_by_categories.each do |category, sum| %>
       <h6><%= category.name %> (<%= number_to_currency sum %>)</h6>
       <ul>
-        <% current_user.credits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:credit_id)).unscope(:order).order(:date).each do |credit| %>
-            <li>
-              <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
-              <%= credit.account.name %> - <%= l credit.date.to_date %>
+        <% total = 0; current_user.credits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:credit_id)).unscope(:order).order(:date).each do |credit| %>
+            <li style="display: flex">
+              <div style="flex: 1">
+                <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
+                <%= credit.account.name %> - <%= l credit.date.to_date %>
+              </div>
+              <span><%= number_to_currency(total += credit.value) %></span>
             </li>
         <% end %>
       </ul>
@@ -74,10 +77,13 @@
   <% @report.earning_by_categories.each do |category, sum| %>
       <h6><%= category.name %> (<%= number_to_currency sum %>)</h6>
       <ul>
-        <% current_user.debits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:debit_id)).unscope(:order).order(:date).each do |credit| %>
-            <li>
-              <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
-              <%= credit.account.name %> - <%= l credit.date.to_date %>
+        <% total = 0; current_user.debits.where(category_id: category.id).where('date(date) >= ? AND date(date) <= ?', @report.date.beginning_of_month, @report.date.end_of_month).where.not(id: @report.user.transfers.pluck(:debit_id)).unscope(:order).order(:date).each do |credit| %>
+            <li style="display: flex">
+              <div style="flex: 1">
+                <strong><%= credit.name %></strong> - <%= number_to_currency credit.value %><br>
+                <%= credit.account.name %> - <%= l credit.date.to_date %>
+              </div>
+              <span><%= number_to_currency(total += credit.value) %></span>
             </li>
         <% end %>
       </ul>
