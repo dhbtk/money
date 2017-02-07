@@ -13,6 +13,11 @@
 </div>
 <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
   <h6>Despesas por categoria</h6>
+  <div style="display: flex; margin-bottom: 12px; height: 24px; width: 100%">
+    <% @report.spending_by_categories.each do |category, sum| %>
+              <div style="width: <%= (sum/@report.total_spending)*100 %>%; background-color: <%= category.color %>; height: 24px"></div>
+    <% end %>
+  </div>
   <table class="category-table">
     <tbody>
     <% @report.spending_by_categories.each do |category, sum| %>
