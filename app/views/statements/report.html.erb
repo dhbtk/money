@@ -21,7 +21,7 @@
           <td style="white-space: nowrap; width: 1em">
             <strong><%= number_to_currency sum %> (<%= '%.2f' % ((sum/@report.total_spending)*100).truncate(2) %>%)</strong></td>
           <td style="width: 100%">
-            <div style="width: <%= (sum/@report.total_spending)*100 %>%; background-color: #ccc; height: 24px"></div>
+              <div style="width: <%= (sum/@report.total_spending)*100 %>%; background-color: <%= category.color %>; height: 24px"></div>
           </td>
         </tr>
     <% end %>
@@ -43,7 +43,7 @@
           <td style="white-space: nowrap; width: 1em">
             <strong><%= number_to_currency sum %> (<%= '%.2f' % ((sum/@report.total_earning)*100).truncate(2) %>%)</strong></td>
           <td style="width: 100%">
-            <div style="width: <%= (sum/@report.total_earning)*100 %>%; background-color: #ccc; height: 24px"></div>
+              <div style="width: <%= (sum/@report.total_earning)*100 %>%; background-color: <%= category.color %>; height: 24px"></div>
           </td>
         </tr>
     <% end %>
