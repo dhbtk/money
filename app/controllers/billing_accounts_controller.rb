@@ -1,6 +1,8 @@
 class BillingAccountsController < AuthenticatedController
   before_action :set_billing_account, only: [:show, :edit, :update, :destroy]
 
+  helper_method :show_params
+
   # GET /billing_accounts
   # GET /billing_accounts.json
   def index
@@ -10,7 +12,13 @@ class BillingAccountsController < AuthenticatedController
   # GET /billing_accounts/1
   # GET /billing_accounts/1.json
   def show
-    @bills = @billing_account.bills.page(params[:page])
+    @bills = @billing_account.bills
+    if params[:status] == 'paid'
+    	@bills = @bills.where.not(credit_id: nil).unscope(:order).order(expiration: :desc, name: :asc)
+    elsif params[:status] == 'unpaid'
+    	@bills = @bills.where(credit_id: nil).unscope(:order).order(expiration: :asc, name: :asc)
+    end
+    @bills = @bills.page params[:page]
   end
 
   # GET /billing_accounts/new
@@ -60,6 +68,10 @@ class BillingAccountsController < AuthenticatedController
       format.html { redirect_to billing_accounts_url, notice: 'Grupo de despesas excluído' }
       format.json { head :no_content }
     end
+  end
+
+  def show_params
+  	  params.permit(:id, :page, :status)
   end
 
   private
