@@ -15,11 +15,25 @@
     Total a pagar: <%= number_to_currency @billing_account.bills.where(credit: nil).sum(:value) %>
   </p>
 </div>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col billing-account-filters">
+	<% if params[:status] == 'paid' %>
+		<span>Mostrando contas já pagas</span>
+	<% elsif params[:status] == 'unpaid' %>
+		<span>Mostrando contas a pagar</span>
+	<% else %>
+		<span>Mostrando todas as contas</span>
+	<% end %>
+	<div style="display: flex">
+	<%= link_to 'Todas', show_params.merge(status: nil), class: 'mdl-button mdl-js-button mdl-button--primary mdl-button--raised' %>
+	<%= link_to 'Pagas', show_params.merge(status: 'paid'), class: 'mdl-button mdl-js-button mdl-button--primary mdl-button--raised', style: 'margin-left: 8px' %>
+	<%= link_to 'A Pagar', show_params.merge(status: 'unpaid'), class: 'mdl-button mdl-js-button mdl-button--primary mdl-button--raised', style: 'margin-left: 8px' %>
+	</div>
+</div>
 <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col billing-account-bills">
   <table class="mdl-data-table mdl-js-data-table">
     <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending">Vencimento</th>
+      	<th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-<% if params[:status] == 'unpaid' %>ascending<% else %>descending<% end %>">Vencimento</th>
       <th class="mdl-data-table__cell--non-numeric wide">Nome</th>
       <th style="text-align: center">Valor</th>
       <% if @billing_account.enabled %>
