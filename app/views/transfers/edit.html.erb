@@ -1,9 +1,0 @@
-<% content_for :title do %>Editando Transferência<% end %>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col">
-  <%= render 'form', transfer: @transfer %>
-</div>
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-  <% if @transfer.credit.bill.present? %>
-      <p>Esta transferência pagou a conta <%= link_to @transfer.credit.bill.name, @transfer.credit.bill %>.</p>
-  <% end %>
-</div>

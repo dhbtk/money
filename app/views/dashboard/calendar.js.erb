@@ -1,5 +1,0 @@
-$('#current-month').text("<%= I18n.t("date.month_names")[@today.month] %>");
-$('#calendar-table-body').html('');
-$("<%= escape_javascript(render 'calendar', spending: @spending_calendar, today: @today) %>").appendTo('#calendar-table-body');
-$("#prev-month").attr('href', '<%= calendar_path(@today - 1.month) %>');
-$("#next-month").attr('href', '<%= calendar_path(@today + 1.month) %>');
