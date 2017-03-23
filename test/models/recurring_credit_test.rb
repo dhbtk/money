@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: recurring_credits
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  months      :integer
+#  value       :decimal(8, 2)
+#  account_id  :integer
+#  expiration  :integer
+#  interest    :decimal(8, 2)
+#  fine        :decimal(8, 2)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  start_date  :datetime
+#  category_id :integer
+#
+# Indexes
+#
+#  index_recurring_credits_on_account_id   (account_id)
+#  index_recurring_credits_on_category_id  (category_id)
+#
+
 require 'test_helper'
 
 class RecurringCreditTest < ActiveSupport::TestCase
